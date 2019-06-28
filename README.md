@@ -1,5 +1,5 @@
 # Little Shop
-BE Mod 2 Week 3/4 Pair Project
+BE Mod 2 Week 2/3 Pair Project
 
 ## Background and Description
 
