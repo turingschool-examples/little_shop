@@ -55,6 +55,10 @@ Students will be put into pairs to complete the project.
 
 - if there is a specific gem you'd like to use in the project, please get permission from your instructors first
 
+# User Stories
+
+## Deploy
+
 ```
 [ ] done
 
