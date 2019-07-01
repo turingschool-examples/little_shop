@@ -12,6 +12,7 @@ Students will be put into pairs to complete the project.
 ### Rails
 * Use path helpers
 * Describe use cases for a model that inherits from ApplicationRecord vs. a PORO
+* Use MVC to organize code effectively, limiting the amount of logic included in views and controllers
 * Make use of flash messages
 * Use Inheritance from ApplicationController or a student created controller to store methods that will be used in multiple controllers
 * Use POROs to logically organize code for objects not stored in the database
