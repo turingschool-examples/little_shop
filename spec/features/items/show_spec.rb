@@ -21,5 +21,12 @@ RSpec.describe 'Item Show Page' do
       expect(page).to have_content("Sold by: #{@megan.name}")
       expect(page).to have_link(@megan.name)
     end
+
+    it "I can see item links" do
+      visit "/items/#{@ogre.id}"
+
+      expect(page).to have_link("Update Item")
+      expect(page).to have_link("Delete")
+    end
   end
 end
