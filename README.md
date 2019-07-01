@@ -5,7 +5,7 @@ BE Mod 2 Week 2/3 Pair Project
 
 "Little Shop" is a fictitious e-commerce platform where users can place items into a shopping cart and 'check out' to create Orders in the database.
 
-Students will be put into pairs to complete the project.\n
+Students will be put into pairs to complete the project.
 
 ## Learning Goals
 
