@@ -281,8 +281,8 @@ I see a flash message indicating that I need to complete the form for successful
 
 ---
 
-## Cart & Order
-Users will be able to add items to a cart, and check out to create orders in the database.
+## Item Reviews
+Users will be able to review items
 
 ```
 [ ] done
