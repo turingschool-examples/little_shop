@@ -18,20 +18,15 @@ Students will be put into pairs to complete the project.
 
 ### ActiveRecord
 * Use built-in ActiveRecord methods to:
-* create queries that calculate, select, filter, and order data from a single table
-
-### ActiveRecord
-* Use built-in ActiveRecord methods to:
-* create queries that calculate, select, filter, and order data from a single table
+  * create queries that calculate, select, filter, and order data from a single table
 
 ### Databases
 * Describe Database Relationships, including the following terms:
-* Many to Many
-* Join Table
+  * Many to Many
+  * Join Table
 
 ### Testing and Debugging
-* Write feature tests utilizing
-* Sad Path Testing
+* Write feature tests utilizing Sad Path Testing
 * Write model tests with RSpec including validations, and class and instance methods
 
 ### Web Applications
