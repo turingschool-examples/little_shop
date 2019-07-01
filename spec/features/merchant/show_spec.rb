@@ -20,10 +20,16 @@ RSpec.describe 'Merchant Show Page' do
 
     it 'I see a link to this merchants items' do
       visit "/merchants/#{@megan.id}"
+      # click_link "Items"
 
-      click_link "Items"
 
-      
+      expect(page).to have_button("New Item")
+      expect(page).to have_button("Edit")
+      expect(page).to have_button("Delete")
+
+      click_button "New Item"
+
+      expect(current_path).to eq("/merchants/#{@megan.id}/items/new")
     end
   end
 end

@@ -61,7 +61,7 @@ Students will be put into pairs to complete the project.
 ## Deploy
 
 ```
-[ ] done
+[x] done
 
 User Story 1, Deploy your application to Heroku
 
