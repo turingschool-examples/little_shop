@@ -13,5 +13,10 @@ class CartsController < ApplicationController
      redirect_to '/items'
   end
 
+  def index
+     @contents = session[:cart]
+    # binding.pry
+  end
+
 
 end
