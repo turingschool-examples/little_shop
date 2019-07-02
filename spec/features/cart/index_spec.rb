@@ -40,14 +40,14 @@ RSpec.describe "When a user adds an item to their cart" do
     expect(page).to have_css("img[src*='#{item_1.image}']")
     expect(page).to have_content("#{item_1.merchant.name}")
     expect(page).to have_content("#{item_1.price}")
-    expect(page).to have_content("2")
+    expect(page).to have_content("Quantity: 2")
     expect(page).to have_content("$40.00")
 
     expect(page).to have_content("Giant")
     expect(page).to have_css("img[src*='#{item_2.image}']")
     expect(page).to have_content("#{item_2.merchant.name}")
     expect(page).to have_content("#{item_2.price}")
-    expect(page).to have_content("1")
+    expect(page).to have_content("Quantity: 1")
     expect(page).to have_content("$50.00")
 
     expect(page).to have_content("$90.00")
