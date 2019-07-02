@@ -17,7 +17,10 @@ class Cart
   end
 
   def add_item(id)
-    @contents[id.to_s] += 1
+    item = Item.find(id)
+    if @contents[item.id.to_s] < item.inventory
+      @contents[item.id.to_s] += 1
+    end
   end
 
   def remove_item(id)

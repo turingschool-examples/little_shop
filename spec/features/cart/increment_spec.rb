@@ -1,7 +1,7 @@
 require 'rails_helper'
 include ActionView::Helpers::NumberHelper
 
-RSpec.describe 'Cart Checkout link' do
+RSpec.describe 'Cart Index Page' do
   describe 'As a visitor' do
     before :each do
       @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
@@ -14,18 +14,44 @@ RSpec.describe 'Cart Checkout link' do
     it 'I can remove one item from the cart' do
       visit item_path(@ogre)
       click_link "Add to Cart"
-      visit item_path(@ogre)
+      visit item_path(@hippo)
       click_link "Add to Cart"
       visit item_path(@giant)
       click_link "Add to Cart"
 
       visit cart_path
 
-      expect(page).to have_link("Checkout")
+      within "#item-#{@ogre.id}" do
+        expect(page).to have_link("+")
+        expect(page).to have_content("Quantity: 1")
+      end
 
-      click_link("Checkout")
+      within "#item-#{@giant.id}" do
+        expect(page).to have_link("+")
+        expect(page).to have_content("Quantity: 1")
+      end
 
-      expect(current_path).to eq(new_order_path)
+      within "#item-#{@hippo.id}" do
+        expect(page).to have_link("+")
+        expect(page).to have_content("Quantity: 1")
+      end
+
+      within "#item-#{@ogre.id}" do
+        click_link("+")
+        expect(page).to have_content("Quantity: 2")
+        click_link("+")
+        expect(page).to have_content("Quantity: 3")
+      end
+
+      within "#item-#{@giant.id}" do
+        expect(page).to have_content("Quantity: 1")
+        click_link("+")
+        expect(page).to have_content("Quantity: 2")
+        click_link("+")
+        expect(page).to have_content("Quantity: 3")
+        click_link("+")
+        expect(page).to have_content("Quantity: 3")
+      end
     end
   end
 end
