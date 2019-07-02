@@ -693,6 +693,32 @@
         null,
         null
       ],
+      "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/reviews/index_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null
+      ],
       "/Users/willthompson/turing/mod_2/projects/little_shop/spec/models/item_spec.rb": [
         1,
         null,
@@ -836,8 +862,25 @@
         2,
         null,
         null
+      ],
+      "/Users/willthompson/turing/mod_2/projects/little_shop/app/controllers/reviews_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null
       ]
     },
-    "timestamp": 1562028968
+    "timestamp": 1562029504
   }
 }

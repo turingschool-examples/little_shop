@@ -7,10 +7,9 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
   end
 
-
   private
 
-  def item_params
+  def review_params
     params.permit(:title, :content, :rating, :item_id)
   end
 end
