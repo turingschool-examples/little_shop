@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MonsterShop</title>
+    <title>LittleShop</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -10,10 +10,9 @@
 
   <body>
     <nav>
-      <% @cart = Cart.new %>
       <%= link_to 'Merchants', '/merchants' %>
       <%= link_to 'Items', '/items' %>
-      <%= link_to "Cart(#{@cart.counter})", '/carts' %>
+      <%= link_to "Cart(#{cart.total})", items_path %>
     </nav>
     <%= yield %>
   </body>

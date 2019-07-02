@@ -15,10 +15,19 @@ RSpec.describe "Cart Creation" do
 
         visit "/items/#{@ogre.id}"
 
-        click_on 'Add to Cart'
+        click_button 'Add to Cart'
 
         expect(current_path).to eq(items_path)
         expect(page).to have_content("#{@ogre.name} has been added to your cart.")
+
+      end
+
+      it 'The cart indicator in the navigation bar increments my cart count' do
+
+        visit "/items/#{@ogre.id}"
+        click_button "Add to Cart"
+
+        expect(page).to have_content("Cart(1)")
 
       end
     end
