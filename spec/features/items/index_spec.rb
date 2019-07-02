@@ -46,5 +46,54 @@ RSpec.describe 'Item Index Page' do
         expect(page).to have_link(@brian.name)
       end
     end
+
+    it "I can click on the item name to go to that item's show page" do
+      visit '/items'
+      # visit items_path
+      expect(page).to have_link(@ogre.name)
+      click_link(@ogre.name)
+      expect(current_path).to eq("/items/#{@ogre.id}")
+
+      within "#item-#{@ogre.id}" do
+        # expect(current_path).to eq(item_path(@ogre))
+        expect(page).to have_content(@ogre.name)
+        expect(page).to have_content(@ogre.description)
+        expect(page).to have_content(@ogre.price)
+        expect(page).to have_css("img[src*='#{@ogre.image}']")
+        expect(page).to have_content("Active")
+        expect(page).to have_content(@ogre.inventory)
+      end
+
+      visit '/items'
+
+      expect(page).to have_link(@hippo.name)
+      click_link(@hippo.name)
+      expect(current_path).to eq("/items/#{@hippo.id}")
+      #expect(current_path).to eq(item_path(@hippo))
+      within "#item-#{@hippo.id}" do
+        expect(page).to have_content(@hippo.name)
+        expect(page).to have_content(@hippo.description)
+        expect(page).to have_content(@hippo.price)
+        expect(page).to have_css("img[src*='#{@hippo.image}']")
+        expect(page).to have_content("Active")
+        expect(page).to have_content(@hippo.inventory)
+      end
+
+      visit '/items'
+
+      expect(page).to have_link(@giant.name)
+      click_link(@giant.name)
+      expect(current_path).to eq("/items/#{@giant.id}")
+      #expect(current_path).to eq(item_path(@giant))
+
+      within "#item-#{@giant.id}" do
+        expect(page).to have_content(@giant.name)
+        expect(page).to have_content(@giant.description)
+        expect(page).to have_content(@giant.price)
+        expect(page).to have_css("img[src*='#{@giant.image}']")
+        expect(page).to have_content("Active")
+        expect(page).to have_content(@giant.inventory)
+      end
+    end
   end
 end
