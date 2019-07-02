@@ -10,7 +10,6 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @cart = Cart.new(session[:cart])
   end
 
   def new

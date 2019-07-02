@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :items
   resources :merchants
-  resources :carts, only: [:create]
+  resources :carts
 
   get '/merchants', to: 'merchants#index'
   get '/merchants/new', to: 'merchants#new'
