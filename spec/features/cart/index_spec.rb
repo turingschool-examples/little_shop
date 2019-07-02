@@ -21,6 +21,7 @@ RSpec.describe 'Cart Index Page' do
 
       expect(page).to have_content("Your cart is empty.")
       expect(page).to_not have_link("Empty Cart")
+      expect(page).to_not have_link("Checkout")
 
       visit item_path(@ogre)
       click_link "Add to Cart"

@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   patch '/cart/:item_id', to: 'carts#add_item', as: :add_to_cart
   put '/cart/:item_id', to: 'carts#remove_item', as: :remove_from_cart
   delete '/cart', to: 'carts#destroy', as: :empty_cart
+
+  get '/order/new', to: 'orders#new', as: :new_order
 end
