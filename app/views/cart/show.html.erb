@@ -6,8 +6,8 @@
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw">
     <p>Sold by: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %>, Inventory: <%= item.inventory %></p>
     <p>Price: <%= number_to_currency(item.price) %></p>
-    <p>Quantity: <%= cart.item_count(item) %></p>
-    <p>Subtotal: <%= item.price * cart.item_count(item) %></p>
+    <p>Quantity: <%= cart.item_count(item.id) %></p>
+    <p>Subtotal: <%= item.price * cart.item_count(item.id) %></p>
   </section>
 <% end %>
 
