@@ -22,4 +22,8 @@ class Cart
     @contents[id.to_s].to_i
   end
 
+  def subtotal(price, quantity)
+    price * quantity.to_f
+  end
+
 end
