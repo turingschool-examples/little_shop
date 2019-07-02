@@ -19,6 +19,9 @@ RSpec.describe 'Cart Index Page' do
       expect(page).to_not have_content(@hippo.name)
       expect(page).to have_content("Cart: 0")
 
+      expect(page).to have_content("Your cart is empty.")
+      expect(page).to_not have_link("Empty Cart")
+
       visit item_path(@ogre)
       click_link "Add to Cart"
       visit item_path(@ogre)
