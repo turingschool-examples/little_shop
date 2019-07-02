@@ -246,10 +246,78 @@
           
         
       
+        <div class='card' id='tbl-103' style="top:10px;left:560px;">
+          <div class='card-header'>
+            <i class="fa fa-arrows" aria-hidden="true"></i>
+            <h4 class='card-title table-title' data-toggle='popover' data-trigger='hover' data-content='Edit table name'>
+              reviews
+            </h4>
+            <div class='table-nav-buttons'>
+              <i class='fa fa-plus-square' data-toggle='popover' data-trigger='hover' data-content='Add column'></i>
+              <i class='fa fa-trash delete-table' data-toggle='popover' data-trigger='hover' data-content='Destroy table'></i>
+            </div>
+          </div>
+          <div class='card-block'>
+            <ul class='list-group'>
+              <li class='list-group-item' id="tbl-103-id-column">
+                <span class='tag tag-default float-xs-left type-span'>integer</span>
+                <div class='column-title-outer' >
+                  <span class='column-title' >id</span>
+                </div>
+              </li>
+              
+              <li class='list-group-item' id='col-103-101'>
+                <span class='tag tag-default float-xs-left type-span' data-toggle='popover' data-trigger='hover' data-content='Edit type'>string</span>
+                <div class='column-title-outer' >
+                  <span class='column-title' data-toggle='popover' data-trigger='hover' data-content='Edit column name'>title</span>
+                </div>
+                <i class='fa fa-trash delete-column' data-toggle='popover' data-trigger='hover' data-content='Destroy column'></i>
+              </li>
+              
+              <li class='list-group-item' id='col-103-102'>
+                <span class='tag tag-default float-xs-left type-span' data-toggle='popover' data-trigger='hover' data-content='Edit type'>string</span>
+                <div class='column-title-outer' >
+                  <span class='column-title' data-toggle='popover' data-trigger='hover' data-content='Edit column name'>content</span>
+                </div>
+                <i class='fa fa-trash delete-column' data-toggle='popover' data-trigger='hover' data-content='Destroy column'></i>
+              </li>
+              
+              <li class='list-group-item' id='col-103-103'>
+                <span class='tag tag-default float-xs-left type-span' data-toggle='popover' data-trigger='hover' data-content='Edit type'>integer</span>
+                <div class='column-title-outer' >
+                  <span class='column-title' data-toggle='popover' data-trigger='hover' data-content='Edit column name'>rating</span>
+                </div>
+                <i class='fa fa-trash delete-column' data-toggle='popover' data-trigger='hover' data-content='Destroy column'></i>
+              </li>
+              
+              <li class='list-group-item' id='col-103-104'>
+                <span class='tag tag-default float-xs-left type-span' data-toggle='popover' data-trigger='hover' data-content='Edit type'>datetime</span>
+                <div class='column-title-outer' >
+                  <span class='column-title' data-toggle='popover' data-trigger='hover' data-content='Edit column name'>created_at</span>
+                </div>
+                <i class='fa fa-trash delete-column' data-toggle='popover' data-trigger='hover' data-content='Destroy column'></i>
+              </li>
+              
+              <li class='list-group-item' id='col-103-105'>
+                <span class='tag tag-default float-xs-left type-span' data-toggle='popover' data-trigger='hover' data-content='Edit type'>datetime</span>
+                <div class='column-title-outer' >
+                  <span class='column-title' data-toggle='popover' data-trigger='hover' data-content='Edit column name'>updated_at</span>
+                </div>
+                <i class='fa fa-trash delete-column' data-toggle='popover' data-trigger='hover' data-content='Destroy column'></i>
+              </li>
+              
+              
+            </ul>
+          </div>
+        </div>
+        
+          
+        
+      
     </div>
   </div>
   <script>
-    localStorage.setItem("schema",JSON.stringify({"tbl-101":{"name":"items","original_name":"items","status":{"original":true,"modified":false,"new":false,"deleted":false},"columns":{"col-101-101":{"name":"name","original_name":"name","type":"string","original_type":"string","id":"col-101-101","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-101-102":{"name":"description","original_name":"description","type":"string","original_type":"string","id":"col-101-102","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-101-103":{"name":"price","original_name":"price","type":"float","original_type":"float","id":"col-101-103","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-101-104":{"name":"inventory","original_name":"inventory","type":"integer","original_type":"integer","id":"col-101-104","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-101-105":{"name":"image","original_name":"image","type":"string","original_type":"string","id":"col-101-105","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-101-106":{"name":"active","original_name":"active","type":"boolean","original_type":"boolean","id":"col-101-106","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-101-107":{"name":"created_at","original_name":"created_at","type":"datetime","original_type":"datetime","id":"col-101-107","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-101-108":{"name":"updated_at","original_name":"updated_at","type":"datetime","original_type":"datetime","id":"col-101-108","status":{"original":true,"new":false,"modified":false,"deleted":false}}},"references":{"ref-101-101":{"id":"ref-101-101","table_id":"tbl-101","foreign_table_name":"merchants","foreign_table_id":"tbl-102","status":{"original":true,"new":false,"deleted":false}}},"id":"tbl-101"},"tbl-102":{"name":"merchants","original_name":"merchants","status":{"original":true,"modified":false,"new":false,"deleted":false},"columns":{"col-102-101":{"name":"name","original_name":"name","type":"string","original_type":"string","id":"col-102-101","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-102-102":{"name":"address","original_name":"address","type":"string","original_type":"string","id":"col-102-102","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-102-103":{"name":"city","original_name":"city","type":"string","original_type":"string","id":"col-102-103","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-102-104":{"name":"state","original_name":"state","type":"string","original_type":"string","id":"col-102-104","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-102-105":{"name":"zip","original_name":"zip","type":"integer","original_type":"integer","id":"col-102-105","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-102-106":{"name":"created_at","original_name":"created_at","type":"datetime","original_type":"datetime","id":"col-102-106","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-102-107":{"name":"updated_at","original_name":"updated_at","type":"datetime","original_type":"datetime","id":"col-102-107","status":{"original":true,"new":false,"modified":false,"deleted":false}}},"references":{},"id":"tbl-102"}}))
+    localStorage.setItem("schema",JSON.stringify({"tbl-101":{"name":"items","original_name":"items","status":{"original":true,"modified":false,"new":false,"deleted":false},"columns":{"col-101-101":{"name":"name","original_name":"name","type":"string","original_type":"string","id":"col-101-101","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-101-102":{"name":"description","original_name":"description","type":"string","original_type":"string","id":"col-101-102","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-101-103":{"name":"price","original_name":"price","type":"float","original_type":"float","id":"col-101-103","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-101-104":{"name":"inventory","original_name":"inventory","type":"integer","original_type":"integer","id":"col-101-104","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-101-105":{"name":"image","original_name":"image","type":"string","original_type":"string","id":"col-101-105","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-101-106":{"name":"active","original_name":"active","type":"boolean","original_type":"boolean","id":"col-101-106","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-101-107":{"name":"created_at","original_name":"created_at","type":"datetime","original_type":"datetime","id":"col-101-107","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-101-108":{"name":"updated_at","original_name":"updated_at","type":"datetime","original_type":"datetime","id":"col-101-108","status":{"original":true,"new":false,"modified":false,"deleted":false}}},"references":{"ref-101-101":{"id":"ref-101-101","table_id":"tbl-101","foreign_table_name":"merchants","foreign_table_id":"tbl-102","status":{"original":true,"new":false,"deleted":false}}},"id":"tbl-101"},"tbl-102":{"name":"merchants","original_name":"merchants","status":{"original":true,"modified":false,"new":false,"deleted":false},"columns":{"col-102-101":{"name":"name","original_name":"name","type":"string","original_type":"string","id":"col-102-101","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-102-102":{"name":"address","original_name":"address","type":"string","original_type":"string","id":"col-102-102","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-102-103":{"name":"city","original_name":"city","type":"string","original_type":"string","id":"col-102-103","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-102-104":{"name":"state","original_name":"state","type":"string","original_type":"string","id":"col-102-104","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-102-105":{"name":"zip","original_name":"zip","type":"integer","original_type":"integer","id":"col-102-105","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-102-106":{"name":"created_at","original_name":"created_at","type":"datetime","original_type":"datetime","id":"col-102-106","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-102-107":{"name":"updated_at","original_name":"updated_at","type":"datetime","original_type":"datetime","id":"col-102-107","status":{"original":true,"new":false,"modified":false,"deleted":false}}},"references":{},"id":"tbl-102"},"tbl-103":{"name":"reviews","original_name":"reviews","status":{"original":true,"modified":false,"new":false,"deleted":false},"columns":{"col-103-101":{"name":"title","original_name":"title","type":"string","original_type":"string","id":"col-103-101","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-103-102":{"name":"content","original_name":"content","type":"string","original_type":"string","id":"col-103-102","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-103-103":{"name":"rating","original_name":"rating","type":"integer","original_type":"integer","id":"col-103-103","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-103-104":{"name":"created_at","original_name":"created_at","type":"datetime","original_type":"datetime","id":"col-103-104","status":{"original":true,"new":false,"modified":false,"deleted":false}},"col-103-105":{"name":"updated_at","original_name":"updated_at","type":"datetime","original_type":"datetime","id":"col-103-105","status":{"original":true,"new":false,"modified":false,"deleted":false}}},"references":{},"id":"tbl-103"}}))
   </script>
 
 </body>
