@@ -13,8 +13,8 @@ class CartController < ApplicationController
   def show
     cart = Cart.new(session[:cart])
     @items = []
-    cart.contents.each do |k, v|
-      @items << Item.find(k)
+    cart.contents.each do |item_id, quanitity|
+      @items << Item.find(item_id)
     end
   end
 end

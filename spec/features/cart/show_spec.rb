@@ -35,7 +35,7 @@ RSpec.describe 'Cart Show Page' do
       # expect(page).to have_content(cart.item_count(@giant))
       # expect(page).to have_content(@giant.item_count(@giant) * @giant.price)
 
-      # expect(page).to have_content(cart.total)
+      expect(page).to have_content(cart.grand_total)
     end
   end
 end
