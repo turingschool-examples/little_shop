@@ -11,13 +11,14 @@ RSpec.describe 'Cart Show Page' do
     end
     it 'I see all items added to my cart' do
       cart = Cart.new(nil)
-      # cart.add_item(@giant)
-      visit "/items/#{@ogre.id}"
 
+      visit "/items/#{@ogre.id}"
       click_button "Add to Cart"
 
+      visit "/items/#{@giant.id}"
+      click_button "Add to Cart"
       # save_and_open_page
-      click_on "Cart(1)"
+      click_on "Cart(2)"
 
       expect(current_path).to eq('/cart')
       expect(page).to have_content(@ogre.name)
@@ -27,15 +28,15 @@ RSpec.describe 'Cart Show Page' do
       expect(page).to have_content(cart.item_count(@ogre))
       expect(page).to have_content(cart.item_count(@ogre) * @ogre.price)
 
-      # expect(current_path).to eq(cart_path)
-      # expect(page).to have_content(@giant.name)
-      # expect(page).to have_content(@giant.image)
-      # expect(page).to have_content(@giant.merchant.name)
-      # expect(page).to have_content(@giant.price)
-      # expect(page).to have_content(cart.item_count(@giant))
-      # expect(page).to have_content(@giant.item_count(@giant) * @giant.price)
 
-      expect(page).to have_content(cart.grand_total)
+      expect(page).to have_content(@giant.name)
+      # expect(page).to have_content(@giant.image)
+      expect(page).to have_content(@giant.merchant.name)
+      expect(page).to have_content(@giant.price)
+      expect(page).to have_content(cart.item_count(@giant))
+      expect(page).to have_content(cart.item_count(@giant) * @giant.price)
+
+      expect(page).to have_content("$70.00")
     end
   end
 end
