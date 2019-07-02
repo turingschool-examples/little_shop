@@ -12,7 +12,7 @@
     <nav>
       <%= link_to 'Merchants', '/merchants' %>
       <%= link_to 'Items', '/items' %>
-      <%= link_to "Cart(#{cart.total})", items_path %>
+      <%= link_to "Cart(#{cart.total})", "/cart" %>
     </nav>
     <%= yield %>
   </body>

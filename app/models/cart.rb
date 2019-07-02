@@ -20,6 +20,9 @@ class Cart
 
   def total
     @contents.values.sum
-  end  
+  end
 
+  def grand_total
+    
+  end
 end
