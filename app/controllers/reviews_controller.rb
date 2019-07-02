@@ -1,6 +1,9 @@
 class ReviewsController < ApplicationController
   def index
-    @reviews = Review.all
+    @item = Item.find(params[:item_id])
+    @reviews = @item.reviews
+    # redirect_to item_path(@item.id)
+
   end
 
   def show

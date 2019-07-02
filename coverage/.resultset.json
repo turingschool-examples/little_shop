@@ -287,6 +287,7 @@
         1,
         1,
         null,
+        1,
         null
       ],
       "/Users/willthompson/turing/mod_2/projects/little_shop/app/helpers/application_helper.rb": [
@@ -710,11 +711,9 @@
         1,
         1,
         null,
-        0,
-        0,
-        0,
-        0,
-        null,
+        1,
+        1,
+        1,
         null,
         null,
         null
@@ -867,6 +866,9 @@
         1,
         1,
         1,
+        1,
+        null,
+        null,
         null,
         null,
         1,
@@ -881,6 +883,6 @@
         null
       ]
     },
-    "timestamp": 1562029504
+    "timestamp": 1562034188
   }
 }

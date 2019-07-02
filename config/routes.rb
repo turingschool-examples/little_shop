@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :new, :create]
     end
     resources :items, only: [:index, :show, :edit, :update, :destroy] do
-      resources :reviews
+      resources :reviews, expect: [:index]
     end
+    get "/items/:id", to: 'reviews#index'
   end

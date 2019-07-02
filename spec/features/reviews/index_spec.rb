@@ -10,15 +10,13 @@ RSpec.describe 'Review Index Page' do
       @hippo = @brian.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
       @review_1 = @hippo.reviews.create!(title: 'Good Hippo', content: "The Hippo was good", rating: 4 )
     end
-    
-    it 'I can see a list of all items' do
-      visit item_reviews_path(@review_1.id)
 
-      within "#review-#{@review_1.id}" do
-        expect(page).to have_content(@review.title)
-        expect(page).to have_content(@review.content)
-        expect(page).to have_content("rating: #{@review.rating}")
-      end
+    it 'I can see a list of all items' do
+      visit "/items/#{@hippo.id}/reviews"
+      # within "#review-#{@review_1.id}" do
+        expect(page).to have_content(@review_1.title)
+        expect(page).to have_content(@review_1.content)
+        expect(page).to have_content("rating: #{@review_1.rating}")
     end
   end
 end
