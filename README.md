@@ -78,7 +78,7 @@ the application must be hosted on Heroku.
 Users should be able to navigate the application using only links/buttons.
 
 ```
-[ ] done
+[x] done
 
 User Story 2, Item Link Navigation
 
@@ -89,7 +89,7 @@ I can click on the item name to go to that item's show page.
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 3, Merchant Link Navigation
 
@@ -217,7 +217,6 @@ If I decrement the count to 0 the item is immediately removed from my cart
 [ ] done
 
 User Story 12, Link to Checkout
-
 As a visitor
 When I have items in my cart
 And I visit my cart

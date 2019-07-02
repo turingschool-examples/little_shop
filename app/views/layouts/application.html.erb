@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="application_styles.css" type="text/css" rel="stylesheet">
     <title>MonsterShop</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
     <nav>
+
+      <% session[:cart] ||= {"items" => [], "num_items" => 0} %>
       <%= link_to 'Merchants', '/merchants' %>
       <%= link_to 'Items', '/items' %>
+      <%= link_to "Cart: #{session[:cart]["num_items"]}", '/cart' %>
+
     </nav>
     <%= yield %>
   </body>
