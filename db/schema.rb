@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 20190701224318) do
   enable_extension "plpgsql"
 
   create_table "item_orders", force: :cascade do |t|
+    t.integer "quantity"
+    t.float "price"
     t.bigint "order_id"
     t.bigint "item_id"
     t.index ["item_id"], name: "index_item_orders_on_item_id"
