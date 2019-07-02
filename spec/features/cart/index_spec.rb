@@ -26,6 +26,9 @@ RSpec.describe 'Cart Index Page' do
       visit item_path(@giant)
       click_link "Add to Cart"
 
+      visit cart_path
+
+      expect(page).to have_content("All Items in Cart")
       expect(page).to have_content("Cart: 3")
 
       within "#item-#{@ogre.id}" do
@@ -45,6 +48,8 @@ RSpec.describe 'Cart Index Page' do
         expect(page).to have_content("Price: #{number_to_currency(@giant.price)}")
         expect(page).to have_content("Quantity: 1")
       end
+
+      expect(page).to have_content("Total cost: 90")
 
       expect(page).to_not have_content(@hippo.name)
     end
