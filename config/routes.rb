@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   patch '/merchants/:id', to: 'merchants#update'
   delete '/merchants/:id', to: 'merchants#destroy'
 
-  get '/items', to: 'items#index'
+  get '/items', to: 'items#index', as: :items
   get '/merchants/:merchant_id/items', to: 'items#index'
   get '/items/:id', to: 'items#show'
   get '/merchants/:merchant_id/items/new', to: 'items#new'
@@ -19,5 +19,6 @@ Rails.application.routes.draw do
   patch '/items/:id', to: 'items#update'
   delete '/items/:id', to: 'items#destroy'
 
-  get '/cart', to: 'cart#add_to_cart'
+  get '/cart', to: 'carts#index', as: :cart
+  patch '/cart/:item_id', to: 'carts#add_item', as: :add_to_cart
 end
