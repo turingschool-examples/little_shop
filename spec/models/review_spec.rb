@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Merchant do
+RSpec.describe Review do
   describe 'Relationships' do
     it {should belong_to :item}
   end
