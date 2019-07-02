@@ -11,3 +11,5 @@
 <% grand_total += cart.subtotal(Item.find(item).price, quantity) %>
 <% end %>
 <%= number_to_currency(grand_total) %>
+<br>
+<%= button_to "Empty Cart", cart_path, method: :delete %>
