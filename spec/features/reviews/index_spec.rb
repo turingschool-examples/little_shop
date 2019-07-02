@@ -12,11 +12,11 @@ RSpec.describe 'Review Index Page' do
     end
 
     it 'I can see a list of all items' do
-      visit "/items/#{@hippo.id}/reviews"
+      visit "/items/#{@hippo.id}"
       # within "#review-#{@review_1.id}" do
         expect(page).to have_content(@review_1.title)
         expect(page).to have_content(@review_1.content)
-        expect(page).to have_content("rating: #{@review_1.rating}")
+        expect(page).to have_content(@review_1.rating)
     end
   end
 end

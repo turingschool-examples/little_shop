@@ -2,13 +2,23 @@ class ReviewsController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
     @reviews = @item.reviews
-    # redirect_to item_path(@item.id)
 
   end
 
   def show
     @review = Review.find(params[:id])
   end
+
+  def new
+    @item = Item.find(params[:item_id])
+  end
+
+  def create
+    item = Item.find(params[:item_id])
+    item.reviews.create!(review_params)
+    redirect_to "/items/#{item.id}"
+  end
+
 
   private
 
