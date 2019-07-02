@@ -5,5 +5,8 @@
 <p>Sold by: <%= link_to @item.merchant.name, "/merchants/#{@item.merchant_id}" %>, Inventory: <%= @item.inventory %></p>
 <p><%= @item.active ? "Active" : "Inactive" %></p>
 
+
+<%= button_to "Add To Cart", carts_path(item_id: @item.id) %>
+
 <%= link_to 'Update Item', "/items/#{@item.id}/edit" %>
 <%= link_to 'Delete', "/items/#{@item.id}", method: :delete %>
