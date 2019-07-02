@@ -1,7 +1,7 @@
-<h1>All Items in Cart</h1>
 <% if @items.empty? %>
-  <h2>Your cart is empty.</h2>
+  <h1>Your cart is empty.</h1>
 <% else %>
+  <h1>All Items in Cart</h1>
   <% @items.each do |item,qty| %>
     <section id='item-<%= item.id %>'>
       <h2><%= link_to item.name, "/items/#{item.id}" %></h2>
@@ -9,8 +9,11 @@
       <p>Sold by: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %></p>
       <p>Price: <%= number_to_currency(item.price) %></p>
       <p>Quantity: <%= qty %></p>
+      <h2><%= link_to "Remove Item", remove_from_cart_path(item), method: :put %></h2>
     </section>
   <% end %>
 
   <p>Total cost: <%= cart.total_cost %></p>
+
+  <h2><%= link_to "Empty Cart", empty_cart_path, method: :delete %></h2>
 <% end %>

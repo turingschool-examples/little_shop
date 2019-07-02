@@ -10,18 +10,8 @@ RSpec.describe 'Cart Index Page' do
       @giant = @megan.items.create!(name: 'Giant', description: "I'm a Giant!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
       @hippo = @brian.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
     end
-
-    it 'I can see a list of all items' do
-      visit cart_path
-
-      expect(page).to_not have_content(@ogre.name)
-      expect(page).to_not have_content(@giant.name)
-      expect(page).to_not have_content(@hippo.name)
-      expect(page).to have_content("Cart: 0")
-
-      expect(page).to have_content("Your cart is empty.")
-      expect(page).to_not have_link("Empty Cart")
-
+    
+    it 'I can remove one item from the cart' do
       visit item_path(@ogre)
       click_link "Add to Cart"
       visit item_path(@ogre)
@@ -31,41 +21,36 @@ RSpec.describe 'Cart Index Page' do
 
       visit cart_path
 
-      expect(page).to have_content("All Items in Cart")
-      expect(page).to have_content("Cart: 3")
-      expect(page).to have_link("Empty Cart")
-
       within "#item-#{@ogre.id}" do
-        expect(page).to have_link(@ogre.name)
-        expect(page).to have_css("img[src*='#{@ogre.image}']")
-        expect(page).to have_content("Sold by: #{@megan.name}")
-        expect(page).to have_link(@megan.name)
-        expect(page).to have_content("Price: #{number_to_currency(@ogre.price)}")
+        expect(page).to have_link("Remove Item")
         expect(page).to have_content("Quantity: 2")
       end
 
       within "#item-#{@giant.id}" do
-        expect(page).to have_link(@giant.name)
-        expect(page).to have_css("img[src*='#{@giant.image}']")
-        expect(page).to have_content("Sold by: #{@megan.name}")
-        expect(page).to have_link(@megan.name)
-        expect(page).to have_content("Price: #{number_to_currency(@giant.price)}")
+        expect(page).to have_link("Remove Item")
         expect(page).to have_content("Quantity: 1")
       end
 
-      expect(page).to have_content("Total cost: 90")
+      within "#item-#{@ogre.id}" do
+        click_link("Remove Item")
+      end
 
-      expect(page).to_not have_content(@hippo.name)
+      expect(current_path).to eq(cart_path)
+      expect(page).to have_content("Cart: 1")
+      expect(page).to_not have_content(@ogre.name)
 
-      click_link("Empty Cart")
+      within "#item-#{@giant.id}" do
+        expect(page).to have_content("Quantity: 1")
+      end
 
-      expect(page).to have_content("Your cart is empty.")
+      within "#item-#{@giant.id}" do
+        click_link("Remove Item")
+      end
+
       expect(page).to have_content("Cart: 0")
-      expect(page).to_not have_link("Empty Cart")
-      expect(page).to_not have_content(@hippo.name)
       expect(page).to_not have_content(@ogre.name)
       expect(page).to_not have_content(@giant.name)
-      expect(page).to_not have_content("Total cost: ")
+      expect(page).to have_content("Your cart is empty.")
     end
   end
 end

@@ -21,4 +21,6 @@ Rails.application.routes.draw do
 
   get '/cart', to: 'carts#index', as: :cart
   patch '/cart/:item_id', to: 'carts#add_item', as: :add_to_cart
+  put '/cart/:item_id', to: 'carts#remove_item', as: :remove_from_cart
+  delete '/cart', to: 'carts#destroy', as: :empty_cart
 end
