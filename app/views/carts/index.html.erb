@@ -15,9 +15,9 @@
 <% end %>
 <br>
 <% if @contents != {} %>
-  <%= number_to_currency(grand_total) %>
+  <%= number_to_currency(grand_total) %><br>
   <%= button_to "Empty Cart", cart_path, method: :delete %>
-  <%= button_to "Checkout", new_order_path, method: :post %>
+  <%= button_to "Checkout", order_new_path, method: :get %>
 <% else %>
   <% flash[:no_items] = "You have no items in your cart" %>
 <% end %>
