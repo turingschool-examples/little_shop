@@ -30,8 +30,12 @@ RSpec.describe 'When a user adds an item to their cart' do
     expect(page).to have_content('Cart: 0')
     click_button 'Add Item'
 
+    visit "/items/#{item1.id}"
+
     expect(page).to have_content('Cart: 1')
     click_button 'Add Item'
+
+    visit "/items/#{item1.id}"
 
     expect(page).to have_content('Cart: 2')
     click_button 'Add Item'

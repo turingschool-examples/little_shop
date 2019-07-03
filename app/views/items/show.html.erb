@@ -6,6 +6,6 @@
 <p><%= @item.active ? "Active" : "Inactive" %></p>
 
 
-<p><%= button_to "Add Item", carts_path(item_id: @item.id), method: :patch %></p>
+<%= button_to "Add Item", carts_path(item_id: @item.id) %>
 <%= link_to 'Update Item', "/items/#{@item.id}/edit" %>
 <%= link_to 'Delete', "/items/#{@item.id}", method: :delete %>
