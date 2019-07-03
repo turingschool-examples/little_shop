@@ -11,9 +11,21 @@ class CartController < ApplicationController
   end
 
   def show
-    cart = Cart.new(session[:cart])
+    #cart = Cart.new(session[:cart])
     @items = cart.contents.map do |item_id, quanitity|
       Item.find(item_id)
     end
+  end
+
+  def destroy
+    session[:cart] = {}
+    redirect_to cart_path
+  end
+
+  def remove_item
+    cart.remove_item(params[:item_id])
+    session[:cart] = cart.contents
+
+    redirect_to cart_path
   end
 end

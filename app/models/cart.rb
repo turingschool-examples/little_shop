@@ -22,11 +22,22 @@ class Cart
     @contents.values.sum
   end
 
+  def subtotal(item_id)
+    current_item = Item.find(item_id)
+    current_item.price * item_count(item_id)
+  end
+
   def grand_total
-    @contents.map do |item_id, quanitity|
-      Item.find(item_id)
-    end.sum do |item|
-      item.price
+    @contents.sum do |item_id, quanitity|
+      subtotal(item_id)
     end
+  end
+
+  def empty?
+    @contents == {}
+  end
+
+  def remove_item(item_id)
+    @contents.delete(item_id)
   end
 end

@@ -1,7 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe 'Cart Show Page' do
-  describe "When I have added items to my cart and I visit my cart" do
+RSpec.describe "Removing Item From Cart" do
+  describe "As a visitor" do
     before(:each) do
       @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
       @brian = Merchant.create!(name: 'Brians Bagels', address: '125 Main St', city: 'Denver', state: 'CO', zip: 80218)
@@ -9,11 +9,9 @@ RSpec.describe 'Cart Show Page' do
       @giant = @megan.items.create!(name: 'Giant', description: "I'm a Giant!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
       @hippo = @brian.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
     end
-    it 'I see all items added to my cart' do
-      cart = Cart.new(nil)
 
-      visit "/items/#{@ogre.id}"
-      click_button "Add to Cart"
+    it "I can remove an item from my cart" do
+      cart = Cart.new(nil)
 
       visit "/items/#{@ogre.id}"
       click_button "Add to Cart"
@@ -21,23 +19,12 @@ RSpec.describe 'Cart Show Page' do
       visit "/items/#{@giant.id}"
       click_button "Add to Cart"
 
-      click_on "Cart(3)"
+      visit cart_path
+      within("#item-#{@ogre.id}") do
+        click_button "Remove Item"
+      end
 
-      expect(current_path).to eq('/cart')
-      expect(page).to have_content(@ogre.name)
-      # expect(page).to have_content(@ogre.image)
-      expect(page).to have_content(@ogre.merchant.name)
-      expect(page).to have_content(@ogre.price)
-      expect(page).to have_content(cart.item_count(@ogre))
-      expect(page).to have_content("$40.0")
-
-      expect(page).to have_content(@giant.name)
-      #expect(page).to have_content(@giant.image)
-      expect(page).to have_content(@giant.merchant.name)
-      expect(page).to have_content(@giant.price)
-      expect(page).to have_content(cart.item_count(@giant))
-
-      expect(page).to have_content("$90.00")
+      expect(page).not_to have_content(@ogre.name)
     end
   end
 end
