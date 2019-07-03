@@ -36,4 +36,8 @@ class Cart
   def empty?
     @contents == {}
   end
+
+  def remove_item(item_id)
+    @contents.delete(item_id)
+  end
 end
