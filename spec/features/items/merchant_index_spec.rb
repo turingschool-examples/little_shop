@@ -9,7 +9,7 @@ RSpec.describe 'Merchant Item Index Page' do
       @ogre = @megan.items.create!(name: 'Ogre', description: "I'm an Ogre!", price: 20, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 5 )
       @giant = @megan.items.create!(name: 'Giant', description: "I'm a Giant!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
       @hippo = @brian.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
-      visit "/merchants/#{@megan.id}/items"
+      visit merchant_items_path(@megan)
     end
 
     it 'I can see a list of that merchants items' do
@@ -34,6 +34,7 @@ RSpec.describe 'Merchant Item Index Page' do
       end
 
       expect(page).to_not have_css("#item-#{@hippo.id}")
+      expect(page).to_not have_content(@hippo.name)
     end
 
     it 'can see a link to the merchant' do
@@ -42,7 +43,7 @@ RSpec.describe 'Merchant Item Index Page' do
 
         click_link "Megan"
 
-        expect(current_path).to eq("/merchants/#{@megan.id}")
+        expect(current_path).to eq(merchant_path(@megan))
       end
     end
   end

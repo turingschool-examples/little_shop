@@ -7,11 +7,11 @@ RSpec.describe 'New Merchant Item' do
     end
 
     it 'I can click a link to a new item form page' do
-      visit "/merchants/#{@megan.id}/items"
+      visit merchant_items_path(@megan)
 
       click_link 'New Item'
 
-      expect(current_path).to eq("/merchants/#{@megan.id}/items/new")
+      expect(current_path).to eq(new_item_path(@megan))
     end
 
     it 'I can create an  item for a merchant' do
@@ -21,7 +21,7 @@ RSpec.describe 'New Merchant Item' do
       image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw'
       inventory = 5
 
-      visit "/merchants/#{@megan.id}/items/new"
+      visit new_item_path(@megan)
 
       fill_in 'Name', with: name
       fill_in 'Description', with: description
@@ -30,7 +30,7 @@ RSpec.describe 'New Merchant Item' do
       fill_in 'Inventory', with: inventory
       click_button 'Create Item'
 
-      expect(current_path).to eq("/merchants/#{@megan.id}/items")
+      expect(current_path).to eq(merchant_items_path(@megan))
       expect(page).to have_link(name)
       expect(page).to have_content(description)
       expect(page).to have_content("Price: #{number_to_currency(price)}")
