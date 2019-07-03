@@ -24,12 +24,56 @@ RSpec.describe Cart do
     end
   end
 
+  describe "#total_cost" do
+    it "calculates the total cost of items it holds" do
+      expect(@cart.total_cost).to eq(160)
+    end
+  end
+
+  describe "#has_inventory" do
+    it "returns whether there is inventory available" do
+      expect(@cart.has_inventory?(@ogre)).to eq(true)
+
+      @cart.add_item(@ogre.id)
+
+      expect(@cart.has_inventory?(@ogre)).to eq(true)
+    end
+  end
+
   describe "#add_item" do
     it "adds a item to its contents" do
       @cart.add_item(@hippo.id)
       @cart.add_item(@ogre.id)
 
       expect(@cart.contents).to eq({@hippo.id.to_s => 3, @ogre.id.to_s => 4})
+    end
+  end
+
+  describe "#remove_item" do
+    it "removes a item from its contents" do
+      @cart.remove_item(@hippo.id)
+
+      expect(@cart.contents).to eq({@ogre.id.to_s => 3})
+
+      @cart.remove_item(@ogre.id)
+
+      expect(@cart.contents).to eq({})
+    end
+  end
+
+  describe "#minus_item" do
+    it "subtracts a item from its contents" do
+      @cart.minus_item(@hippo.id)
+      @cart.minus_item(@ogre.id)
+
+      expect(@cart.contents).to eq({@hippo.id.to_s => 1, @ogre.id.to_s => 2})
+    end
+  end
+
+  describe "#items" do
+    it "creates a hash of its items" do
+      expect(@cart.items[@hippo]).to eq(2)
+      expect(@cart.items[@ogre]).to eq(3)
     end
   end
 

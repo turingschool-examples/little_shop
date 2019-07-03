@@ -26,19 +26,19 @@ RSpec.describe 'Merchant Show Page' do
       expect(page).to have_button("Delete")
 
       click_button "New Item"
-      expect(current_path).to eq("/merchants/#{@megan.id}/items/new")
+      expect(current_path).to eq(new_item_path(@megan.id))
 
       visit merchant_path(@megan.id)
       click_button "View Items"
-      expect(current_path).to eq("/merchants/#{@megan.id}/items")
+      expect(current_path).to eq(merchant_items_path(@megan.id))
 
       visit merchant_path(@megan.id)
       click_button "Edit"
-      expect(current_path).to eq("/merchants/#{@megan.id}/edit")
+      expect(current_path).to eq(edit_merchant_path(@megan.id))
 
       visit merchant_path(@megan.id)
       click_button "Delete"
-      expect(current_path).to eq("/merchants")
+      expect(current_path).to eq(merchants_path)
     end
   end
 end
