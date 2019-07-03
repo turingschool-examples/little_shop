@@ -1,6 +1,9 @@
 # Little Shop
 BE Mod 2 Week 2/3 Pair Project
 
+# Heroku Site
+https://conservative-loon-68518.herokuapp.com/
+
 ## Background and Description
 
 "Little Shop" is a fictitious e-commerce platform where users can place items into a shopping cart and 'check out' to create Orders in the database.
