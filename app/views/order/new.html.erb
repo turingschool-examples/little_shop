@@ -1,0 +1,14 @@
+<h1>New Order</h1><br>
+<% grand_total = 0 %>
+<% @contents.each do |item, quantity| %>
+<section id='item-<%= item %>'>
+  <%= Item.find(item).name %>
+  <img src="<%="#{Item.find(item).image}"%>">
+  <%= Item.find(item).merchant.name %>
+  <%= Item.find(item).price %>
+  <p>Quantity: <%= quantity %></p>
+  <%= number_to_currency(cart.subtotal(Item.find(item).price, quantity)) %>
+  <% grand_total += cart.subtotal(Item.find(item).price, quantity) %>
+</section>
+<%= number_to_currency(grand_total) %>
+<% end %>
