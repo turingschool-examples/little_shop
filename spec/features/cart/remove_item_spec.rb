@@ -25,11 +25,12 @@ RSpec.describe 'Cart Index Page' do
       visit '/cart'
 
       within "#item-#{@ogre.id}" do
-        expect(page).to have_link("Remove Item")
+        expect(page).to have_button("Remove Item")
         click_on "Remove Item"
       end
-      
+
       expect(page).to_not have_content(@ogre.name)
+      expect(page).to have_content(@giant.name)
     end
 
   end
