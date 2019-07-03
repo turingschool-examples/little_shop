@@ -20,4 +20,5 @@ Rails.application.routes.draw do
 
   resources :carts, only: [:create]
   get '/cart', to: 'carts#index'
+  delete '/cart', to: 'carts#destroy'
 end

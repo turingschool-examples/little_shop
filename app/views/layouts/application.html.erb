@@ -11,7 +11,6 @@
   </head>
 
   <body>
-      Cart: <%= cart.total %>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
       <span class="navbar-brand mb-0 h1">LittleShop</span>
       <ul class="navbar-nav">
@@ -20,6 +19,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/items">Items</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/cart">Cart: <%= cart.total %></a>
         </li>
       </ul>
     </nav>
