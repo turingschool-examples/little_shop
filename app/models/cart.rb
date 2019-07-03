@@ -24,13 +24,13 @@ class Cart
     @contents[item.id.to_s] < item.inventory
   end
 
-  def remove_item(id)
-    @contents.delete(id.to_s)
-  end
-
   def minus_item(id)
     @contents[id.to_s] -= 1
     remove_item(id) if @contents[id.to_s] < 1
+  end
+
+  def remove_item(id)
+    @contents.delete(id.to_s)
   end
 
   def count_of(id)
