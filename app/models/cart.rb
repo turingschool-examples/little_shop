@@ -19,14 +19,21 @@ class Cart
   end
 
   def total
+    #total items in cart
     @contents.values.sum
   end
 
-  def grand_total
-    @contents.map do |item_id, quanitity|
-      Item.find(item_id)
-    end.sum do |item|
-      item.price
-    end
+  def subtotal(item_id)
+    current_item = Item.find(item_id)
+    current_item.price * item_count(item_id)
   end
+
+   def grand_total
+    # subtotal * item_count
+    @contents.sum do |item_id, quanitity|
+      subtotal(item_id)
+    # end.sum do |item|
+    #   item.quanitity
+     end
+   end
 end
