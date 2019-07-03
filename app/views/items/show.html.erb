@@ -5,6 +5,7 @@
   <p>Price: <%= number_to_currency(@item.price) %></p>
   <p>Sold by: <%= link_to @item.merchant.name, "/merchants/#{@item.merchant_id}" %>, Inventory: <%= @item.inventory %></p>
   <p><%= @item.active ? "Active" : "Inactive" %></p>
+  <%= button_to 'Add Item', "/cart/#{@item.id}", method: :patch %>
 </section>
 
 <%= link_to 'Update Item', "/items/#{@item.id}/edit" %>
