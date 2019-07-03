@@ -27,6 +27,12 @@ class Cart
     @contents.delete(id.to_s)
   end
 
+  def minus_item(id)
+    item = Item.find(id)
+    @contents[item.id.to_s] -= 1
+    remove_item(id) if @contents[item.id.to_s] < 1
+  end
+
   def count_of(id)
     @contents[id.to_s].to_i
   end

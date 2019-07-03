@@ -24,6 +24,13 @@ class CartsController < ApplicationController
     redirect_to cart_path
   end
 
+  def decr_qty
+    item = Item.find(params[:item_id])
+    cart.minus_item(item.id)
+    session[:cart] = cart.contents
+    redirect_to cart_path
+  end
+
   def index
     @items = cart.items
   end
