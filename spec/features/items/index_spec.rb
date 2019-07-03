@@ -54,8 +54,8 @@ RSpec.describe 'Item Index Page' do
       click_link(@ogre.name)
       expect(current_path).to eq("/items/#{@ogre.id}")
 
+      # expect(current_path).to eq(item_path(@ogre))
       within "#item-#{@ogre.id}" do
-        # expect(current_path).to eq(item_path(@ogre))
         expect(page).to have_content(@ogre.name)
         expect(page).to have_content(@ogre.description)
         expect(page).to have_content(@ogre.price)
