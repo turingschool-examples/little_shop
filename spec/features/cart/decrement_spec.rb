@@ -34,7 +34,6 @@ RSpec.describe 'Cart Decrement Test' do
       end
 
       expect(page).to_not have_content("Quantity: 0")
-      expect(page).to_not have_content("Quantity: -1")
 
       within "#item-#{@hippo.id}" do
         expect(page).to have_link("-")
@@ -42,7 +41,6 @@ RSpec.describe 'Cart Decrement Test' do
         click_link("-")
       end
 
-      expect(page).to_not have_link("-")
       expect(page).to have_content("Your cart is empty.")
     end
   end

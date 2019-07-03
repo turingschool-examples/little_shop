@@ -4,19 +4,19 @@ Rails.application.routes.draw do
   get '/', to: 'merchants#index'
 
   get '/merchants', to: 'merchants#index', as: :merchants
-  get '/merchants/new', to: 'merchants#new'
-  get '/merchants/:id', to: 'merchants#show'
+  get '/merchants/new', to: 'merchants#new', as: :new_merchant
+  get '/merchants/:id', to: 'merchants#show', as: :merchant
   post '/merchants', to: 'merchants#create'
-  get '/merchants/:id/edit', to: 'merchants#edit'
+  get '/merchants/:id/edit', to: 'merchants#edit', as: :edit_merchant
   patch '/merchants/:id', to: 'merchants#update'
   delete '/merchants/:id', to: 'merchants#destroy'
 
   get '/items', to: 'items#index', as: :items
-  get '/merchants/:merchant_id/items', to: 'items#index'
+  get '/merchants/:merchant_id/items', to: 'items#index', as: :merchant_items
   get '/items/:id', to: 'items#show', as: :item
-  get '/merchants/:merchant_id/items/new', to: 'items#new'
+  get '/merchants/:merchant_id/items/new', to: 'items#new', as: :new_item
   post '/merchants/:merchant_id/items', to: 'items#create'
-  get '/items/:id/edit', to: 'items#edit'
+  get '/items/:id/edit', to: 'items#edit', as: :edit_item
   patch '/items/:id', to: 'items#update'
   delete '/items/:id', to: 'items#destroy'
 

@@ -1,7 +1,10 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_merchant, only: [:new, :create]
+
   def index
     if params[:merchant_id]
-      @merchant = Merchant.find(params[:merchant_id])
+      set_merchant
       @items = @merchant.items
     else
       @items = Item.all
@@ -9,40 +12,40 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def new
-    @merchant = Merchant.find(params[:merchant_id])
   end
 
   def create
-    merchant = Merchant.find(params[:merchant_id])
-    merchant.items.create(item_params)
-
-    redirect_to "/merchants/#{merchant.id}/items"
+    @merchant.items.create(item_params)
+    redirect_to merchant_items_path(@merchant)
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-
-    redirect_to "/items/#{item.id}"
+    @item.update(item_params)
+    redirect_to item_path(@item)
   end
 
   def destroy
-    Item.destroy(params[:id])
-
-    redirect_to '/items'
+    @item.destroy
+    redirect_to items_path
   end
 
   private
 
   def item_params
     params.permit(:name, :description, :price, :image, :inventory)
+  end
+
+  def set_item
+    @item ||= Item.find(params[:id])
+  end
+
+  def set_merchant
+    @merchant ||= Merchant.find(params[:merchant_id])
   end
 end
