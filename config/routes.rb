@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   get '/cart', to: 'carts#index'
   delete '/cart', to: 'carts#destroy'
   delete '/cart/:item_id', to: 'carts#remove_item'
+
+  get '/order/new', to: 'order#new'
 end
