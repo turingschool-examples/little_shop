@@ -7,15 +7,15 @@ RSpec.describe 'Existing Merchant Update' do
     end
 
     it 'I can link to an edit merchant page from merchant show page' do
-      visit "/merchants/#{@megan.id}"
+      visit merchant_path(@megan)
 
       click_button 'Edit'
 
-      expect(current_path).to eq("/merchants/#{@megan.id}/edit")
+      expect(current_path).to eq(edit_merchant_path(@megan))
     end
 
     it 'I can use the edit merchant form to update the merchant information' do
-      visit "/merchants/#{@megan.id}/edit"
+      visit edit_merchant_path(@megan)
 
       name = 'Megans Monsters'
       address = '321 Main St'
@@ -31,10 +31,12 @@ RSpec.describe 'Existing Merchant Update' do
 
       click_button 'Update Merchant'
 
-      expect(current_path).to eq("/merchants/#{@megan.id}")
-      expect(page).to have_content(name)
-      expect(page).to_not have_content(@megan.name)
-
+      within 'h1' do
+        expect(current_path).to eq(merchant_path(@megan.id))
+        expect(page).to have_content(name)
+        expect(page).to_not have_content(@megan.name)
+      end
+      
       within '.address' do
         expect(page).to have_content(address)
         expect(page).to have_content("#{city} #{state} #{zip}")
