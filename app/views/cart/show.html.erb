@@ -1,5 +1,7 @@
 <h1>My Cart</h1>
 
+<% if cart.empty? %>
+<% else %>
 <% @items.each do |item| %>
   <section id='item-<%= item.id%>'>
     <h2><%= link_to item.name, "/items/#{item.id}" %></h2>
@@ -14,3 +16,4 @@
 <h4>Grand Total <%= number_to_currency(cart.grand_total) %> </h4>
 
 <%= link_to "Empty Cart", empty_cart_path, method: :delete %>
+<% end %>

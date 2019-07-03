@@ -26,6 +26,18 @@ RSpec.describe 'Emptying Cart' do
 
       expect(current_path).to eq(cart_path)
       expect(page).to have_content('Cart(0)')
+      expect(page).not_to have_content(@ogre.name)
+    end
+
+    describe "When I add no items to my cart" do
+      it "I do not see the link to empty my cart" do
+
+      cart = Cart.new(nil)
+
+      visit cart_path
+
+      expect(page).not_to have_content("Empty Cart")
+      end
     end
   end
 end

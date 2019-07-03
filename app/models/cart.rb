@@ -19,7 +19,6 @@ class Cart
   end
 
   def total
-    #total items in cart
     @contents.values.sum
   end
 
@@ -28,12 +27,13 @@ class Cart
     current_item.price * item_count(item_id)
   end
 
-   def grand_total
-    # subtotal * item_count
+  def grand_total
     @contents.sum do |item_id, quanitity|
       subtotal(item_id)
-    # end.sum do |item|
-    #   item.quanitity
-     end
-   end
+    end
+  end
+
+  def empty?
+    @contents == {}
+  end
 end
