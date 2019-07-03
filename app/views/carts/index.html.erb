@@ -1,20 +1,22 @@
 <!-- Need to refactor -->
 <h1>Cart</h1>
 <% grand_total = 0 %>
-<% @contents.each do |item, quantity| %>
-<section id='item-<%= item %>'>
-  <%= Item.find(item).name %>
-  <img src="<%="#{Item.find(item).image}"%>">
-  <%= Item.find(item).merchant.name %>
-  <%= Item.find(item).price %>
-  <p>Quantity: <%= quantity %></p>
-  <%= number_to_currency(cart.subtotal(Item.find(item).price, quantity)) %>
-  <%= button_to "Remove Item", "/cart/#{item}", method: :delete %>
-  <% grand_total += cart.subtotal(Item.find(item).price, quantity) %>
-</section>
+<% if @contents.present? %>
+  <% @contents.each do |item, quantity| %>
+  <section id='item-<%= item %>'>
+    <%= Item.find(item).name %>
+    <img src="<%="#{Item.find(item).image}"%>">
+    <%= Item.find(item).merchant.name %>
+    <%= Item.find(item).price %>
+    <p>Quantity: <%= quantity %></p>
+    <%= number_to_currency(cart.subtotal(Item.find(item).price, quantity)) %>
+    <%= button_to "Remove Item", "/cart/#{item}", method: :delete %>
+    <% grand_total += cart.subtotal(Item.find(item).price, quantity) %>
+  </section>
+  <% end %>
 <% end %>
 <br>
-<% if @contents != {} %>
+<% if @contents.present? %>
   <%= number_to_currency(grand_total) %><br>
   <%= button_to "Empty Cart", cart_path, method: :delete %>
   <%= button_to "Checkout", order_new_path, method: :get %>
