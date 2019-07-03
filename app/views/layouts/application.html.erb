@@ -14,9 +14,13 @@
       <% session[:cart] ||= {"items" => [], "num_items" => 0} %>
       <%= link_to 'Merchants', '/merchants' %>
       <%= link_to 'Items', '/items' %>
-      <%= link_to "Cart: #{session[:cart]["num_items"]}", '/cart' %>
-
+      <%= link_to "Cart: #{cart.total_count}", cart_path, method: :get %>
     </nav>
+
+    <% flash.each do |type, message| %>
+      <%= content_tag :div, message, class: type %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

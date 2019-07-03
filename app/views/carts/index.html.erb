@@ -1,0 +1,20 @@
+<% if @items.empty? %>
+  <h1>Your cart is empty.</h1>
+<% else %>
+  <h1>All Items in Cart</h1>
+  <% @items.each do |item,qty| %>
+    <section id='item-<%= item.id %>'>
+      <h2><%= link_to item.name, "/items/#{item.id}" %></h2>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw">
+      <p>Sold by: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %></p>
+      <p>Price: <%= number_to_currency(item.price) %></p>
+      <p><%= link_to "-", decr_qty_path(item), method: :patch %> Quantity: <%= qty %> <%= link_to "+", incr_qty_path(item), method: :patch %></p>
+      <h2><%= link_to "Remove Item", remove_from_cart_path(item), method: :patch %></h2>
+    </section>
+  <% end %>
+
+  <p>Total cost: <%= cart.total_cost %></p>
+
+  <h2><%= link_to "Checkout", new_order_path, method: :get %></h2>
+  <h2><%= link_to "Empty Cart", empty_cart_path, method: :delete %></h2>
+<% end %>

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get '/', to: '/merchants#index'
 
-  get '/merchants', to: 'merchants#index'
+  get '/', to: 'merchants#index'
+
+  get '/merchants', to: 'merchants#index', as: :merchants
   get '/merchants/new', to: 'merchants#new'
   get '/merchants/:id', to: 'merchants#show'
   post '/merchants', to: 'merchants#create'
@@ -10,14 +11,21 @@ Rails.application.routes.draw do
   patch '/merchants/:id', to: 'merchants#update'
   delete '/merchants/:id', to: 'merchants#destroy'
 
-  get '/items', to: 'items#index'
+  get '/items', to: 'items#index', as: :items
   get '/merchants/:merchant_id/items', to: 'items#index'
-  get '/items/:id', to: 'items#show'
+  get '/items/:id', to: 'items#show', as: :item
   get '/merchants/:merchant_id/items/new', to: 'items#new'
   post '/merchants/:merchant_id/items', to: 'items#create'
   get '/items/:id/edit', to: 'items#edit'
   patch '/items/:id', to: 'items#update'
   delete '/items/:id', to: 'items#destroy'
 
-  get '/cart', to: '/cart#add_to_cart'
+  get '/cart', to: 'carts#index', as: :cart
+  patch '/cart/:item_id', to: 'carts#add_item', as: :add_to_cart
+  patch '/cart/:item_id/delete', to: 'carts#remove_item', as: :remove_from_cart
+  patch '/cart/:item_id/add', to: 'carts#incr_qty', as: :incr_qty
+  patch '/cart/:item_id/minus', to: 'carts#decr_qty', as: :decr_qty
+  delete '/cart', to: 'carts#destroy', as: :empty_cart
+
+  get '/order/new', to: 'orders#new', as: :new_order
 end
