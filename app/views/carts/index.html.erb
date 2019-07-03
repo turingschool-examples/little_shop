@@ -2,7 +2,7 @@
 <h1>Cart</h1>
 <% grand_total = 0 %>
 <% @contents.each do |item, quantity| %>
-<section>
+<section id="item-<%= item %>">
   <%= Item.find(item).name %>
   <img src="<%="#{Item.find(item).image}"%>">
   <%= Item.find(item).merchant.name %>
