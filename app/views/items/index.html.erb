@@ -13,7 +13,5 @@
     <p>Price: <%= number_to_currency(item.price) %></p>
     <p>Sold by: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %>, Inventory: <%= item.inventory %></p>
     <p><%= item.active ? "Active" : "Inactive" %></p>
-
-    <%= button_to "Add to cart", "/cart", method: :get %>
   </section>
 <% end %>
