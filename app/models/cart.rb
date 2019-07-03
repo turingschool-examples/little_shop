@@ -20,6 +20,13 @@ class Cart
 
   def total
     @contents.values.sum
-  end  
+  end
 
+  def grand_total
+    @contents.map do |item_id, quanitity|
+      Item.find(item_id)
+    end.sum do |item|
+      item.price
+    end
+  end
 end
