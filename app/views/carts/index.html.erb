@@ -1,7 +1,7 @@
 <!-- Need to refactor -->
 <h1>Cart</h1>
 <% grand_total = 0 %>
-<% if @contents != {} && !@contents.nil? %>
+<% if @contents.present? %>
   <% @contents.each do |item, quantity| %>
   <section id='item-<%= item %>'>
     <%= Item.find(item).name %>
@@ -16,7 +16,7 @@
   <% end %>
 <% end %>
 <br>
-<% if @contents != {} && !@contents.nil? %>
+<% if @contents.present? %>
   <%= number_to_currency(grand_total) %><br>
   <%= button_to "Empty Cart", cart_path, method: :delete %>
   <%= button_to "Checkout", order_new_path, method: :get %>
