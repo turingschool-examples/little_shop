@@ -12,3 +12,5 @@
 <% end %>
 
 <h4>Grand Total <%= number_to_currency(cart.grand_total) %> </h4>
+
+<%= link_to "Empty Cart", empty_cart_path, method: :delete %>

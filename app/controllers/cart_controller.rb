@@ -16,4 +16,10 @@ class CartController < ApplicationController
       Item.find(item_id)
     end
   end
+
+  def destroy
+    session[:cart] = {}
+    redirect_to cart_path 
+  end
+
 end
