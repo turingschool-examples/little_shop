@@ -22,7 +22,7 @@ class CartsController < ApplicationController
     session[:cart] = Hash.new(0)
 
     @contents = session[:cart]
-    flash[:notice] = "Your cart has been emptied."
+    flash[:emptied] = "Your cart has been emptied."
     redirect_to '/cart'
   end
 

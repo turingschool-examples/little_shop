@@ -2,14 +2,20 @@
 <h1>Cart</h1>
 <% grand_total = 0 %>
 <% @contents.each do |item, quantity| %>
-<%= Item.find(item).name %>
-<img src="<%="#{Item.find(item).image}"%>">
-<%= Item.find(item).merchant.name %>
-<%= Item.find(item).price %>
-<p>Quantity: <%= quantity %></p>
-<%= number_to_currency(cart.subtotal(Item.find(item).price, quantity)) %>
-<% grand_total += cart.subtotal(Item.find(item).price, quantity) %>
+<section>
+  <%= Item.find(item).name %>
+  <img src="<%="#{Item.find(item).image}"%>">
+  <%= Item.find(item).merchant.name %>
+  <%= Item.find(item).price %>
+  <p>Quantity: <%= quantity %></p>
+  <%= number_to_currency(cart.subtotal(Item.find(item).price, quantity)) %>
+  <% grand_total += cart.subtotal(Item.find(item).price, quantity) %>
+</section>
 <% end %>
 <%= number_to_currency(grand_total) %>
 <br>
-<%= button_to "Empty Cart", cart_path, method: :delete %>
+<% if @contents != {} %>
+  <%= button_to "Empty Cart", cart_path, method: :delete %>
+<% else %>
+  <% flash[:no_items] = "You have no items in your cart" %>
+<% end %>
