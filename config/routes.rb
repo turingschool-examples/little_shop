@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   get '/items/:id/edit', to: 'items#edit'
   patch '/items/:id', to: 'items#update'
   delete '/items/:id', to: 'items#destroy'
+
+  patch '/cart/:item_id', to: 'cart#add_item', as: "cart"
 end
