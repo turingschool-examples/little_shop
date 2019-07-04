@@ -40,6 +40,26 @@ RSpec.describe Cart, type: :model do
       end
     end
 
+    describe "#remove_item" do
+      it "removes the item completely from the cart" do
+        cart = Cart.new(nil)
+
+        cart.add_item(2)
+        cart.add_item(2)
+        cart.add_item(4)
+        cart.add_item(5)
+
+        cart.remove_item(2)
+
+        expected = {
+          "4" => 1,
+          "5" => 1
+        }
+
+        expect(cart.contents).to eq(expected)
+      end
+    end
+
     describe "#total" do
       it "calculates the count of items" do
         cart = Cart.new("1" => 2, "3" => 4)
