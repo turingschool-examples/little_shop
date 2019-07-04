@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @reviews = @item.reviews
   end
 
   def new

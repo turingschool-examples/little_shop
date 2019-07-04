@@ -1,6 +1,16 @@
 <h1><%= @item.name %></h1>
 <%= render 'description', item: @item %>
 
+<h1>Reviews</h1>
+
+<% @reviews.each do |review| %>
+  <section id='review-<%= review.id %>'>
+    <h2><%= review.title %></h2>
+    <p><%= review.content %></p>
+    <p><%= review.rating %></p>
+  </section>
+<% end %>
+
 <%= link_to 'Add to Cart', "/cart/#{@item.id}", method: :patch %>
 <%= link_to 'Update Item', "/items/#{@item.id}/edit" %>
 <%= link_to 'Delete', "/items/#{@item.id}", method: :delete %>

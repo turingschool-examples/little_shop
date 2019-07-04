@@ -38,10 +38,7 @@ RSpec.describe 'Update Item Page' do
       expect(page).to_not have_content(@ogre.description)
       expect(page).to_not have_content(@ogre.price)
 
-      within 'h1' do
-        expect(page).to have_content(name)
-      end
-
+      expect(page).to have_content(name)
       expect(page).to have_content(description)
       expect(page).to have_content("Price: #{number_to_currency(price)}")
       expect(page).to have_content("Active")
