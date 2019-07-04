@@ -1,4 +1,6 @@
-<%= link_to "Empty Cart", "/cart", method: :delete %>
+<% if cart.contents != Hash.new(0) %>
+  <%= link_to "Empty Cart", "/cart", method: :delete %>
+<% end %>
 
 <% @items.each do |item| %>
   <section id="item-<%= item.id %>">
