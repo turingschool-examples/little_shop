@@ -4,7 +4,7 @@
   <%= text_field_tag :title, @review.title %>
 
   <%= label_tag :rating %>
-  <%= number_field_tag :rating, @review.rating %>
+  <%= number_field_tag :rating, @review.rating, in: 1..5 %>
 
   <%= label_tag :content %>
   <%= text_field_tag :content, @review.content %>
