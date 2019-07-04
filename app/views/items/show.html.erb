@@ -11,6 +11,7 @@
   </section>
 <% end %>
 
-<%= link_to 'Add to Cart', "/cart/#{@item.id}", method: :patch %>
-<%= link_to 'Update Item', "/items/#{@item.id}/edit" %>
-<%= link_to 'Delete', "/items/#{@item.id}", method: :delete %>
+<%= link_to 'Add to Cart', add_to_cart_path(@item), method: :patch %>
+<%= link_to 'Write Review', new_review_path(@item) %>
+<%= link_to 'Update Item', edit_item_path(@item) %>
+<%= link_to 'Delete', delete_item_path(@item), method: :delete %>

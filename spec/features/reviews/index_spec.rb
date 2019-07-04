@@ -30,6 +30,18 @@ RSpec.describe 'Reviews on item show page' do
       click_link('Write Review')
 
       expect(current_path).to eq(new_review_path)
+
+      fill_in 'Title', with: 'Rawrrr!'
+      fill_in 'Rating', with: 5
+      fill_in 'Review', with: 'Gawwrawwwrrr!'
+
+      expect(current_path).to eq(item_path(@ogre))
+
+      within "#review-#{Review.last.id}" do
+        expect(page).to have_content('Rawrrr!')
+        expect(page).to have_content('Gawwrawwwrrr!')
+        expect(page).to have_content(5)
+      end
     end
   end
 end
