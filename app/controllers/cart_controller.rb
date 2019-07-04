@@ -1,6 +1,13 @@
 class CartController < ApplicationController
   include ActionView::Helpers::TextHelper
 
+  def show
+    @items = Item.find(cart.item_ids)
+    if cart.contents == Hash.new(0)
+      flash[:notice] = "Get to shoppin'!"
+    end
+  end
+
   def add_item
     item = Item.find(params[:item_id])
     # cart = Cart.new(session[:cart])
@@ -10,12 +17,14 @@ class CartController < ApplicationController
     redirect_to items_path
   end
 
-  def index
-    @items = Item.find(cart.item_ids)
-    if cart.contents == Hash.new(0)
-      flash[:notice] = "Get to shoppin'!"
-    end
+  def remove_item
+    item = Item.find(params[:item_id])
+    cart.remove_item(item.id)
+    session[:cart] = cart.contents
+    flash[:success] = "#{item.name} has been removed from your cart."
+    redirect_to "/cart"
   end
+
 
   def destroy
     session.delete(:cart)
