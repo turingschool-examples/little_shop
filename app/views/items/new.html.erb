@@ -1,5 +1,5 @@
 <h2>New Item</h2>
-<%= form_tag merchant_items_path(@merchant.id) do %>
+<%= form_tag merchant_items_path(@merchant) do %>
   <%= render 'fields' %>
   <%= submit_tag 'Create Item' %>
 <% end %>

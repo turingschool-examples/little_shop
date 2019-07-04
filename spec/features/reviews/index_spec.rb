@@ -29,11 +29,13 @@ RSpec.describe 'Reviews on item show page' do
 
       click_link('Write Review')
 
-      expect(current_path).to eq(new_review_path)
+      expect(current_path).to eq(new_review_path(@ogre))
 
       fill_in 'Title', with: 'Rawrrr!'
       fill_in 'Rating', with: 5
-      fill_in 'Review', with: 'Gawwrawwwrrr!'
+      fill_in 'Content', with: 'Gawwrawwwrrr!'
+
+      click_button('Create Review')
 
       expect(current_path).to eq(item_path(@ogre))
 
