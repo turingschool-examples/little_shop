@@ -86,4 +86,28 @@ RSpec.describe "Cart", type: :feature do
       end
     end
   end
+
+  describe "When I have NOT added items to my cart yet" do
+    it "I see a message that my cart is empty and do NOT see the link to empty my cart" do
+      visit "/cart"
+      expect(page).to have_content("Cart: 0")
+      expect(page).to have_content("Grand Total: #{number_to_currency(0)}")
+      expect(page).to have_content("Get to shoppin'!")
+      expect(page).to_not have_link("Empty Cart")
+    end
+  end
+
+  describe "When I add at least one item to my cart" do
+    it "I do NOT see a message that my cart is empty and I do see the link to empty my cart" do
+      visit "/items/#{@giant.id}"
+      click_on("Add Item")
+
+      visit "/cart"
+
+      expect(page).to have_content("Cart: 1")
+      expect(page).to have_content("Grand Total: #{number_to_currency(50)}")
+      expect(page).to have_link("Empty Cart")
+      expect(page).to_not have_content("Get to shoppin'!")
+    end
+  end
 end
