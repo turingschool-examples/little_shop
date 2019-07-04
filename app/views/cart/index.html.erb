@@ -1,3 +1,5 @@
+<%= link_to "Empty Cart", "/cart", method: :delete %>
+
 <% @items.each do |item| %>
   <section id="item-<%= item.id %>">
     <%= image_tag item.image, alt: "image of #{item.name}" %>
