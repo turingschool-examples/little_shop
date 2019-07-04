@@ -47,12 +47,62 @@ RSpec.describe Cart, type: :model do
         expect(cart.total).to eq(6)
       end
     end
-    
+
     describe "#item_count" do
       it "returns the quantity of an item" do
         cart = Cart.new("1" => 2, "3" => 4)
 
         expect(cart.item_count(3)).to eq(4)
+      end
+    end
+
+    describe "#item_ids" do
+      it "returns an array of the item ids" do
+        cart = Cart.new("1" => 2, "3" => 4)
+
+        expect(cart.item_ids).to eq([1, 3])
+      end
+    end
+
+    describe "#subtotal" do
+      it "calculates the total cost of a particular item" do
+
+        megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
+
+        ogre = megan.items.create!(name: 'Ogre', description: "I'm an Ogre!", price: 20, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 5 )
+
+        # Ask instructors why our cart didn't automatically initialize with Hash.new(0)
+        cart = Cart.new(Hash.new(0))
+
+        cart.add_item(ogre.id)
+        expect(cart.subtotal(ogre.id)).to eq(20)
+
+        cart.add_item(ogre.id)
+        expect(cart.subtotal(ogre.id)).to eq(40)
+      end
+    end
+
+    describe "#grandtotal" do
+      it "calculates the total cost of all items in the cart" do
+
+        megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
+        brian = Merchant.create!(name: 'Brians Bagels', address: '125 Main St', city: 'Denver', state: 'CO', zip: 80218)
+
+        hippo = brian.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
+        ogre = megan.items.create!(name: 'Ogre', description: "I'm an Ogre!", price: 20, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 5 )
+
+        # Ask instructors why our cart didn't automatically initialize with Hash.new(0)
+        cart = Cart.new(Hash.new(0))
+
+        cart.add_item(ogre.id)
+        cart.add_item(ogre.id)
+
+        cart.add_item(hippo.id)
+
+        cart.subtotal(ogre.id)
+        cart.subtotal(hippo.id)
+
+        expect(cart.grandtotal([ogre.id, hippo.id])).to eq(90)
       end
     end
   end
