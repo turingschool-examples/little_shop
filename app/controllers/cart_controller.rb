@@ -13,4 +13,9 @@ class CartController < ApplicationController
   def index
     @items = Item.find(cart.item_ids)
   end
+
+  def destroy
+    session.delete(:cart)
+    redirect_to "/cart"
+  end
 end
