@@ -12,6 +12,9 @@ class CartController < ApplicationController
 
   def index
     @items = Item.find(cart.item_ids)
+    if cart.contents == Hash.new(0)
+      flash[:notice] = "Get to shoppin'!"
+    end
   end
 
   def destroy
