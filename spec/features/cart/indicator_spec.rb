@@ -110,4 +110,27 @@ RSpec.describe "Cart", type: :feature do
       expect(page).to_not have_content("Get to shoppin'!")
     end
   end
+
+  describe "When I have items in my cart and I visit my cart" do
+    it " I see a button/link to remove only that item from my cart" do
+      visit "/items/#{@hippo.id}"
+      click_on("Add Item")
+
+      visit "/items/#{@giant.id}"
+      click_on("Add Item")
+
+      visit "/cart"
+
+      within "#item-#{@giant.id}" do
+        expect(page).to have_button("Remove Item")
+        click_on("Remove Item")
+        expect(current_path).to eq("/cart")
+      end
+      expect(page).to have_content("#{@giant.name} has been removed from your cart.")
+      expect(page).to_not have_content(@giant.description)
+      expect(page).to_not have_content(@giant.merchant.name)
+      expect(page).to_not have_content(@giant.inventory)
+      expect(page).to have_content(@hippo.name)
+    end
+  end
 end
