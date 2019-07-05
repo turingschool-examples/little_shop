@@ -60,6 +60,36 @@ RSpec.describe Cart, type: :model do
       end
     end
 
+    describe "#decrement" do
+      it "removes only one item unit from the cart" do
+        cart = Cart.new(nil)
+
+        cart.add_item(2)
+        cart.add_item(2)
+        cart.add_item(4)
+        cart.add_item(5)
+
+        cart.decrement(2)
+
+        expected = {
+          "2" => 1,
+          "4" => 1,
+          "5" => 1
+        }
+
+        expect(cart.contents).to eq(expected)
+
+        cart.decrement(2)
+
+        expected = {
+          "4" => 1,
+          "5" => 1
+        }
+
+        expect(cart.contents).to eq(expected)
+      end
+    end
+
     describe "#total" do
       it "calculates the count of items" do
         cart = Cart.new("1" => 2, "3" => 4)

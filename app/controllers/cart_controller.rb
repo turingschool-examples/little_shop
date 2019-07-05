@@ -25,6 +25,21 @@ class CartController < ApplicationController
     redirect_to "/cart"
   end
 
+  def increment
+    item = Item.find(params[:item_id])
+    cart.add_item(item.id)
+    session[:cart] = cart.contents
+    flash[:success] = "You added +1 of #{item.name} in your cart."
+    redirect_to "/cart"
+  end
+
+  def decrement
+    item = Item.find(params[:item_id])
+    cart.decrement(item.id)
+    session[:cart] = cart.contents
+    flash[:success] = "You removed 1 #{item.name} from your cart."
+    redirect_to "/cart"
+  end
 
   def destroy
     session.delete(:cart)
