@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :items
   resources :merchants
 
-  resource :cart
+  put '/cart', to: 'carts#remove_item'
+  resource :cart, except: :put
 
   get '/merchants/:merchant_id/items', to: 'items#index'
   get '/merchants/:merchant_id/items/new', to: 'items#new'

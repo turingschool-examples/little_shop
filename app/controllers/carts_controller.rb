@@ -21,9 +21,22 @@ class CartsController < ApplicationController
     redirect_to cart_path
   end
 
-  def update
+  def remove_item
     item = Item.find(params[:item_id])
     cart.contents.delete(item.id.to_s)
+    redirect_to cart_path
+  end
+
+  def update
+    # binding.pry
+    item = Item.find(params[:item_id])
+
+    if cart.contents[item.id.to_s] >= item.inventory
+      flash[:notice] = 'Order quantity exceeds inventory'
+    else
+      cart.contents[item.id.to_s] += 1
+    end
+
     redirect_to cart_path
   end
 

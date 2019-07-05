@@ -20,11 +20,6 @@ class Cart
     contents[item_id.to_s] += 1
   end
 
-  def remove_item(item_id)
-    binding.pry
-    
-  end
-
   def item_and_quantity
     contents.map do |item_id, _quantity|
       item_id.to_i
