@@ -38,24 +38,16 @@ RSpec.describe "As a vistor" do
     end
 
     it "I see a form for shipping information" do
+      expect(current_path).to eq('/order/new')
+
+      fill_in 'Name', with: "Billy Bob"
+      fill_in 'Address', with: "123 Real St"
+      fill_in 'City', with: "Denver"
+      fill_in 'State', with: "CO"
+      fill_in 'Zip', with: "80210"
+      
+      click_button 'Create Order'
     end
 
   end
 end
-
-# As a visitor
-# When I check out from my cart
-# On the new order page I see the details of my cart:
-# - the name of the item
-# - the merchant I'm buying this item from
-# - the price of the item
-# - my desired quantity of the item
-# - a subtotal (price multiplied by quantity)
-# - a grand total of what everything in my cart will cost
-# I also see a form to where I must enter my shipping information for the order:
-# - name
-# - address
-# - city
-# - state
-# - zip
-# I also see a button to 'Create Order'
