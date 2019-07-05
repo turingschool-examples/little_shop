@@ -33,4 +33,5 @@ Rails.application.routes.draw do
   post '/items/:item_id/reviews', to: 'reviews#create', as: :review
   get '/items/:item_id/reviews/:id/edit', to: 'reviews#edit', as: :edit_review
   patch '/items/:item_id/reviews/:id', to: 'reviews#update', as: :update_review
+  delete '/items/:item_id/reviews/:id', to: 'reviews#destroy', as: :delete_review
 end

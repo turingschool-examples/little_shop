@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:edit, :update, :destroy]
-  before_action :set_item, only: [:new, :create, :edit, :update]
+  before_action :set_item, only: [:new, :create, :edit, :update, :destroy]
 
   def new
     @review = Review.new
@@ -21,6 +21,11 @@ class ReviewsController < ApplicationController
 
   def update
     @review.update(review_params)
+    redirect_to item_path(@item)
+  end
+
+  def destroy
+    @review.destroy
     redirect_to item_path(@item)
   end
 
