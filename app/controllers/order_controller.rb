@@ -4,4 +4,8 @@ class OrderController < ApplicationController
     @contents = session[:cart]
   end
 
+  def create
+    
+  end
+
 end
