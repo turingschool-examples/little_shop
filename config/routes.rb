@@ -5,11 +5,10 @@ Rails.application.routes.draw do
 
   resources :items
   resources :merchants
-  resources :carts
 
+  resource :cart
 
   get '/merchants/:merchant_id/items', to: 'items#index'
   get '/merchants/:merchant_id/items/new', to: 'items#new'
   post '/merchants/:merchant_id/items', to: 'items#create'
 end
-
