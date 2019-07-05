@@ -5,7 +5,7 @@
   <%= Item.find(item).name %>
   <img src="<%="#{Item.find(item).image}"%>">
   <%= Item.find(item).merchant.name %>
-  <%= Item.find(item).price %>
+  <%= number_to_currency(Item.find(item).price) %>
   <p>Quantity: <%= quantity %></p>
   <%= number_to_currency(cart.subtotal(Item.find(item).price, quantity)) %>
   <% grand_total += cart.subtotal(Item.find(item).price, quantity) %>
