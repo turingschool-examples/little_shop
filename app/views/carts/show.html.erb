@@ -6,6 +6,7 @@
       <p>Sold by: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %></p>
       <p>Price: <%= number_to_currency(item.price) %></p>
       <p>Quantity: <%= cart.count_of(item.id) %></p>
+      <%= button_to '+', cart_path(item_id: item.id), method: :patch %>
       <p>Subtotal: <%= number_to_currency cart.subtotal(item.id) %></p>
         <%= button_to 'Remove', cart_path(item_id: item.id), method: :put %>
     </section>
