@@ -8,13 +8,18 @@
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw">
     <p>Sold by: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %>, Inventory: <%= item.inventory %></p>
     <p>Price: <%= number_to_currency(item.price) %></p>
-    <p>Quantity: <%= cart.item_count(item.id) %></p>
+
+    <%= form_tag update_cart_path(item.id), method: :patch do %>
+      <%= label_tag(cart.item_count(item.id), 'Quantity:') %>
+      <%= number_field_tag cart.contents["#{item.id}"], cart.item_count(item.id) %>
+      <%= submit_tag 'Update Item' %>
+    <% end %>
+
     <p>Subtotal: <%= number_to_currency(cart.subtotal(item.id)) %></p>
     <%= button_to "Remove Item", remove_item_path(item.id), method: :put %>
   </section>
 <% end %>
 
 <h4>Grand Total <%= number_to_currency(cart.grand_total) %> </h4>
-
 <%= link_to "Empty Cart", empty_cart_path, method: :delete %>
 <% end %>
