@@ -1,15 +1,15 @@
-
 <% if @items.any? %>
   <% @items.each do |item| %>
     <section id="item-<%= item.id %>">
       <p><%= item.name %></p>
       <img src="<%= item.image %>" alt="">
-      <p>Sold by: <%= item.merchant.name %></p>
+      <p>Sold by: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %></p>
       <p>Price: <%= number_to_currency(item.price) %></p>
       <p>Quantity: <%= cart.count_of(item.id) %></p>
       <p>Subtotal: <%= number_to_currency cart.subtotal(item.id) %></p>
   <% end %>
     <p>Total: <%= number_to_currency cart.total %></p>
+    <p> <%= button_to "Empty Cart", { controller: :carts, action: :destroy }, method: :delete  %></p>
     </section>
 <% else %>
     <p>Your shopping cart is empty.</p>

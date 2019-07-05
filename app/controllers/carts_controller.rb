@@ -15,4 +15,20 @@ class CartsController < ApplicationController
   def show
     @items = Item.find(cart.item_and_quantity)
   end
+
+  def destroy
+    cart.contents.clear
+    redirect_to cart_path
+  end
+
+  private
+
+#   def set_cart
+#     @cart = Item.find(params[:id])
+#   end
+#
+#   def cart_params
+#     params.require(:cart).permit(:)
+#   end
+# end
 end
