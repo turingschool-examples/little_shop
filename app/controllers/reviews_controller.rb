@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :set_item, only: [:new, :create]
+  before_action :set_review, only: [:edit, :update, :destroy]
+  before_action :set_item, only: [:new, :create, :edit, :update]
 
   def new
     @review = Review.new
@@ -13,6 +14,14 @@ class ReviewsController < ApplicationController
       flash[:notice] = "Merchant not created! Bad zip code."
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+    @review.update(review_params)
+    redirect_to item_path(@item)
   end
 
   private

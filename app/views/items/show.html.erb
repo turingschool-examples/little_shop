@@ -8,7 +8,7 @@
     <h2>Title: <%= review.title %></h2>
     <p>Rating: <%= review.rating %></p>
     <p><%= review.content %></p>
-    <%= link_to "Edit Review", edit_review_path(review) %>
+    <%= link_to "Edit Review", edit_review_path(@item, review) %>
   </section>
 <% end %>
 

@@ -14,17 +14,17 @@ RSpec.describe 'Edit Review ' do
 
       click_link("Edit Review")
 
-      expect(current_path).to eq(edit_review_path(@review_1))
+      expect(current_path).to eq(edit_review_path(@ogre, @review_1))
 
-      expect(page).to have_content('Title: Rawrrr!')
-      expect(page).to have_content('Gawwrawwwrrr!')
-      expect(page).to have_content('Rating: 5')
+      expect(find_field(:title).value).to eq('Amazing!')
+      expect(find_field(:content).value).to eq('The best Ogre I ever saw!')
+      expect(find_field(:rating).value).to eq('5')
 
       fill_in 'Title', with: 'Rawrrr!'
       fill_in 'Rating', with: 5
       fill_in 'Content', with: 'Grawwr?!'
 
-      click_link("Submit")
+      click_button("Update Review")
 
       expect(current_path).to eq(item_path(@ogre))
 
