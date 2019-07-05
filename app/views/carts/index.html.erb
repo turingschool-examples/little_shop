@@ -9,11 +9,12 @@
       <p>Sold by: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %></p>
       <p>Price: <%= number_to_currency(item.price) %></p>
       <p><%= link_to "-", decr_qty_path(item), method: :patch %> Quantity: <%= qty %> <%= link_to "+", incr_qty_path(item), method: :patch %></p>
+      <p>Subtotal: $<%= item.price * qty %></p>
       <h2><%= link_to "Remove Item", remove_from_cart_path(item), method: :patch %></h2>
     </section>
   <% end %>
 
-  <p>Total cost: <%= cart.total_cost %></p>
+  <p>Total cost: $<%= cart.total_cost %></p>
 
   <h2><%= link_to "Checkout", new_order_path, method: :get %></h2>
   <h2><%= link_to "Empty Cart", empty_cart_path, method: :delete %></h2>

@@ -5,9 +5,10 @@
 
 <% @reviews.each do |review| %>
   <section id='review-<%= review.id %>'>
-    <h2><%= review.title %></h2>
+    <h2>Title: <%= review.title %></h2>
+    <p>Rating: <%= review.rating %></p>
     <p><%= review.content %></p>
-    <p><%= review.rating %></p>
+    <%= link_to "Edit Review", edit_review_path(review) %>
   </section>
 <% end %>
 
