@@ -24,6 +24,7 @@ class Cart
 
   def subtotal(item_id)
     current_item = Item.find(item_id)
+    # binding.pry
     current_item.price * item_count(item_id)
   end
 
@@ -39,5 +40,9 @@ class Cart
 
   def remove_item(item_id)
     @contents.delete(item_id)
+  end
+
+  def update_quantity(item_id, new_quantity)
+    @contents[item_id] = new_quantity.to_i
   end
 end
