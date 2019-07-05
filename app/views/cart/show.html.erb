@@ -1,5 +1,6 @@
 <% if cart.contents != Hash.new(0) %>
   <%= link_to "Empty Cart", "/cart", method: :delete %>
+  <%= link_to "Checkout", "/orders/new" %>
 <% end %>
 
 <% @items.each do |item| %>
