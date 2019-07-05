@@ -18,6 +18,13 @@ class Cart
     @contents.delete(item_id.to_s)
   end
 
+  def decrement(item_id)
+    @contents[item_id.to_s] -= 1
+    if @contents[item_id.to_s] == 0
+      remove_item(item_id)
+    end
+  end
+
   def total
     @contents.values.sum
   end
