@@ -33,6 +33,14 @@ class CartController < ApplicationController
     redirect_to "/cart"
   end
 
+  def decrement
+    item = Item.find(params[:item_id])
+    cart.decrement(item.id)
+    session[:cart] = cart.contents
+    flash[:success] = "You removed 1 #{item.name} from your cart."
+    redirect_to "/cart"
+  end
+
   def destroy
     session.delete(:cart)
     redirect_to "/cart"
