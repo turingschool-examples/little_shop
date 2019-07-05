@@ -162,6 +162,69 @@ RSpec.describe "Cart", type: :feature do
         expect(page).to have_content("Grand Total: #{number_to_currency(170)}")
         expect(page).to have_content("Cart: 4")
       end
+
+      it "I do NOT see a button or link to increment the count of items I want to purchase when the item's inventory is equal to zero" do
+        visit "/items/#{@hippo.id}"
+        click_on("Add Item")
+
+        visit "/cart"
+
+        within "#item-#{@hippo.id}" do
+          click_on("+")
+          expect(current_path).to eq("/cart")
+
+          click_on("+")
+          expect(current_path).to eq("/cart")
+
+          expect(page).to_not have_button("+")
+        end
+      end
+
+      it "I see a button or link to decrement the count of items I want to purchase, but if I decrement the count to 0 the item is immediately removed from my cart" do
+        visit "/items/#{@hippo.id}"
+        click_on("Add Item")
+
+        visit "/items/#{@giant.id}"
+        click_on("Add Item")
+
+        visit "/items/#{@ogre.id}"
+        click_on("Add Item")
+
+        visit "/items/#{@ogre.id}"
+        click_on("Add Item")
+
+        visit "/cart"
+
+        expect(page).to have_content("Grand Total: #{number_to_currency(140)}")
+
+        within "#item-#{@ogre.id}" do
+          expect(page).to have_button("-")
+          click_on("-")
+          expect(current_path).to eq("/cart")
+
+          expect(page).to have_content("Quantity: 1")
+          expect(page).to have_content("Subtotal: #{number_to_currency(20)}")
+        end
+
+        expect(page).to have_content("Grand Total: #{number_to_currency(120)}")
+        expect(page).to have_content("Cart: 3")
+
+        visit "/cart"
+
+        within "#item-#{@ogre.id}" do
+          expect(page).to have_button("-")
+          click_on("-")
+          expect(current_path).to eq("/cart")
+        end
+
+        expect(page).to_not have_content("Name: #{@ogre.name}")
+        expect(page).to_not have_content("Price: #{@ogre.price}")
+        expect(page).to_not have_content("Quantity: 0")
+        expect(page).to_not have_content("Subtotal: #{number_to_currency(0)}")
+
+        expect(page).to have_content("Grand Total: #{number_to_currency(100)}")
+        expect(page).to have_content("Cart: 2")
+      end
     end
   end
 end
