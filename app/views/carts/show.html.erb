@@ -7,10 +7,11 @@
       <p>Price: <%= number_to_currency(item.price) %></p>
       <p>Quantity: <%= cart.count_of(item.id) %></p>
       <p>Subtotal: <%= number_to_currency cart.subtotal(item.id) %></p>
+        <%= button_to 'Remove', cart_path(item_id: item.id), method: :put %>
+    </section>
   <% end %>
     <p>Total: <%= number_to_currency cart.total %></p>
     <p> <%= button_to "Empty Cart", { controller: :carts, action: :destroy }, method: :delete  %></p>
-    </section>
 <% else %>
     <p>Your shopping cart is empty.</p>
 <% end %>

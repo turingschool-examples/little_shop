@@ -21,11 +21,17 @@ class CartsController < ApplicationController
     redirect_to cart_path
   end
 
+  def update
+    item = Item.find(params[:item_id])
+    cart.contents.delete(item.id.to_s)
+    redirect_to cart_path
+  end
+
   private
 
-#   def set_cart
-#     @cart = Item.find(params[:id])
-#   end
+  # def set_cart
+  #   @cart = Item.find(params[:id])
+  # end
 #
 #   def cart_params
 #     params.require(:cart).permit(:)
