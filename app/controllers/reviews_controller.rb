@@ -6,8 +6,13 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = @item.reviews.create!(review_params)
-    redirect_to item_path(@item)
+    @review = @item.reviews.new(review_params)
+    if @review.save
+      redirect_to item_path(@item)
+    else
+      flash[:notice] = "Merchant not created! Bad zip code."
+      render :new
+    end
   end
 
   private
