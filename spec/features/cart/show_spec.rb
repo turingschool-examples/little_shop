@@ -20,7 +20,10 @@ RSpec.describe 'Show cart items' do
       visit "/items/#{@ogre.id}"
       click_button 'Add Item'
 
-      expect(page).to have_content('Cart: 2')
+      visit "/items/#{@hippo.id}"
+      click_button 'Add Item'
+
+      expect(page).to have_content('Cart: 3')
 
       visit cart_path
 
@@ -31,8 +34,17 @@ RSpec.describe 'Show cart items' do
         expect(page).to have_content("Price: #{number_to_currency(@ogre.price)}")
         expect(page).to have_content('Quantity: 2')
         expect(page).to have_content('Subtotal: $40.00')
-        expect(page).to have_content('Total: $40.00')
       end
+
+      within "#item-#{@hippo.id}" do
+        expect(page).to have_content(@hippo.name)
+        expect(page).to have_css("img[src*='#{@hippo.image}']")
+        expect(page).to have_content(@brian.name)
+        expect(page).to have_content("Price: #{number_to_currency(@hippo.price)}")
+        expect(page).to have_content('Quantity: 1')
+        expect(page).to have_content('Subtotal: $50.00')
+      end
+      expect(page).to have_content('Total: $90.00')
     end
   end
 end
