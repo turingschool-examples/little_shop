@@ -64,5 +64,29 @@ RSpec.describe "Cart Show Page", type: :feature do
         expect(page).to have_content("Grand Total: $220.00")
       end
     end
+
+    describe "When I have items in my cart, and I visit my cart" do
+      it "I see a button or link to Checkout, and when I click that button, I am taken to the new order page" do
+        visit "/items/#{@hippo.id}"
+        click_on("Add Item")
+
+        visit "/items/#{@giant.id}"
+        click_on("Add Item")
+
+        visit "/items/#{@ogre.id}"
+        click_on("Add Item")
+
+        visit "/items/#{@ogre.id}"
+        click_on("Add Item")
+
+        visit "/cart"
+
+        expect(page).to have_content("Cart: 4")
+
+        expect(page).to have_link("Checkout")
+        click_on("Checkout")
+        expect(current_path).to eq("/orders/new")
+      end
+    end
   end
 end
