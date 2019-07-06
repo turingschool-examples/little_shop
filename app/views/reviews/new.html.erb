@@ -1,0 +1,13 @@
+<h2>New Review</h2>
+<%= form_tag "/item/#{@item.id}" do %>
+  <%= label_tag :title %>
+  <%= text_field_tag :title %>
+
+  <%= label_tag :rating %>
+  <%= text_field_tag :rating %>
+
+  <%= label_tag :content %>
+  <%= text_field_tag :content %>
+
+  <%= submit_tag 'Create Review' %>
+<% end %>

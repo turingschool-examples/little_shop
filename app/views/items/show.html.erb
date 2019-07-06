@@ -10,3 +10,4 @@
 <%= button_to 'Add to Cart', add_cart_path(@item), method: :post %>
 <%= link_to 'Update Item', "/items/#{@item.id}/edit" %>
 <%= link_to 'Delete', "/items/#{@item.id}", method: :delete %>
+<%= link_to 'Add New Review', "/items/#{@item.id}/review/new" %>
