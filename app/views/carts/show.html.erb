@@ -1,3 +1,5 @@
+<p> <%= button_to "Empty Cart", { controller: :carts, action: :destroy }, method: :delete  %></p>
+
 <% if @items.any? %>
   <% @items.each do |item| %>
     <section id="item-<%= item.id %>">
@@ -13,7 +15,7 @@
     </section>
   <% end %>
     <p>Total: <%= number_to_currency cart.total %></p>
-    <p> <%= button_to "Empty Cart", { controller: :carts, action: :destroy }, method: :delete  %></p>
+    <p> <%= button_to "Checkout", new_order_path, method: :get %></p>
 <% else %>
     <p>Your shopping cart is empty.</p>
 <% end %>
