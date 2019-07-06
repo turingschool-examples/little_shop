@@ -36,7 +36,7 @@ RSpec.describe 'New Order' do
         expect(page).to have_button 'Create Order'
       end
     end
-    
+
     describe 'When I click on "Create Order" an order is created' do
       it "I am redirected to that order's show page" do
 
@@ -64,6 +64,23 @@ RSpec.describe 'New Order' do
         expect(page).to have_content(@cart.subtotal(@ogre.id))
         expect(page).to have_content(@cart.grand_total)
         expect(page).to have_content(order.created_at)
+      end
+      it 'I cannot create an order without completing the form' do
+
+        visit "/items/#{@ogre.id}"
+        click_button 'Add to Cart'
+        visit cart_path
+        click_button 'Checkout'
+
+        fill_in 'Address', with: "1234 Market St"
+        fill_in 'City', with: "Denver"
+        fill_in 'State', with: "CO"
+        fill_in 'Zipcode', with: "80021"
+
+        click_button "Create Order"
+
+        expect(current_path).to eq(orders_new_path)
+        expect(page).to have_content("Please fill in all fields.")
       end
     end
   end

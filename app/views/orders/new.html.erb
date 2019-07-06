@@ -6,16 +6,16 @@
     <p><%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %></p>
     <p><%= number_to_currency(item.price) %></p>
     <p><%= cart.item_count(item.id) %></p>
-    <p><%= cart.subtotal(item.id) %></p>
+    <p><%= number_to_currency(cart.subtotal(item.id)) %></p>
   </section>
 <% end  %>
 
-<h4>Grand Total: <%= cart.grand_total %></h4>
+<h4>Grand Total: <%= number_to_currency(cart.grand_total) %></h4>
 
 <h2>Shipping Information</h2>
 <%= form_tag '/orders' do %>
   <%= label_tag :name %>
-  <%= text_field_tag :name %>
+  <%= text_field_tag :name%>
 
   <%= label_tag :address %>
   <%= text_field_tag :address %>

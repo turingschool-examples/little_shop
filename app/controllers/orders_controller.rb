@@ -16,8 +16,12 @@ class OrdersController < ApplicationController
 
   def create
     order = Order.create(order_params)
-
-    redirect_to "/orders/#{order.id}"
+    if order.id.nil?
+      flash[:alert] = "Please fill in all fields."
+      redirect_to orders_new_path
+    else
+      redirect_to "/orders/#{order.id}"
+    end
   end
 
   private
