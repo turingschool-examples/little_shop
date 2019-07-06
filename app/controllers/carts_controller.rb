@@ -27,18 +27,26 @@ class CartsController < ApplicationController
     redirect_to cart_path
   end
 
-  def update
-    # binding.pry
+  def increase_item
     item = Item.find(params[:item_id])
-
     if cart.contents[item.id.to_s] >= item.inventory
       flash[:notice] = 'Order quantity exceeds inventory'
     else
       cart.contents[item.id.to_s] += 1
     end
-
     redirect_to cart_path
   end
+
+  def decrease_item
+    item = Item.find(params[:item_id])
+    cart.contents[item.id.to_s] -= 1
+    if cart.contents[item.id.to_s] == 0
+      remove_item
+    else
+      redirect_to cart_path
+    end
+  end
+
 
   private
 
