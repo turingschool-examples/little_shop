@@ -23,7 +23,7 @@ RSpec.describe 'Cart Show Page' do
 
       click_on "Cart(3)"
 
-      expect(current_path).to eq('/cart')
+      expect(current_path).to eq(cart_path)
       expect(page).to have_content(@ogre.name)
       # expect(page).to have_content(@ogre.image)
       expect(page).to have_content(@ogre.merchant.name)
@@ -38,6 +38,10 @@ RSpec.describe 'Cart Show Page' do
       expect(page).to have_content(cart.item_count(@giant))
 
       expect(page).to have_content("$90.00")
+      expect(page).to have_button("Checkout")
+
+      click_button "Checkout"
+      expect(current_path).to eq(orders_new_path)
     end
   end
 end
