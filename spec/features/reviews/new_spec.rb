@@ -41,14 +41,18 @@ RSpec.describe 'New Review' do
 
       expect(current_path).to eq(new_review_path(@ogre))
 
-      fill_in :content, with: content
+      click_button 'Create Review'
+
+      expect(page).to have_content('Missing title!')
+
+      fill_in :title, with: title
       click_button 'Create Review'
 
       expect(current_path).to eq(review_path(@ogre))
-      expect(page).to have_content('Missing title!')
-      expect(find_field(:content).value).to eq(content)
+      expect(page).to have_content('Missing review message!')
+      expect(find_field(:title).value).to eq(title)
 
-      fill_in :title, with: title
+      fill_in :content, with: content
       click_button 'Create Review'
 
       expect(current_path).to eq(review_path(@ogre))
@@ -58,7 +62,7 @@ RSpec.describe 'New Review' do
 
       fill_in :rating, with: rating
       click_button 'Create Review'
-      
+
       expect(current_path).to eq(item_path(@ogre))
       expect(page).to have_content(title)
       expect(page).to have_content(content)

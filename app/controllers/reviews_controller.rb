@@ -18,8 +18,6 @@ class ReviewsController < ApplicationController
         flash[:notice] = 'Missing review message!'
       when review_params[:rating] == ''
         flash[:notice] = 'Missing rating!'
-      else
-        flash[:notice] = "Review not created! Missing information."
       end
       render :new
     end
