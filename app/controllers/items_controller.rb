@@ -34,8 +34,8 @@ class ItemsController < ApplicationController
         flash[:notice] = 'Missing price!'
       when item_params[:image] == ''
         flash[:notice] = 'Missing image!'
-      when item_params[:inventroy] == ''
-        flash[:notice] = 'Missing inventroy!'
+      when item_params[:inventory] == ''
+        flash[:notice] = 'Missing inventory!'
       end
       render :new
     end
