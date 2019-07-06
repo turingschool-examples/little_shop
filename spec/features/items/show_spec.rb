@@ -21,5 +21,24 @@ RSpec.describe 'Item Show Page' do
       expect(page).to have_content("Sold by: #{@megan.name}")
       expect(page).to have_link(@megan.name)
     end
+
+    it "I see a list of reviews for that item with title, content, rating." do
+      review_1 = @hippo.reviews.create!(title: "Hippo Review-1", content: "I loved my brand new Hippo.", rating: 5)
+      review_2 = @hippo.reviews.create!(title: "Hippo Review-2", content: "I LOATHED my brand new Hippo.", rating: 1)
+
+      visit "/items/#{@hippo.id}"
+      save_and_open_page
+      within "#review-#{review_1.id}" do
+        expect(page).to have_content("Title: #{review_1.title}")
+        expect(page).to have_content("Description: #{review_1.content}")
+        expect(page).to have_content("Rating: #{review_1.rating}")
+      end
+
+      within "#review-#{review_2.id}" do
+        expect(page).to have_content("Title: #{review_2.title}")
+        expect(page).to have_content("Description: #{review_2.content}")
+        expect(page).to have_content("Rating: #{review_2.rating}")
+      end
+    end
   end
 end
