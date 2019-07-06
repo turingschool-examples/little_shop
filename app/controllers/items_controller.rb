@@ -36,8 +36,6 @@ class ItemsController < ApplicationController
         flash[:notice] = 'Missing image!'
       when item_params[:inventroy] == ''
         flash[:notice] = 'Missing inventroy!'
-      else
-        flash[:notice] = "Item not created! Missing information."
       end
       render :new
     end
