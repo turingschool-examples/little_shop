@@ -1,0 +1,22 @@
+<h1>Order ID: <%= @order.id %></h1>
+
+<h2>Shipping Information</h2>
+<section class='address'>
+  <p><%= @order.name %></p>
+  <p><%= @order.address %></p>
+  <p><%= @order.city %> <%= @order.state %> <%= @order.zipcode %></p>
+</section>
+
+<h2>Order Details</h2>
+<% @items.each do |item| %>
+  <section id='item-<%= item.id%>'>
+    <h2><%= link_to item.name, "/items/#{item.id}" %></h2>
+    <p><%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %></p>
+    <p><%= number_to_currency(item.price) %></p>
+    <p><%= cart.item_count(item.id) %></p>
+    <p><%= cart.subtotal(item.id) %></p>
+  </section>
+<% end  %>
+
+<h4>Grand Total: <%= cart.grand_total %></h4>
+<h4>Order Date: <%= @order.created_at %></h4>
