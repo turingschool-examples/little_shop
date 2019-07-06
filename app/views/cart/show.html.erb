@@ -1,9 +1,8 @@
 <h1>Cart</h1
-<% if cart.contents == nil  %>
+<% if cart.contents.empty? %>
 <p>Your shopping cart is empty</p>
 
-<%else%>
-<%cart.contents.each do |hash|%>
+<%else cart.contents.each do |hash|%>
 <p>Item.id: <%= hash.first %> </p>
 <br>
 <p> Quantity: <%= hash.last %> </p>

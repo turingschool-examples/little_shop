@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     end
     get "/items/:id", to: 'reviews#index'
 
-    post '/cart/:item_id', to: 'cart#add_item'
-    # delete '/cart/:item_id', to: 'cart#remove_item'
+    patch '/cart/:item_id', to: 'cart#add_item'
+    delete '/cart/:item_id', to: 'cart#remove_item'
     get '/cart', to: 'cart#show'
 
   end
