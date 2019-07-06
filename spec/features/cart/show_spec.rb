@@ -45,4 +45,20 @@ RSpec.describe 'Show cart items' do
       expect(page).to have_content('Total: $90.00')
     end
   end
+
+  it 'I see a button to checkout' do
+    visit "/items/#{@ogre.id}"
+    click_button 'Add Item'
+
+    visit "/items/#{@ogre.id}"
+    click_button 'Add Item'
+
+    visit "/items/#{@hippo.id}"
+    click_button 'Add Item'
+
+    visit cart_path
+    click_button 'Checkout'
+    expect(current_path).to eq('/orders/new')
+  end
+
 end
