@@ -9,5 +9,9 @@ Rails.application.routes.draw do
       resources :reviews, expect: :index
     end
     get "/items/:id", to: 'reviews#index'
-    # get "/items/:id", to: 'reviews#destroy'
+
+    post '/cart/:item_id', to: 'cart#add_item'
+    # delete '/cart/:item_id', to: 'cart#remove_item'
+    get '/cart', to: 'cart#show'
+
   end

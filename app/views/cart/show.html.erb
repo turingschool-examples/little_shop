@@ -1,0 +1,12 @@
+<h1>Cart</h1
+<% if cart.contents == nil  %>
+<p>Your shopping cart is empty</p>
+
+<%else%>
+<%cart.contents.each do |hash|%>
+<p>Item.id: <%= hash.first %> </p>
+<br>
+<p> Quantity: <%= hash.last %> </p>
+<%= button_to "Remvove Item From Cart","/cart/#{hash.first}", method: :delete %>
+<% end  %>
+<% end  %>

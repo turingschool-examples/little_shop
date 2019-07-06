@@ -11,7 +11,7 @@
         @review_1 = @hippo.reviews.create!(title: 'Good Hippo', content: "The Hippo was good", rating: 4 )
       end
 
-        it 'I can see a list of all items' do
+      it 'I can see a list of all items' do
         visit "/items/#{@hippo.id}"
         within "#review-#{@review_1.id}" do
           expect(page).to have_content(@review_1.title)
@@ -19,5 +19,5 @@
           expect(page).to have_content(@review_1.rating)
         end
       end
-    end 
+    end
   end
