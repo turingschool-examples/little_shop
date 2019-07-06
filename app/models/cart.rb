@@ -11,9 +11,10 @@ class Cart
   end
 
   def total_cost
-    @contents.map do |id,qty|
+    tot = @contents.map do |id,qty|
       Item.find(id).price * qty
     end.sum
+    tot
   end
 
   def add_item(id)

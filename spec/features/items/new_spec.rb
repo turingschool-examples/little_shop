@@ -14,7 +14,7 @@ RSpec.describe 'New Merchant Item' do
       expect(current_path).to eq(new_item_path(@megan))
     end
 
-    it 'I can create an  item for a merchant' do
+    it 'I can create an item for a merchant' do
       name = 'Ogre'
       description = "I'm an Ogre!"
       price = 20

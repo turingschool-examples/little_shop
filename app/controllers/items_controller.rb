@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_merchant, only: [:new, :create]
+  before_action :destroy_reviews, only: [:destroy]
 
   def index
     if params[:merchant_id]
@@ -12,14 +13,34 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @reviews = @item.reviews
   end
 
   def new
+    @item = Item.new
   end
 
   def create
-    @merchant.items.create(item_params)
-    redirect_to merchant_items_path(@merchant)
+    @item = @merchant.items.new(item_params)
+    if @item.save
+      redirect_to merchant_items_path(@merchant)
+    else
+      case
+      when item_params[:name] == ''
+        flash[:notice] = 'Missing name!'
+      when item_params[:description] == ''
+        flash[:notice] = 'Missing description!'
+      when item_params[:price] == ''
+        flash[:notice] = 'Missing price!'
+      when item_params[:image] == ''
+        flash[:notice] = 'Missing image!'
+      when item_params[:inventroy] == ''
+        flash[:notice] = 'Missing inventroy!'
+      else
+        flash[:notice] = "Item not created! Missing information."
+      end
+      render :new
+    end
   end
 
   def edit
@@ -47,5 +68,9 @@ class ItemsController < ApplicationController
 
   def set_merchant
     @merchant ||= Merchant.find(params[:merchant_id])
+  end
+
+  def destroy_reviews
+    @item.reviews.destroy_all
   end
 end

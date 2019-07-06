@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   post '/merchants/:merchant_id/items', to: 'items#create'
   get '/items/:id/edit', to: 'items#edit', as: :edit_item
   patch '/items/:id', to: 'items#update'
-  delete '/items/:id', to: 'items#destroy'
+  delete '/items/:id', to: 'items#destroy', as: :delete_item
 
   get '/cart', to: 'carts#index', as: :cart
   patch '/cart/:item_id', to: 'carts#add_item', as: :add_to_cart
@@ -27,5 +27,11 @@ Rails.application.routes.draw do
   patch '/cart/:item_id/minus', to: 'carts#decr_qty', as: :decr_qty
   delete '/cart', to: 'carts#destroy', as: :empty_cart
 
-  get '/order/new', to: 'orders#new', as: :new_order
+  get '/orders/new', to: 'orders#new', as: :new_order
+
+  get '/items/:item_id/reviews/new', to: 'reviews#new', as: :new_review
+  post '/items/:item_id/reviews', to: 'reviews#create', as: :review
+  get '/items/:item_id/reviews/:id/edit', to: 'reviews#edit', as: :edit_review
+  patch '/items/:item_id/reviews/:id', to: 'reviews#update', as: :update_review
+  delete '/items/:item_id/reviews/:id', to: 'reviews#destroy', as: :delete_review
 end

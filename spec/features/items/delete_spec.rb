@@ -9,11 +9,21 @@ RSpec.describe 'Delete Item' do
         @ogre = @megan.items.create!(name: 'Ogre', description: "I'm an Ogre!", price: 20, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 5 )
         @giant = @megan.items.create!(name: 'Giant', description: "I'm a Giant!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
         @hippo = @brian.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
+        @review_1 = @giant.reviews.create!(title: 'Amazing!', content: 'The best Giant I ever saw!', rating: 5)
       end
 
       it 'I can click a link to delete that item' do
         visit item_path(@giant)
 
+        expect(page).to have_content('Reviews')
+        expect(page).to have_content('Title: Amazing!')
+        expect(page).to have_content('Rating: 5')
+        expect(page).to have_content('The best Giant I ever saw')
+
+        expect(Review.find(@review_1.id)).to eq(@review_1)
+
+        expect {@review_1.destroy}.to change(Review, :count).by(-1)
+        expect(Review.all).to_not include(@review_1)
         click_link 'Delete'
 
         expect(current_path).to eq(items_path)
