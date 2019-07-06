@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to item_path(@item)
     else
-      flash[:notice] = "Merchant not created! Bad zip code."
+      flash[:notice] = "Review not created! Missing information."
       render :new
     end
   end
