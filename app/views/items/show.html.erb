@@ -8,5 +8,14 @@
   <%= button_to 'Add Item', "/cart/#{@item.id}", method: :patch %>
 </section>
 
+<h2>Reviews:</h2>
+<% @item.reviews.each do |review| %>
+  <section id="review-<%= review.id %>">
+    <h3>Title: <%= review.title %></h3>
+    <p>Description: <%= review.content %></p>
+    <p>Rating: <%= review.rating %></p>
+  </section>
+<% end %>
+
 <%= link_to 'Update Item', "/items/#{@item.id}/edit" %>
 <%= link_to 'Delete', "/items/#{@item.id}", method: :delete %>
