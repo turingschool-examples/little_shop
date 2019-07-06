@@ -24,15 +24,13 @@ RSpec.describe "New Order Page", type: :feature do
         visit "/items/#{@hippo.id}"
         click_on("Add Item")
 
-        # visit "/items/#{@hippo.id}"
-        # click_on("Add Item")
-
         visit "/cart"
 
         within "#item-#{@hippo.id}" do
           click_on("+")
         end
 
+        expect(page).to have_link("Checkout")
         click_on("Checkout")
         expect(current_path).to eq("/orders/new")
 
@@ -54,25 +52,109 @@ RSpec.describe "New Order Page", type: :feature do
 
         expect(page).to have_content("Grand Total: #{number_to_currency(120)}")
 
-        fill_in "Name", with: "Valentino Valentine"
-        fill_in "Address", with: "1111 Lovers Lane"
-        fill_in "City", with: "Heaven"
-        fill_in "State", with: "Hawaii"
-        fill_in "Zip", with: 77777
-
+        expect(page).to have_content("Name")
+        expect(page).to have_content("Address")
+        expect(page).to have_content("City")
+        expect(page).to have_content("State")
+        expect(page).to have_content("Zip")
         expect(page).to have_button("Create Order")
-        click_on "Create Order"
-
-        new_order = Order.last
-        
-        expect(current_path).to eq("/orders/#{new_order.id}")
-
-        expect(page).to have_content(new_order.name)
-        expect(page).to have_content(new_order.address)
-        expect(page).to have_content(new_order.city)
-        expect(page).to have_content(new_order.state)
-        expect(page).to have_content(new_order.zip)
       end
+    end
+
+    describe "When I fill out all information on the new order page, and click on 'Create Order'" do
+      describe "An order is created & saved in the database" do
+        it "I am redirected to that order's show page" do
+          visit "/items/#{@ogre.id}"
+          click_on("Add Item")
+
+          visit "/items/#{@hippo.id}"
+          click_on("Add Item")
+
+          visit "/cart"
+
+          within "#item-#{@hippo.id}" do
+            click_on("+")
+          end
+
+          click_on("Checkout")
+          expect(current_path).to eq("/orders/new")
+
+          fill_in "Name", with: "Valentino Valentine"
+          fill_in "Address", with: "1111 Lovers Lane"
+          fill_in "City", with: "Heaven"
+          fill_in "State", with: "Hawaii"
+          fill_in "Zip", with: 77777
+
+          expect(page).to have_button("Create Order")
+          click_on "Create Order"
+
+          expect(page).to have_content("Cart: 0")
+
+          new_order = Order.last
+
+          order_items_1 = OrderItem.create(item: @ogre, order: new_order, quantity: 1, price_per_item: 20.0)
+          order_items_2 = OrderItem.create(item: @hippo, order: new_order, quantity: 2, price_per_item: 50.0)
+
+          expect(current_path).to eq("/orders/#{new_order.id}")
+
+          expect(page).to have_content(new_order.name)
+          expect(page).to have_content(new_order.address)
+          expect(page).to have_content(new_order.city)
+          expect(page).to have_content(new_order.state)
+          expect(page).to have_content(new_order.zip)
+
+          within "#item-#{order_items_1.item_id}" do
+            expect(page).to have_content("Name: #{order_items_1.item.name}")
+            expect(page).to have_content("Merchant: #{order_items_1.item.merchant.name}")
+            expect(page).to have_content("Price: #{number_to_currency(order_items_1.price_per_item)}")
+            expect(page).to have_content("Quantity: #{order_items_1.quantity}")
+            expect(page).to have_content("Subtotal: #{number_to_currency(order_items_1.subtotal)}")
+          end
+
+          within "#item-#{order_items_2.item_id}" do
+            expect(page).to have_content("Name: #{order_items_2.item.name}")
+            expect(page).to have_content("Merchant: #{order_items_2.item.merchant.name}")
+            expect(page).to have_content("Price: #{number_to_currency(order_items_2.price_per_item)}")
+            expect(page).to have_content("Quantity: #{order_items_2.quantity}")
+            expect(page).to have_content("Subtotal: #{number_to_currency(order_items_2.subtotal)}")
+          end
+
+          expect(page).to have_content("Created on: #{new_order.created_at}")
+          expect(page).to have_content("Grand Total: #{number_to_currency(120)}")
+        end
+      end
+
+      # describe "From the order creation page" do
+      #   describe "When I click 'Create Order' without completing the shipping address form" do
+      #     it "I see a flash message indicating that I need to complete the form for successful order creation" do
+      #       visit "/items/#{@ogre.id}"
+      #       click_on("Add Item")
+      #
+      #       visit "/items/#{@hippo.id}"
+      #       click_on("Add Item")
+      #
+      #       visit "/cart"
+      #
+      #       within "#item-#{@hippo.id}" do
+      #         click_on("+")
+      #       end
+      #
+      #       click_on("Checkout")
+      #       expect(current_path).to eq("/orders/new")
+      #
+      #       fill_in "Name", with: "Valentino Valentine"
+      #       # DON'T fill_in "Address"
+      #       fill_in "City", with: "Heaven"
+      #       fill_in "State", with: "Hawaii"
+      #       fill_in "Zip", with: 77777
+      #
+      #       click_on "Create Order"
+      #
+      #       expect(page).to have_field("Address")
+      #       expect(page).to have_content("Order not created. You are missing required field(s).")
+      #     end
+      #   end
+      # end
     end
   end
 end
