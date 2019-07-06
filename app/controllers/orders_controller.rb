@@ -1,5 +1,8 @@
 class OrdersController < ApplicationController
 
   def new
-  end  
+    @items = cart.contents.map do |item_id, quanitity|
+      Item.find(item_id)
+    end
+  end
 end
