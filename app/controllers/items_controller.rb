@@ -21,8 +21,26 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @merchant.items.create(item_params)
-    redirect_to merchant_items_path(@merchant)
+    @item = @merchant.items.new(item_params)
+    if @item.save
+      redirect_to merchant_items_path(@merchant)
+    else
+      case
+      when item_params[:name] == ''
+        flash[:notice] = 'Missing name!'
+      when item_params[:description] == ''
+        flash[:notice] = 'Missing description!'
+      when item_params[:price] == ''
+        flash[:notice] = 'Missing price!'
+      when item_params[:image] == ''
+        flash[:notice] = 'Missing image!'
+      when item_params[:inventroy] == ''
+        flash[:notice] = 'Missing inventroy!'
+      else
+        flash[:notice] = "Item not created! Missing information."
+      end
+      render :new
+    end
   end
 
   def edit
