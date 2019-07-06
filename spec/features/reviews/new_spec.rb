@@ -31,5 +31,39 @@ RSpec.describe 'New Review' do
       expect(page).to have_content(rating)
       expect(page).to have_content('Average Rating: 5.0')
     end
+
+    it 'I see a flash message when info is missing' do
+      title = 'Neat!'
+      content = "It's an Ogre!"
+      rating = 5
+      visit item_path(@ogre)
+      click_link 'Write Review'
+
+      expect(current_path).to eq(new_review_path(@ogre))
+
+      fill_in :content, with: content
+      click_button 'Create Review'
+
+      expect(current_path).to eq(review_path(@ogre))
+      expect(page).to have_content('Missing title!')
+      expect(find_field(:content).value).to eq(content)
+
+      fill_in :title, with: title
+      click_button 'Create Review'
+
+      expect(current_path).to eq(review_path(@ogre))
+      expect(page).to have_content('Missing rating!')
+      expect(find_field(:title).value).to eq(title)
+      expect(find_field(:content).value).to eq(content)
+
+      fill_in :rating, with: rating
+      click_button 'Create Review'
+      
+      expect(current_path).to eq(item_path(@ogre))
+      expect(page).to have_content(title)
+      expect(page).to have_content(content)
+      expect(page).to have_content(rating)
+      expect(page).to have_content('Average Rating: 5.0')
+    end
   end
 end

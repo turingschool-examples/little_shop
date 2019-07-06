@@ -11,7 +11,16 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to item_path(@item)
     else
-      flash[:notice] = "Review not created! Missing information."
+      case
+      when review_params[:title] == ''
+        flash[:notice] = 'Missing title!'
+      when review_params[:content] == ''
+        flash[:notice] = 'Missing review message!'
+      when review_params[:rating] == ''
+        flash[:notice] = 'Missing rating!'
+      else
+        flash[:notice] = "Review not created! Missing information."
+      end
       render :new
     end
   end
