@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :items
   resources :merchants
+  resources :orders
 
   put '/cart', to: 'carts#remove_item'
   patch '/cart/decrease', to: 'carts#decrease_item'
