@@ -6,7 +6,13 @@ class OrdersController < ApplicationController
 
   def create
     order = Order.new(order_params)
+
+    cart.contents.each do |item_id, quantity|
+      OrderItem.create(order: order, item_id: item_id, quantity: quantity, price_per_item: Item.find(item_id).price)
+    end
+
     if order.save
+      session.delete(:cart)
       flash[:success] = "Your order has been created."
       redirect_to "/orders/#{order.id}"
     else
@@ -17,7 +23,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @items = Item.find(cart.item_ids)
+    @order_items = @order.order_items
   end
 
   private
