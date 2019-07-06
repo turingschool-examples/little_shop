@@ -24,10 +24,8 @@ RSpec.describe 'Add Item to Cart' do
 
       visit cart_path
       expect(current_path).to eq(cart_path)
-# save_and_open_page
 
       within("#item-#{@giant.id}") do
-        # save_and_open_page
         fill_in 'Quantity:', with: 2
         click_button 'Update Item'
         expect(current_path).to eq(cart_path)
@@ -37,8 +35,54 @@ RSpec.describe 'Add Item to Cart' do
       expect(page).to have_content("Cart(4)")
     end
 
-    # it "I cannot increment the count beyond the item's inventory size" do
-    #
-    # end
+    it "If item id decremented to zero the item is removed from the cart" do
+      cart = Cart.new(nil)
+
+      visit "/items/#{@ogre.id}"
+      click_button "Add to Cart"
+
+      visit "/items/#{@ogre.id}"
+      click_button "Add to Cart"
+
+      visit "/items/#{@giant.id}"
+      click_button "Add to Cart"
+
+      visit cart_path
+      expect(current_path).to eq(cart_path)
+
+      within("#item-#{@giant.id}") do
+
+      fill_in 'Quantity:', with: 0
+      click_button 'Update Item'
+      expect(current_path).to eq(cart_path)
+      expect(find_field('Quantity:').value).to eq "0"
+    end
+      expect(page).to have_content ("You have 0 #{pluralize(item.name)} in your cart.")
+    end
+
+    it "I cannot increment the count beyond the item's inventory size" do
+      cart = Cart.new(nil)
+
+      visit "/items/#{@ogre.id}"
+      click_button "Add to Cart"
+
+      visit "/items/#{@ogre.id}"
+      click_button "Add to Cart"
+
+      visit "/items/#{@giant.id}"
+      click_button "Add to Cart"
+
+      visit cart_path
+      expect(current_path).to eq(cart_path)
+
+      within("#item-#{@giant.id}") do
+
+      fill_in 'Quantity:', with: 20
+      click_button 'Update Item'
+      expect(current_path).to eq(cart_path)
+      expect(find_field('Quantity:').value).to eq "20"
+    end
+      expect(page).to have_content ("Sorry, there is not enough in stock for this order.")
+    end
   end
 end
