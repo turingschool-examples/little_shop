@@ -52,12 +52,12 @@ RSpec.describe 'Add Item to Cart' do
 
       within("#item-#{@giant.id}") do
 
-      fill_in 'Quantity:', with: 0
-      click_button 'Update Item'
-      expect(current_path).to eq(cart_path)
-      expect(find_field('Quantity:').value).to eq "0"
-    end
-      expect(page).to have_content ("You have 0 #{pluralize(item.name)} in your cart.")
+        fill_in 'Quantity:', with: 0
+        click_button 'Update Item'
+        expect(current_path).to eq(cart_path)
+      end
+      expect(page).not_to have_content(@giant.name)
+      expect(page).to have_content ("Item has been removed from your cart.")
     end
 
     it "I cannot increment the count beyond the item's inventory size" do
@@ -76,12 +76,11 @@ RSpec.describe 'Add Item to Cart' do
       expect(current_path).to eq(cart_path)
 
       within("#item-#{@giant.id}") do
-
-      fill_in 'Quantity:', with: 20
-      click_button 'Update Item'
-      expect(current_path).to eq(cart_path)
-      expect(find_field('Quantity:').value).to eq "20"
-    end
+        fill_in 'Quantity:', with: 20
+        click_button 'Update Item'
+        expect(current_path).to eq(cart_path)
+        expect(find_field('Quantity:').value).not_to eq "20"
+      end
       expect(page).to have_content ("Sorry, there is not enough in stock for this order.")
     end
   end

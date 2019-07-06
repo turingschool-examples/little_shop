@@ -32,22 +32,21 @@ class CartController < ApplicationController
   def update
     item_id = params[:item_id]
 
-    if session[:cart][item_id] <= 0
-      session[:cart][item_id] = {}
-      flash[:alert] = "You have 0 #{pluralize(item.name)} in your cart."
-      redirect_to cart_path
-
-    elsif session[:cart][item_id] <= Item.find(item_id).inventory
-
       current_quantity = session[:cart][item_id]
       new_quantity = params[current_quantity.to_s]
-      cart.update_quantity(params[:item_id], new_quantity)
-      session[:cart] = cart.contents
 
-      redirect_to cart_path
-    else
-      flash[:alert] = "Sorry, there is not enough in stock for this order."
-      redirect_to cart_path
-    end
+      if new_quantity.to_i > Item.find(item_id).inventory
+        flash[:alert] = "Sorry, there is not enough in stock for this order."
+        redirect_to cart_path
+      elsif new_quantity.to_i <= 0
+        session[:cart].delete(item_id)
+        flash[:alert] = "Item has been removed from your cart."
+        redirect_to cart_path
+      else
+        cart.update_quantity(params[:item_id], new_quantity)
+        session[:cart] = cart.contents
+
+        redirect_to cart_path
+      end
   end
 end
