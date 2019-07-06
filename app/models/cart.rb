@@ -26,10 +26,6 @@ class Cart
     end
   end
 
-  # def list_items
-  #   @items = Item.find(cart)
-  # end
-
   def subtotal(item_id)
     item = Item.find(item_id)
     item.price * count_of(item_id)

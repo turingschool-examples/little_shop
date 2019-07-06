@@ -55,6 +55,28 @@ RSpec.describe 'Remove Item from Cart' do
         expect(page).to have_content('Order quantity exceeds inventory')
         expect(current_path).to eq('/cart')
       end
+
+      it 'I can decrement items in the cart' do
+        visit "/items/#{@ogre.id}"
+        click_button 'Add Item'
+
+        visit "/items/#{@ogre.id}"
+        click_button 'Add Item'
+
+        visit "/items/#{@hippo.id}"
+        click_button 'Add Item'
+
+        visit cart_path
+
+        within "#item-#{@ogre.id}" do
+          click_button '-'
+          expect(page).to have_content('Quantity: 1')
+          click_button '-'
+        end
+        expect(page).to_not have_content("Name: #{@ogre.name}")
+        expect(current_path).to eq('/cart')
+      end
+
     end
   end
 end
