@@ -9,7 +9,7 @@ RSpec.describe 'Delete Review ' do
       visit item_path(@ogre)
     end
 
-    it "I can edit each review" do
+    it "I can delete a review" do
       expect(page).to have_link("Delete Review")
 
       expect(page).to have_content('Title: Amazing!')

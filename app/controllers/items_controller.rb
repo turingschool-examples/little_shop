@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_merchant, only: [:new, :create]
+  before_action :destroy_reviews, only: [:destroy]
 
   def index
     if params[:merchant_id]
@@ -49,5 +50,9 @@ class ItemsController < ApplicationController
 
   def set_merchant
     @merchant ||= Merchant.find(params[:merchant_id])
+  end
+
+  def destroy_reviews
+    @item.reviews.destroy_all
   end
 end
