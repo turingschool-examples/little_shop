@@ -47,26 +47,29 @@ RSpec.describe 'Merchant Show Page' do
       
       expect(page).to have_link("Ogre")
 
-      # giant = @megan.items.create!(name: 'Giant', description: "I'm a Giant!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
-      # review_2 = giant.reviews.create!(title: 'Better than amazing!', content: 'The best Giant anyone ever saw!', rating: 4)
-      #
-      # expect(page).to have_content("Ogre")
-      # expect(page).to have_content("Giant")
-      #
-      # hippo = @megan.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
-      # review_3 = hippo.reviews.create!(title: 'Better than amazing!', content: 'The best Ogre anyone ever saw!', rating: 3)
-      #
-      # expect(page).to have_content("Ogre")
-      # expect(page).to have_content("Giant")
-      # expect(page).to have_content("Hippo")
-      #
-      # elephant = @megan.items.create!(name: 'Elephant', description: "I'm an Elephant!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
-      # review_4 = elephant.reviews.create!(title: 'Better than amazing!', content: 'The best Ogre anyone ever saw!', rating: 2)
-      #
-      # expect(page).to have_content("Ogre")
-      # expect(page).to have_content("Giant")
-      # expect(page).to have_content("Hippo")
-      # expect(page).to have_content("Elephant")
+      giant = @megan.items.create!(name: 'Giant', description: "I'm a Giant!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
+      review_2 = giant.reviews.create!(title: 'Better than amazing!', content: 'The best Giant anyone ever saw!', rating: 4)
+      visit merchant_path(@megan)
+
+      expect(page).to have_content("Ogre")
+      expect(page).to have_content("Giant")
+
+      hippo = @megan.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
+      review_3 = hippo.reviews.create!(title: 'Better than amazing!', content: 'The best Ogre anyone ever saw!', rating: 3)
+      visit merchant_path(@megan)
+
+      expect(page).to have_content("Ogre")
+      expect(page).to have_content("Giant")
+      expect(page).to have_content("Hippo")
+
+      elephant = @megan.items.create!(name: 'Elephant', description: "I'm an Elephant!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
+      review_4 = elephant.reviews.create!(title: 'Better than amazing!', content: 'The best Ogre anyone ever saw!', rating: 2)
+      visit merchant_path(@megan)
+
+      expect(page).to have_content("Ogre")
+      expect(page).to have_content("Giant")
+      expect(page).to have_content("Hippo")
+      expect(page).to_not have_content("Elephant")
     end
   end
 end

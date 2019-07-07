@@ -3,6 +3,6 @@ class Merchant < ApplicationRecord
   validates_presence_of :name, :address, :city, :state, :zip
 
   def top_three_items
-    items.order(:name)[0..2]
+    items.joins(:reviews).order("reviews.rating desc").limit(3)
   end
 end
