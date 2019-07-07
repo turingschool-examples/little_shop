@@ -54,6 +54,15 @@ RSpec.describe "When a user looks at their cart" do
       expect(page).to have_button("Add 1 to Cart")
       click_on "Add 1 to Cart"
       expect(page).to_not have_button("Add 1 to Cart")
+
+      expect(page).to have_button("Remove 1 from Cart")
+      click_on "Remove 1 from Cart"
+      expect(page).to have_content("Quantity: 2")
+
+      expect(page).to have_button("Remove 1 from Cart")
+      click_on "Remove 1 from Cart"
+      expect(page).to have_content("Quantity: 1")
+      expect(page).to_not have_button("Remove 1 from Cart")
     end
 
   end
