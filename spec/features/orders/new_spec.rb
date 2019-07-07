@@ -9,11 +9,32 @@ RSpec.describe 'New Order' do
       click_link "Add to Cart"
       visit item_path(@ogre)
       click_link "Add to Cart"
+      visit cart_path
       click_link "Checkout"
     end
 
     it 'I see a new order page' do
-      
+      expect(page).to have_link(@ogre.name)
+      expect(page).to have_link(@ogre.merchant.name)
+      expect(page).to have_content("Sold by: #{@ogre.merchant.name}")
+      expect(page).to have_content("Price: #{number_to_currency(@ogre.price)}")
+      expect(page).to have_content('Quantity: 2')
+      expect(page).to have_content('Subtotal: $40.00')
+      expect(page).to have_content('Total: $40.00')
+
+      name = 'Megan'
+      address = '123 Main St'
+      city = "Denver"
+      state = "CO"
+      zip = 80218
+
+      fill_in 'Name', with: name
+      fill_in 'Address', with: address
+      fill_in 'City', with: city
+      fill_in 'State', with: state
+      fill_in 'Zip', with: zip
+
+      click_button 'Create Order'
     end
   end
 end

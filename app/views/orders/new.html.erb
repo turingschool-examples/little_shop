@@ -1,0 +1,6 @@
+<h2>New Order</h2>
+<%= form_tag orders_path do %>
+  <%= render 'cart' %>
+  <%= render 'fields' %>
+  <%= submit_tag 'Create Order' %>
+<% end %>
