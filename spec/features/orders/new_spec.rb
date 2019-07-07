@@ -35,6 +35,8 @@ RSpec.describe 'New Order' do
       fill_in 'Zip', with: zip
 
       click_button 'Create Order'
+
+      expect(current_path).to eq(order_path(Order.last))
     end
   end
 end
