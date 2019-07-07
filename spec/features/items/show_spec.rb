@@ -27,7 +27,7 @@ RSpec.describe 'Item Show Page' do
       review_2 = @hippo.reviews.create!(title: "Hippo Review-2", content: "I LOATHED my brand new Hippo.", rating: 1)
 
       visit "/items/#{@hippo.id}"
-      save_and_open_page
+      
       within "#review-#{review_1.id}" do
         expect(page).to have_content("Title: #{review_1.title}")
         expect(page).to have_content("Description: #{review_1.content}")
