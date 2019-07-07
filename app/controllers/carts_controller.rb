@@ -22,6 +22,15 @@ class CartsController < ApplicationController
      redirect_to '/cart'
   end
 
+  def remove_one
+     item = Item.find(params[:item_id])
+     @cart = Cart.new(session[:cart])
+     @cart.remove_item(item.id)
+     session[:cart] = @cart.contents
+     quantity = @cart.count_of(item.id)
+     redirect_to '/cart'
+  end
+
   def index
      @contents = session[:cart]
   end
