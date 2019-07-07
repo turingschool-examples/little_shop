@@ -26,4 +26,5 @@ class Cart
     price * quantity.to_f
   end
 
+
 end
