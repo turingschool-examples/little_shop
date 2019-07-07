@@ -52,6 +52,7 @@ RSpec.describe 'New Order' do
       expect(page).to have_content('Quantity: 2')
       expect(page).to have_content('Subtotal: $40.00')
       expect(page).to have_content('Total: $40.00')
+      expect(page).to have_content("Date Created: #{Time.now.to_s.split[0]}")
     end
   end
 end
