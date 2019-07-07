@@ -9,6 +9,9 @@
     <%= Item.find(item).merchant.name %>
     <%= Item.find(item).price %>
     <p>Quantity: <%= quantity %></p>
+        <% if quantity < Item.find(item).inventory %>
+        <%= button_to "Add 1 to Cart", carts_path(item_id: item) %>
+        <% end %>
     <%= number_to_currency(cart.subtotal(Item.find(item).price, quantity)) %>
     <%= button_to "Remove Item", "/cart/#{item}", method: :delete %>
     <% grand_total += cart.subtotal(Item.find(item).price, quantity) %>
