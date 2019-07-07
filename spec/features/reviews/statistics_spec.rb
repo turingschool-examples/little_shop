@@ -18,21 +18,21 @@ RSpec.describe 'Review Statistics' do
       end
 
       within "#top-three" do
-        expect(page).to have_content(@review_1.title)
-        expect(page).to have_content(@review_1.rating)
-        expect(page).to have_content(@review_2.title)
-        expect(page).to have_content(@review_2.rating)
-        expect(page).to have_content(@review_3.title)
-        expect(page).to have_content(@review_3.rating)
+        expect(page.all('p')[0]).to have_content(@review_1.title)
+        expect(page.all('p')[0]).to have_content(@review_1.rating)
+        expect(page.all('p')[1]).to have_content(@review_2.title)
+        expect(page.all('p')[1]).to have_content(@review_2.rating)
+        expect(page.all('p')[2]).to have_content(@review_3.title)
+        expect(page.all('p')[2]).to have_content(@review_3.rating)
       end
 
       within "#bottom-three" do
-        expect(page).to have_content(@review_2.title)
-        expect(page).to have_content(@review_2.rating)
-        expect(page).to have_content(@review_3.title)
-        expect(page).to have_content(@review_3.rating)
-        expect(page).to have_content(@review_4.title)
-        expect(page).to have_content(@review_4.rating)
+        expect(page.all('p')[0]).to have_content(@review_2.title)
+        expect(page.all('p')[0]).to have_content(@review_2.rating)
+        expect(page.all('p')[1]).to have_content(@review_3.title)
+        expect(page.all('p')[1]).to have_content(@review_3.rating)
+        expect(page.all('p')[2]).to have_content(@review_4.title)
+        expect(page.all('p')[2]).to have_content(@review_4.rating)
       end
     end
   end
