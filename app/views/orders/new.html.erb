@@ -28,5 +28,5 @@
   </section>
   <section>
     <p>Total: <%= number_to_currency cart.total %></p>
-    <p> <%= button_to "Create Order", new_order_path, method: :post %></p>
+    <p> <%= button_to "Create Order", '/orders', method: :post %></p>
   </section>
