@@ -1,6 +1,18 @@
 <h1><%= @order.name %></h1>
-
 <section class='address'>
   <p><%= @order.address %></p>
   <p><%= @order.city %> <%= @order.state %> <%= @order.zip %></p>
 </section>
+
+<% @items.each do |item| %>
+  <section id='item-<%= item.id %>'>
+    <% qty = @order_items.where(item_id: item.id).first.quantity %>
+    <h2><%= link_to item.name, item_path(item) %></h2>
+    <p>Sold by: <%= link_to item.merchant.name, merchant_path(item.merchant) %></p>
+    <p>Price: <%= number_to_currency(item.price) %></p>
+    <p>Quantity: <%= qty %></p>
+    <p>Subtotal: <%= number_to_currency(item.price * qty) %></p>
+  </section>
+
+  <p>Total: <%= number_to_currency(cart.total_cost) %></p>
+<% end %>
