@@ -17,8 +17,41 @@ RSpec.describe "When a user looks at their cart" do
     expect(page).to have_content("Cart: 1")
     expect(page).to have_content("#{item_1.name} has been added your cart.")
 
-    
-end
+
+    click_on "Giant"
+    expect(current_path).to eq("/items/#{item_2.id}")
+    click_on "Add To Cart"
+    expect(page).to have_content("Cart: 2")
+    expect(page).to have_content("#{item_2.name} has been added your cart.")
+
+    click_on "Cart: 2"
+
+    expect(current_path).to eq("/cart")
+
+
+    #Inventory for this item contains 5, test for five iterations
+    within "#item-#{item_1.id}" do
+      expect(page).to have_button("Add 1 to Cart")
+      click_on "Add 1 to Cart"
+      expect(page).to have_button("Add 1 to Cart")
+      click_on "Add 1 to Cart"
+      expect(page).to have_button("Add 1 to Cart")
+      click_on "Add 1 to Cart"
+      expect(page).to have_button("Add 1 to Cart")
+      click_on "Add 1 to Cart"
+      expect(page).to_not have_button("Add 1 to Cart")
+    end
+
+    #Inventory for this item contains 3, test for three iterations
+    within "#item-#{item_2.id}" do
+      expect(page).to have_button("Add 1 to Cart")
+      click_on "Add 1 to Cart"
+      expect(page).to have_button("Add 1 to Cart")
+      click_on "Add 1 to Cart"
+      expect(page).to_not have_button("Add 1 to Cart")
+    end
+
+  end
 
 end
 
