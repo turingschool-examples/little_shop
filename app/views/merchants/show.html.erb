@@ -4,6 +4,13 @@
   <p><%= @merchant.address %></p>
   <p><%= @merchant.city %> <%= @merchant.state %> <%= @merchant.zip %></p>
 </section>
+
+<% @top_3_items.each do |item| %>
+  <section id='top-items'>
+    <h2><%= link_to item.name, item_path(item) %> Rating: <%= item.average_rating %></h2>
+  </section>
+<% end %>
+
 <%= button_to 'View Items', "/merchants/#{@merchant.id}/items", method: :get %>
 <%= button_to 'New Item', "/merchants/#{@merchant.id}/items/new", method: :get %>
 <%= button_to 'Edit', "/merchants/#{@merchant.id}/edit", method: :get %>

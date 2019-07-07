@@ -1,10 +1,10 @@
 <h1>Reviews</h1>
 
 <section id='review-stats'>
-  <p>Average Rating: <%= Review.average_rating(@reviews) %></p>
+  <p>Average Rating: <%= @item.average_rating %></p>
 </section>
 
-<% bottom_three, top_three = Review.sort(@reviews) %>
+<% bottom_three, top_three = @item.sorted_reviews %>
 <section id='top-three'>
   <% until top_three.empty? %>
     <% rev = top_three.pop %>

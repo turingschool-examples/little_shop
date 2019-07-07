@@ -6,6 +6,7 @@ class MerchantsController < ApplicationController
   end
 
   def show
+    @top_3_items = @merchant.top_three_items
   end
 
   def new
