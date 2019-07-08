@@ -63,9 +63,6 @@ RSpec.describe "As a vistor" do
         expect(page).to have_content("$90.00")
       end
 
-      within "#date_ordered" do
-        page.find('#date_ordered', :visible => true)
-      end
     end
 
   end
