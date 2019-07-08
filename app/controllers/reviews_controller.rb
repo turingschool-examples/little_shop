@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
       redirect_to "/items/#{item.id}/"
       flash[:notice] = "Review Created!"
     else
-      flash[:notice] = "Review could not be created, please try again."
+      flash[:notice] = "Review could not be created, please fill in all fields."
       @item = Item.find(params[:item_id])
       render :new
     end
