@@ -12,15 +12,19 @@ class CartController < ApplicationController
 
   def show
     cart = Cart.new(session[:cart])
-    
   end
 
-
-def remove_item
+  def remove_item
   cart = Cart.new(session[:cart])
   item = Item.find(params[:item_id])
   cart.remove_item(item.id)
-
   redirect_to "/cart"
-end
-end
+    end
+    
+  def decrease_count
+  cart = Cart.new(session[:cart])
+  item = Item.find(params[:item_id])
+  cart.decrease_count(item.id)
+  redirect_to "/cart"
+    end
+  end
