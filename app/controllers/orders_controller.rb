@@ -5,16 +5,17 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = Order.new(order_params)
+    @items = Item.find(cart.item_ids)
+    @order = Order.new(order_params)
 
     cart.contents.each do |item_id, quantity|
-      OrderItem.create(order: order, item_id: item_id, quantity: quantity, price_per_item: Item.find(item_id).price)
+      OrderItem.create(order: @order, item_id: item_id, quantity: quantity, price_per_item: Item.find(item_id).price)
     end
 
-    if order.save
+    if @order.save
       session.delete(:cart)
       flash[:success] = "Your order has been created."
-      redirect_to "/orders/#{order.id}"
+      redirect_to "/orders/#{@order.id}"
     else
       flash[:error] = "Order not created. You are missing required field(s)."
       render :new
