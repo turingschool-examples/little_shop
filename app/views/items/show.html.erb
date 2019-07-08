@@ -12,7 +12,7 @@
   <li><%=review.title %></li>
   <li><%=review.content %></li>
   <li><%=  review.rating %></li>
-  <%= link_to 'Edit Review', "/items/#{@item.id}/reviews/edit/#{review.id}" %>
+  <%= link_to 'Edit Review', "/items/#{@item.id}/reviews/#{review.id}/edit" %>
   <%= link_to 'Delete', "/items/#{@item.id}/reviews/#{review.id}", method: :delete %>
 </ul>
 </section>
