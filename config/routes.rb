@@ -27,4 +27,7 @@ Rails.application.routes.draw do
 
   get '/order/new', to: 'order#new'
   post '/order', to: 'order#create'
+
+
+  resources :reviews, only: [:new, :create]
 end
