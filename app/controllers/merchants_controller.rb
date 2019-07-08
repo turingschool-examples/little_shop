@@ -30,12 +30,8 @@ class MerchantsController < ApplicationController
       flash[:notice] = "Merchant must have a state. Please input all information."
       render :new
     else
-      if @merchant.save
-        redirect_to merchants_path
-      else
-        flash[:notice] = "Merchant not created! Missing information."
-        render :new
-      end
+      @merchant.save
+      redirect_to merchants_path
     end
   end
 
