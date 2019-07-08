@@ -1,5 +1,3 @@
-
-
 <h1><%= @item.name %></h1>
 <p><%= @item.description %></p>
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw">
@@ -12,12 +10,33 @@
 <%= link_to 'Delete', "/items/#{@item.id}", method: :delete %>
 <%= link_to 'Add New Review', "/items/#{@item.id}/reviews/new" %>
 
-<% if !@reviews.nil? %>
-  <H4> Reviews: </h4>
+<% unless @reviews.empty? %>
+  <section class='average_rating'>
+    <%= @item.average_rating %>
+  </section>
+
+  <section class='best_review'>
+    <h2>Best Reviews:</h2>
+    <% @item.best_reviews.each do |best_review| %>
+      <p><%= best_review.title %></p>
+      <p>Rating: <%= best_review.rating %></p>
+    <% end %>
+  </section>
+
+  <section class='worst_review'>
+    <h2>Worst Reviews:</h2>
+    <% @item.worst_reviews.each do |worst_review| %>
+      <p><%= worst_review.title %></p>
+      <p>Rating: <%= worst_review.rating %></p>
+    <% end %>
+  </section>
+
+  <h2>Reviews:</h2>
     <% @reviews.each do |review| %>
-    <h6><b><%= review.title  %></b></h6>
-    <p>Rating: <%= review.rating  %></p>
-    <p><%= review.content  %></p>
+    <section id="review-<%= review.id %>">
+      <h3><b><%= review.title  %></b></h3>
+      <p>Rating: <%= review.rating  %></p>
+      <p><%= review.content  %></p>
+    </section>
   <% end %>
-  
 <% end %>

@@ -2,16 +2,12 @@ class OrdersController < ApplicationController
   include ActionView::Helpers::TextHelper
 
   def show
-    @items = cart.contents.map do |item_id, quanitity|
-      Item.find(item_id)
-    end
+    @items = cart.items
     @order = Order.find(params[:id])
   end
 
   def new
-    @items = cart.contents.map do |item_id, quanitity|
-      Item.find(item_id)
-    end
+    @items = cart.items
   end
 
   def create
@@ -20,7 +16,14 @@ class OrdersController < ApplicationController
       flash[:alert] = "Please fill in all fields."
       redirect_to orders_new_path
     else
-      redirect_to "/orders/#{order.id}"
+      cart.items.each do |item|
+        order.order_items.create!(
+          quantity: cart.item_count(item.id),
+          price: item.price,
+          item_id: item.id
+        )
+      end
+    redirect_to "/orders/#{order.id}"
     end
   end
 

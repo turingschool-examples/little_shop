@@ -9,10 +9,9 @@ RSpec.describe 'Review Statistics' do
       @review_2 = @ogre.reviews.create!(title: 'Awesome!!!', rating: 5, content: 'These things are Awesome! Get one!!! ')
       @review_3 = @ogre.reviews.create!(title: 'WTF', rating: 2, content: "He's cute, but rreally, why?!!")
       @review_4 = @ogre.reviews.create!(title: 'Does Not Do What It Is Supposed To', rating: 3, content: "Doesn't work!")
-      @review_5 = @ogre.reviews.create!(title: 'Cute', rating: 4, content: 'It was delivered in a princess outfit. How cute')
+      @review_5 = @ogre.reviews.create!(title: 'Cute', rating: 2, content: 'It was delivered in a princess outfit. How cute')
       @review_6 = @ogre.reviews.create!(title: 'Looks Good', rating: 5, content: 'This thing looks amazing')
       @review_7 = @ogre.reviews.create!(title: 'Wish It Had More Muscles', rating: 4, content: "Seriously Sejin's muscles are bigger than this thing!")
-
     end
 
     it "When I visit an item's show page I see statistics about reviews including/n
@@ -21,12 +20,29 @@ RSpec.describe 'Review Statistics' do
       -the average rating for all reviews for this item." do
 
       visit "/items/#{@ogre.id}"
-      within "#item-#{@ogre.id}" do
-        expect(page).to have_content("Best Reviews:")
-        expect(page).to have_content("Worst Reviews:")
-        expect(page).to have_content("Average Rating:")
 
-        expect(page).to have_content("3.4")
+      within ".best_review" do
+        expect(page).to have_content("Best Reviews:")
+        expect(page).to have_content(@review_6.rating)
+        expect(page).to have_content(@review_6.title)
+        expect(page).to have_content(@review_2.rating)
+        expect(page).to have_content(@review_2.title)
+        expect(page).to have_content(@review_7.rating)
+        expect(page).to have_content(@review_7.title)
+      end
+
+      within ".worst_review" do
+        expect(page).to have_content("Worst Reviews:")
+        expect(page).to have_content(@review_1.rating)
+        expect(page).to have_content(@review_1.title)
+        expect(page).to have_content(@review_3.rating)
+        expect(page).to have_content(@review_3.title)
+        expect(page).to have_content(@review_5.rating)
+        expect(page).to have_content(@review_5.title)
+      end
+
+      within ".average_rating" do
+        expect(page).to have_content(@ogre.average_rating)
       end
     end
   end

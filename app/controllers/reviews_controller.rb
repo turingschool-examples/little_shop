@@ -11,8 +11,6 @@ class ReviewsController < ApplicationController
       flash[:alert] = "Please fill in all fields."
       redirect_to "/items/#{item.id}/reviews/new"
     else
-      item.reviews.create(review_params)
-
       redirect_to "/items/#{item.id}"
     end
   end

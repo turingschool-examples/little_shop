@@ -11,7 +11,6 @@ class CartController < ApplicationController
   end
 
   def show
-    # cart = Cart.new(session[:cart])
     @items = cart.contents.map do |item_id, quanitity|
       Item.find(item_id)
     end

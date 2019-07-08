@@ -25,9 +25,12 @@ RSpec.describe 'Review Creation' do
       review = Review.last
 
       expect(page).to have_content("Reviews:")
-      expect(page).to have_content(review.title)
-      expect(page).to have_content(review.rating)
-      expect(page).to have_content(review.content)
+      
+      within "#review-#{review.id}" do
+        expect(page).to have_content(review.title)
+        expect(page).to have_content(review.rating)
+        expect(page).to have_content(review.content)
+      end
     end
 
     it "I must fill out all form fields" do
