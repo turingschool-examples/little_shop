@@ -35,27 +35,38 @@ RSpec.describe "As a vistor" do
 
       click_button 'Create Order'
 
-      expect(page).to have_content("Billy Bob")
-      expect(page).to have_content("123 Real St")
-      expect(page).to have_content("Denver")
-      expect(page).to have_content("CO")
-      expect(page).to have_content("80210")
+      within "#shipping" do
+        expect(page).to have_content("Billy Bob")
+        expect(page).to have_content("123 Real St")
+        expect(page).to have_content("Denver")
+        expect(page).to have_content("CO")
+        expect(page).to have_content("80210")
+      end
+
+      within "#item-#{@ogre.id}" do
+        expect(page).to have_content(@ogre.name)
+        expect(page).to have_content(@ogre.merchant.name)
+        expect(page).to have_content(@ogre.price)
+        expect(page).to have_content("Quantity: 2")
+        expect(page).to have_content("$40.00")
+      end
+
+      within "#item-#{@giant.id}" do
+        expect(page).to have_content(@giant.name)
+        expect(page).to have_content(@giant.merchant.name)
+        expect(page).to have_content(@giant.price)
+        expect(page).to have_content("Quantity: 1")
+        expect(page).to have_content("$50.00")
+      end
+
+      within "#grand_total" do
+        expect(page).to have_content("$90.00")
+      end
+
+      within "#date_ordered" do
+        page.find('#date_ordered', :visible => true)
+      end
     end
 
   end
 end
-
-# As a visitor
-# When I fill out all information on the new order page
-# And click on 'Create Order'
-# An order is created and saved in the database
-# And I am redirected to that order's show page with the following information:
-# - My name and address (shipping information)
-# - Details of the order:
-# - the name of the item
-# - the merchant I'm buying this item from
-# - the price of the item
-# - my desired quantity of the item
-# - a subtotal (price multiplied by quantity)
-# - a grand total of what everything in my cart will cost
-# - the date when the order was created
