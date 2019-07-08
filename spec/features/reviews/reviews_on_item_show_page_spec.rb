@@ -44,15 +44,3 @@ RSpec.describe 'Item Show Page' do
     end
   end
 end
-
-
-
-
-
-# As a visitor,
-# When I visit an item's show page,
-# I see a list of reviews for that item
-# Each review will have:
-# - title
-# - content of the review
-# - rating (1 to 5)
