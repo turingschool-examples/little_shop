@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
     @reviews = @item.reviews
+    @average_review = @reviews.average_rating
   end
 
   def show
@@ -22,11 +23,11 @@ class ReviewsController < ApplicationController
       @review = Review.find(params[:id])
     end
 
-    # def update
-    #   review = Review.find(params[:id])
-    #   review.update(review_params)
-    #   redirect_to "/items/#{review.item_id}"
-    # end
+    def update
+      review = Review.find(params[:id])
+      review.update(review_params)
+      redirect_to "/items/#{review.item_id}"
+    end
 
     def destroy
       Review.destroy(params[:id])

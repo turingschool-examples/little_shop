@@ -8,12 +8,13 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show, :edit, :update, :destroy] do
       resources :reviews, expect: :index
     end
-    get "/items/:id", to: 'reviews#index'
-    patch '/cart/:item_id', to: 'cart#add_item'
-    delete '/cart/:item_id', to: 'cart#remove_item'
-    patch '/cart/:item_id', to: 'cart#decrease_count'
     get '/cart', to: 'cart#show'
-    delete '/cart', to: 'cart#destroy'
+    get "/items/:id", to: 'reviews#index'
+    patch '/cart/:item_id', to: 'cart#decrease_count'
+    patch '/cart/:item_id/add', to: 'cart#increase_count'
+    post '/cart/:item_id', to: 'cart#add_item'
+    delete '/cart/:item_id', to: 'cart#remove_item'
+    delete '/cart/items', to: 'cart#empty_cart'
 
     resources :orders, only: [:new]
 
