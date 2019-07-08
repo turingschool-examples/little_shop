@@ -33,6 +33,35 @@ RSpec.describe 'New Review Creation' do
       expect(page).to have_content("I didn't think it was actually for realsies.")
 
 
+      click_link 'New Review'
+
+      expect(current_path).to eq("/items/#{@giant.id}/reviews/new")
+
+      fill_in 'Title', with: "Pretty!"
+      fill_in 'Body', with: "I didn't think.  Now I'm stuck with it."
+
+      click_button 'Submit Review'
+
+      expect(current_path).to eq("/items/#{@giant.id}/")
+
+      expect(page).to have_content("Review could not be created, please try again.")
+
+      fill_in 'Title', with: "Pretty!"
+      fill_in 'Rating', with: 4
+      fill_in 'Body', with: "I didn't think.  Now I'm stuck with it."
+
+      click_button 'Submit Review'
+
+      expect(current_path).to eq("/items/#{@giant.id}/")
+
+      expect(page).to have_content("Review Created!")
+
+      expect(page).to have_content("Pretty!")
+      expect(page).to have_content("4/5")
+      expect(page).to have_content("I didn't think. Now I'm stuck with it.")
+
+
+
       end
 
 

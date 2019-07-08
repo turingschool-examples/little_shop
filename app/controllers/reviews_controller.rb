@@ -6,15 +6,16 @@ class ReviewsController < ApplicationController
 
   def create
     item = Item.find(params[:item_id])
-    review = item.reviews.new(review_params)
+    @review = item.reviews.new(review_params)
 
-    if review.save
+    if @review.save
       redirect_to "/items/#{item.id}/"
+      flash[:notice] = "Review Created!"
     else
-      flash[:review_creation_error] = "Review could not be created, please try again."
+      flash[:notice] = "Review could not be created, please try again."
+      @item = Item.find(params[:item_id])
       render :new
     end
-
   end
 
   private
