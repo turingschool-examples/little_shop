@@ -7,9 +7,12 @@ class OrderController < ApplicationController
   def create
     @order = Order.new(order_params)
     @contents = session[:cart]
-    if @order.save
+    if @order.save && (@order.zip.class == Integer) && (@order.zip.digits.length == 5)
       @contents.each do |item, quantity|
-        ItemOrder.create(order_id: @order.id, item_id: item, quantity: quantity, price: Item.find(item).price)
+        ItemOrder.create(order_id: @order.id,
+          item_id: item,
+          quantity: quantity,
+          price: Item.find(item).price)
       end
       redirect_to "/order/#{@order.id}"
     else
