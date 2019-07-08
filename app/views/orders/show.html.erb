@@ -7,7 +7,7 @@
 <% running_total = 0 %>
 <% @items.each do |item| %>
   <section id='item-<%= item.id %>'>
-    <% qty = @order_items.where(item_id: item.id).first.quantity %>
+    <% qty = @order_items.get_quantity(item) %>
     <% sub_tot = item.price * qty %>
     <% running_total += sub_tot %>
     <h2><%= link_to item.name, item_path(item) %></h2>
