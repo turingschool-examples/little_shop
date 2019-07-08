@@ -4,8 +4,32 @@
 <p>Price: <%= number_to_currency(@item.price) %></p>
 <p>Sold by: <%= link_to @item.merchant.name, "/merchants/#{@item.merchant_id}" %>, Inventory: <%= @item.inventory %></p>
 <p><%= @item.active ? "Active" : "Inactive" %></p>
-
+      
       <h2>Reviews</h2>
+        Average Rating: <%= @average_rate %>
+      <section id="top_three_css">
+
+        Top Three Rated Reviews:
+
+            <% @top_three.each do |review| %>
+              <section id='review-<%= review.id%>'>
+                <p><%= review.title %> - Rating: <%= review.rating %>, <p>
+              </section>
+            <% end %>
+
+      </section>
+      <section id="bottom_three_css">
+
+      Bottom Three Rated Reviews:
+
+          <% @bottom_three.each do |review| %>
+            <section id='review-<%= review.id%>'>
+              <p><%= review.title %> - Rating: <%= review.rating %>, <p>
+            </section>
+          <% end %>
+
+      </section>
+
       <h6><%= link_to "New Review", "/items/#{@item.id}/reviews/new"  %></h6>
 
       <% @reviews.each do |review| %>

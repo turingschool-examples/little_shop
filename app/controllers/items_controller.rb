@@ -10,7 +10,10 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @reviews = @item.reviews 
+    @reviews = @item.reviews
+    @top_three = Review.top_three_rated(@item)
+    @bottom_three = Review.bottom_three_rated(@item)
+    @average_rate = Review.average_rating(@item)
   end
 
   def new
