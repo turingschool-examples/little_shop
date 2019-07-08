@@ -11,14 +11,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to item_path(@item)
     else
-      case
-      when review_params[:title] == ''
-        flash[:notice] = 'Missing title!'
-      when review_params[:content] == ''
-        flash[:notice] = 'Missing review message!'
-      when review_params[:rating] == ''
-        flash[:notice] = 'Missing rating!'
-      end
+      flash_message
       render :new
     end
   end
@@ -27,8 +20,13 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    @review.update(review_params)
-    redirect_to item_path(@item)
+    if review_params.values.any? {|input| input == ''}
+      flash_message
+      render :edit
+    else
+      @review.update(review_params)
+      redirect_to item_path(@item)
+    end
   end
 
   def destroy
@@ -37,6 +35,17 @@ class ReviewsController < ApplicationController
   end
 
   private
+
+  def flash_message
+    case
+    when review_params[:title] == ''
+      flash.now[:notice] = 'Missing title!'
+    when review_params[:content] == ''
+      flash.now[:notice] = 'Missing review message!'
+    when review_params[:rating] == ''
+      flash.now[:notice] = 'Missing rating!'
+    end
+  end
 
   def review_params
     params.permit(:title, :content, :rating)

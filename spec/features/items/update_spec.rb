@@ -27,10 +27,74 @@ RSpec.describe 'Update Item Page' do
       name = 'Giant'
       description = "I'm a Giant!"
       price = 25
+      image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw'
+      inventory = 5
+      fill_in :name, with: ''
+      fill_in :description, with: ''
+      fill_in :price, with: ''
+      fill_in :image, with: ''
+      fill_in :inventory, with: ''
 
-      fill_in 'Name', with: name
-      fill_in 'Description', with: description
-      fill_in 'Price', with: price
+      click_button 'Update Item'
+
+      expect(page).to have_content('Missing name!')
+
+      fill_in :name, with: ''
+      fill_in :description, with: ''
+      fill_in :price, with: ''
+      fill_in :image, with: ''
+      fill_in :inventory, with: ''
+      fill_in :name, with: name
+      click_button 'Update Item'
+
+      expect(page).to have_content('Missing description!')
+
+      fill_in :name, with: ''
+      fill_in :description, with: ''
+      fill_in :price, with: ''
+      fill_in :image, with: ''
+      fill_in :inventory, with: ''
+      fill_in :name, with: name
+      fill_in :description, with: description
+      click_button 'Update Item'
+
+      expect(page).to have_content('Missing price!')
+
+      fill_in :name, with: ''
+      fill_in :description, with: ''
+      fill_in :price, with: ''
+      fill_in :image, with: ''
+      fill_in :inventory, with: ''
+      fill_in :name, with: name
+      fill_in :description, with: description
+      fill_in :price, with: price
+      click_button 'Update Item'
+
+      expect(page).to have_content('Missing image!')
+
+      fill_in :name, with: ''
+      fill_in :description, with: ''
+      fill_in :price, with: ''
+      fill_in :image, with: ''
+      fill_in :inventory, with: ''
+      fill_in :name, with: name
+      fill_in :description, with: description
+      fill_in :price, with: price
+      fill_in :image, with: image
+      click_button 'Update Item'
+
+      expect(page).to have_content('Missing inventory!')
+
+      fill_in :name, with: ''
+      fill_in :description, with: ''
+      fill_in :price, with: ''
+      fill_in :image, with: ''
+      fill_in :inventory, with: ''
+      fill_in :name, with: name
+      fill_in :description, with: description
+      fill_in :price, with: price
+      fill_in :image, with: image
+      fill_in :inventory, with: inventory
       click_button 'Update Item'
 
       expect(current_path).to eq(item_path(@ogre))

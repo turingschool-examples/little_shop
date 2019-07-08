@@ -25,18 +25,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to merchant_items_path(@merchant)
     else
-      case
-      when item_params[:name] == ''
-        flash[:notice] = 'Missing name!'
-      when item_params[:description] == ''
-        flash[:notice] = 'Missing description!'
-      when item_params[:price] == ''
-        flash[:notice] = 'Missing price!'
-      when item_params[:image] == ''
-        flash[:notice] = 'Missing image!'
-      when item_params[:inventory] == ''
-        flash[:notice] = 'Missing inventory!'
-      end
+      flash_message
       render :new
     end
   end
@@ -45,8 +34,13 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item.update(item_params)
-    redirect_to item_path(@item)
+    if item_params.values.any? {|input| input == ''}
+      flash_message
+      render :edit
+    else
+      @item.update(item_params)
+      redirect_to item_path(@item)
+    end
   end
 
   def destroy
@@ -55,6 +49,21 @@ class ItemsController < ApplicationController
   end
 
   private
+
+  def flash_message
+    case
+    when item_params[:name] == ''
+      flash.now[:notice] = 'Missing name!'
+    when item_params[:description] == ''
+      flash.now[:notice] = 'Missing description!'
+    when item_params[:price] == ''
+      flash.now[:notice] = 'Missing price!'
+    when item_params[:image] == ''
+      flash.now[:notice] = 'Missing image!'
+    when item_params[:inventory] == ''
+      flash.now[:notice] = 'Missing inventory!'
+    end
+  end
 
   def item_params
     params.permit(:name, :description, :price, :image, :inventory)

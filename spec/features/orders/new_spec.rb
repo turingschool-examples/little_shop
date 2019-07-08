@@ -26,12 +26,31 @@ RSpec.describe 'New Order' do
       state = "CO"
       zip = 80218
 
-      fill_in 'Name', with: name
-      fill_in 'Address', with: address
-      fill_in 'City', with: city
-      fill_in 'State', with: state
-      fill_in 'Zip', with: zip
+      click_button 'Create Order'
 
+      expect(page).to have_content('Missing name!')
+
+      fill_in :name, with: name
+      click_button 'Create Order'
+
+      expect(page).to have_content('Missing address!')
+
+      fill_in :address, with: address
+      click_button 'Create Order'
+
+      expect(page).to have_content('Missing city!')
+
+      fill_in 'City', with: city
+      click_button 'Create Order'
+
+      expect(page).to have_content('Missing state!')
+
+      fill_in 'State', with: state
+      click_button 'Create Order'
+
+      expect(page).to have_content('Missing zip!')
+
+      fill_in 'Zip', with: zip
       click_button 'Create Order'
 
       expect(current_path).to eq(order_path(Order.last))

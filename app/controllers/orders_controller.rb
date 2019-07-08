@@ -13,9 +13,25 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.save
-    @order.add_items(@items)
-    redirect_to(order_path(@order))
+    if @order.save
+      @order.add_items(@items)
+      session[:cart] = {}
+      redirect_to(order_path(@order))
+    else
+      case
+      when order_params[:name] == ''
+        flash.now[:notice] = 'Missing name!'
+      when order_params[:address] == ''
+        flash.now[:notice] = 'Missing address!'
+      when order_params[:city] == ''
+        flash.now[:notice] = 'Missing city!'
+      when order_params[:state] == ''
+        flash.now[:notice] = 'Missing state!'
+      when order_params[:zip] == ''
+        flash.now[:notice] = 'Missing zip!'
+      end
+      render :new
+    end
   end
 
   private

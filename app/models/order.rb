@@ -5,11 +5,7 @@ class Order < ApplicationRecord
 
   def add_items(items)
     items.each do |item,qty|
-      self.items << item
-      order_item = OrderItem.where(item_id: item.id).first
-      order_item.quantity = qty
-      order_item.price = item.price
-      order_item.save
+      OrderItem.create(order: self, item: item, quantity: qty, price: item.price)
     end
   end
 end
