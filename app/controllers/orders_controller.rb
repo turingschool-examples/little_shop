@@ -45,4 +45,11 @@ class OrdersController < ApplicationController
     @order_items = @order.order_items
   end
 
+  private
+
+  def order_params
+    params.permit(:name, :address, :city, :state, :zip)
+  end
+  # would the order params include order_items in the params
+
 end
