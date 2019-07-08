@@ -4,19 +4,40 @@
 <p>Price: <%= number_to_currency(@item.price) %></p>
 <p>Sold by: <%= link_to @item.merchant.name, "/merchants/#{@item.merchant_id}" %>, Inventory: <%= @item.inventory %></p>
 <p><%= @item.active ? "Active" : "Inactive" %></p>
-<%= button_to "Add #{@item.name} to Cart", "/cart/#{@item.id}", method: :patch %>
+<%= button_to "Add #{@item.name} to Cart", "/cart/#{@item.id}", method: :post %>
 
+<h3>Average Rating: <%= @average_review%> </h3>
+<br>
+
+<h3>Top Reviews: <% @top_3.each do |review|%></h3>
+<p>Title: <%= review.title%></p>
+<ul>
+<li>Rating : <%= review.rating%></li>
+</ul>
+<% end %>
+
+<h3>Worst Reviews: <% @bottom_3.each do |review|%></h3>
+<p>Title: <%= review.title%></p>
+<ul>
+<li>Rating : <%= review.rating%></li>
+</ul>
+<% end %>
+
+
+<br>
+<h3>All Reviews</h3>
 <% @item.reviews.each do |review|%>
 <section id='review-<%= review.id %>'>
+  <h4><%=review.title %></h4>
   <ul>
-  <li><%=review.title %></li>
-  <li><%=review.content %></li>
-  <li><%=  review.rating %></li>
+  <li>Content: <%=review.content %></li>
+  <li>Rating: <%= review.rating %></li>
+</ul>
   <%= link_to 'Edit Review', "/items/#{@item.id}/reviews/#{review.id}/edit" %>
   <%= link_to 'Delete', "/items/#{@item.id}/reviews/#{review.id}", method: :delete %>
-</ul>
 </section>
 <% end%>
+
 
 <%= link_to 'New Review', new_item_review_path(@item.id) %>
 <%= link_to 'Update Item', "/items/#{@item.id}/edit" %>
