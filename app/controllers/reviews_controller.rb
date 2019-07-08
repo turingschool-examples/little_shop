@@ -18,6 +18,23 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def edit
+    @item = Item.find(params[:item_id])
+    @review = @item.reviews.find(params[:review_id])
+  end
+
+  def update
+    @item = Item.find(params[:item_id])
+    @review = @item.reviews.find(params[:review_id])
+      if @review.update_attributes(review_params)
+        flash[:notice] = "Review Updated!"
+        redirect_to "/items/#{@item.id}"
+      else
+        flash[:notice] = "Review could not be updated, please fill in all fields."
+        render :edit
+      end
+  end
+
   private
 
   def review_params
