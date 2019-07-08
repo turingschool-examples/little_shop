@@ -1,0 +1,13 @@
+<%= form_tag "/items/#{@item.id}" do %>
+  <%= label_tag :title %>
+  <%= text_field_tag :title %>
+
+  <%= label_tag :rating %>
+  <%= number_field_tag :rating %>
+
+  <%= label_tag :body %>
+  <%= text_field_tag :body %>
+
+  <%= submit_tag 'Submit Review' %>
+
+<% end %>

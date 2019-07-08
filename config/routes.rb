@@ -29,5 +29,7 @@ Rails.application.routes.draw do
   post '/order', to: 'order#create'
 
 
-  resources :reviews, only: [:new, :create]
+
+  get '/items/:item_id/reviews/new', to: 'reviews#new'
+  post '/items/:item_id', to: 'reviews#create'
 end

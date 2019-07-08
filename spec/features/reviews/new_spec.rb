@@ -9,7 +9,6 @@ RSpec.describe 'New Review Creation' do
       @review1 = @giant.reviews.create!(title: "Damn!", rating: 5, body: "Definitely a Giant. No argument there")
       @review2 = @giant.reviews.create!(title: "Disappointed...", rating: 1, body: "Idk what I was expecting but I was disappointed.")
       @review3 = @giant.reviews.create!(title: "Fair.", rating: 3, body: "Not thrilled or upset. Was as expected for price.")
-      @review4 = @giant.reviews.create!(title: "Pretty Good.", rating: 4, body: "Good Giant, wish it has come in the mail a bit earlier. It was so hungry when I opened it.")
 
     end
 
@@ -18,7 +17,25 @@ RSpec.describe 'New Review Creation' do
 
       click_link 'New Review'
 
-      expect(current_path).to eq("/item/#{@giant.id}/review/new")
+      expect(current_path).to eq("/items/#{@giant.id}/reviews/new")
+
+      fill_in 'Title', with: "WHOA A GIANT!"
+      fill_in 'Rating', with: "4"
+      fill_in 'Body', with: "I didn't think it was actually for realsies."
+
+      click_button 'Submit Review'
+
+      expect(current_path).to eq("/items/#{@giant.id}/")
+
+
+      expect(page).to have_content("WHOA A GIANT!")
+      expect(page).to have_content("4/5")
+      expect(page).to have_content("I didn't think it was actually for realsies.")
+
+
+      end
+
+
 
 
 
@@ -28,7 +45,7 @@ RSpec.describe 'New Review Creation' do
 
   end
 
-end
+
 # As a visitor,
 # When I visit an item's show page
 # I see a link to add a new review for this item.
