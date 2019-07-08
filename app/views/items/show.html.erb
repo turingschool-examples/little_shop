@@ -10,4 +10,14 @@
 <%= button_to 'Add to Cart', add_cart_path(@item), method: :post %>
 <%= link_to 'Update Item', "/items/#{@item.id}/edit" %>
 <%= link_to 'Delete', "/items/#{@item.id}", method: :delete %>
-<%= link_to 'Add New Review', "/items/#{@item.id}/review/new" %>
+<%= link_to 'Add New Review', "/items/#{@item.id}/reviews/new" %>
+
+<% if !@reviews.nil? %>
+  <H4> Reviews: </h4>
+    <% @reviews.each do |review| %>
+    <h6><b><%= review.title  %></b></h6>
+    <p>Rating: <%= review.rating  %></p>
+    <p><%= review.content  %></p>
+  <% end %>
+  
+<% end %>

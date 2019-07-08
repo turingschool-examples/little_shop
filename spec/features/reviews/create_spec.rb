@@ -13,14 +13,34 @@ RSpec.describe 'Review Creation' do
       visit "/items/#{@ogre.id}"
       click_on "Add New Review"
 
-      expect(current_path).to eq("/items/#{@ogre.id}/review/new")
+      expect(current_path).to eq("/items/#{@ogre.id}/reviews/new")
 
       fill_in 'Title', with: "Ogres are Awesome!!!"
-      fill_in 'Rating', with: 5
+      page.select(5, :from => 'Rating')
       fill_in 'Content', with: "Megan's Marmolades has the best Ogre's in the buisness! Ogre's pedigree was as advertised."
 
       click_on "Create Review"
       expect(current_path).to eq("/items/#{@ogre.id}")
+
+      review = Review.last
+
+      expect(page).to have_content("Reviews:")
+      expect(page).to have_content(review.title)
+      expect(page).to have_content(review.rating)
+      expect(page).to have_content(review.content)
+    end
+
+    it "I must fill out all form fields" do
+      visit "/items/#{@ogre.id}"
+      click_on "Add New Review"
+
+      page.select(5, :from => 'Rating')
+      fill_in 'Content', with: "Megan's Marmolades has the best Ogre's in the buisness! Ogre's pedigree was as advertised."
+
+      click_on "Create Review"
+      expect(current_path).to eq("/items/#{@ogre.id}/reviews/new")
+
+      expect(page).to have_content("Please fill in all fields.")
     end
   end
 end
