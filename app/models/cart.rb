@@ -10,6 +10,12 @@ class Cart
     end
   end
 
+  def items
+    @contents.map do |item_id, quanitity|
+      Item.find(item_id)
+    end
+  end
+
   def add_item(item_id)
     @contents[item_id.to_s] += 1
   end
@@ -24,7 +30,6 @@ class Cart
 
   def subtotal(item_id)
     current_item = Item.find(item_id)
-    # binding.pry
     current_item.price * item_count(item_id)
   end
 
