@@ -4,7 +4,10 @@
 <p>Price: <%= number_to_currency(@item.price) %></p>
 <p>Sold by: <%= link_to @item.merchant.name, "/merchants/#{@item.merchant_id}" %>, Inventory: <%= @item.inventory %></p>
 <p><%= @item.active ? "Active" : "Inactive" %></p>
+<%= button_to "Add #{@item.name} to Cart", "/cart/#{@item.id}", method: :patch %>
+
 <% @item.reviews.each do |review|%>
+<section id='review-<%= review.id %>'>
   <ul>
   <li><%=review.title %></li>
   <li><%=review.content %></li>
@@ -12,6 +15,7 @@
   <%= link_to 'Edit Review', "/items/#{@item.id}/reviews/edit/#{review.id}" %>
   <%= link_to 'Delete', "/items/#{@item.id}/reviews/#{review.id}", method: :delete %>
 </ul>
+</section>
 <% end%>
 
 <%= link_to 'New Review', new_item_review_path(@item.id) %>
