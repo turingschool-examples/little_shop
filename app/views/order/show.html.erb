@@ -1,0 +1,26 @@
+<h1>Order Info</h1>
+<% grand_total = 0 %>
+<section id='shipping'>
+  <%= @order.name %>
+  <%= @order.address %>
+  <%= @order.city %>
+  <%= @order.state %>
+  <%= @order.zip %>
+</section>
+<% @item_orders.each do |item_order| %>
+  <section id='item-<%= item_order.item.id %>'>
+    <h2><%= item_order.item.name %></h2>
+    <img src="<%="#{item_order.item.image}"%>">
+    <p>Merchant: <%= item_order.item.merchant.name %></p>
+    <p>Price: <%= number_to_currency(item_order.item.price) %></p>
+    <p>Quantity: <%= item_order.quantity %></p>
+    <p>Subtotal: <%= number_to_currency(cart.subtotal(item_order.price, item_order.quantity)) %></p>
+    <% grand_total += cart.subtotal(item_order.price, item_order.quantity) %>
+  <% end %>
+  </section>
+<section id='grand_total'>
+  <%= number_to_currency(grand_total) %>
+</section>
+<section id='date_ordered'>
+  <%= @order.created_at %>
+</section>
