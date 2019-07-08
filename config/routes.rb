@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  get '/', to: "items#index"
+
   get '/merchants', to: 'merchants#index'
   get '/merchants/new', to: 'merchants#new'
   get '/merchants/:id', to: 'merchants#show'
@@ -27,4 +29,9 @@ Rails.application.routes.draw do
 
   get '/order/new', to: 'order#new'
   post '/order', to: 'order#create'
+
+
+
+  get '/items/:item_id/reviews/new', to: 'reviews#new'
+  post '/items/:item_id', to: 'reviews#create'
 end
