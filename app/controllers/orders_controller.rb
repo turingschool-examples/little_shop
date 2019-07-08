@@ -10,8 +10,8 @@ class OrdersController < ApplicationController
   def create
     @items = Item.find(cart.item_and_quantity)
     @order = Order.create(order_params)
-    cart.contents.each do |item, quantity|
-      OrderItem.create!(price: Item.find(item).price, quantity: quantity, order: @order, item: item)
+    cart.item_and_quantity.each do |item, quantity|
+      OrderItem.create!(price: Item.find(item).price, quantity: quantity, order: @order, item_id: item)
     end
     redirect_to "/orders/#{@order.id}"
   end
