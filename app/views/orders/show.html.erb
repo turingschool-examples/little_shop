@@ -1,0 +1,28 @@
+# - My name and address (shipping information)
+
+
+<% if @orders.empty? %>
+  <h1>You have no items to checkout.</h1>
+<% else %>
+  <h1>All Items in Order</h1>
+  <% @order_items.each do |order_item| %>
+    <section id='item-<%= item.id %>'>
+      <h2><%= link_to order_item.item.name, "/items/#{item.id}" %></h2>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw">
+      <p>Sold by: <%= link_to order_item.item.merchant.name, "/merchants/#{item.merchant_id}" %></p>
+      <p>Subtotal: <%= number_to_currency(order_item.amount) %></p>
+      <p>Quantity: <%= order_item.count %></p>
+    </section>
+  <% end %>
+
+  <p>Order created at: <%= @order.created_at %></p>
+  <p>Grand Total: <%= @order_items.total_cost(@order) %></p>
+
+  <h2>Shipping Information</h2>
+  <p><%= @order.name %></p>
+  <p><%= @order.address %></p>
+  <p><%= @order.city %></p>
+  <p><%= @order.state %></p>
+  <p><%= @order.zip %></p>
+
+<% end %>
