@@ -47,6 +47,18 @@ class MerchantsController < ApplicationController
     redirect_to merchant_path(@merchant)
   end
 
+  def destroy
+    # if I click on the delete button, I see a flash message indicating that the merchant can not be deleted.
+    # singular if statement?
+    if @order_items.items.merchants.includes?(@merchant)
+      flash[:notice] = "You cannot delete this merchant."
+      render :new
+    else
+      @merchant.destroy
+      redirect_to merchants_path
+    end
+  end
+
   private
 
   def merchant_params
