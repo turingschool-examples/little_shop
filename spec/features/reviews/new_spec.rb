@@ -44,7 +44,7 @@ RSpec.describe 'New Review Creation' do
 
       expect(current_path).to eq("/items/#{@giant.id}/")
 
-      expect(page).to have_content("Review could not be created, please try again.")
+      expect(page).to have_content("Review could not be created, please fill in all fields.")
 
       fill_in 'Title', with: "Pretty!"
       fill_in 'Rating', with: 4
