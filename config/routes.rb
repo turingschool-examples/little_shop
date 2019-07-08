@@ -16,6 +16,6 @@ Rails.application.routes.draw do
     delete '/cart/:item_id', to: 'cart#remove_item'
     delete '/cart/items', to: 'cart#empty_cart'
 
-    resources :orders, only: [:new]
+    resources :orders, only: [:new, :create]
 
   end
