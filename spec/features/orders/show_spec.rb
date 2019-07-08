@@ -32,21 +32,29 @@ RSpec.describe 'New Order' do
         click_button "Create Order"
 
         order = Order.last
-        binding.pry
 
-        expect(current_path).to eq("/orders/#{order.id}")
-        expect(page).to have_content("Jori")
-        expect(page).to have_content("1234 Market St")
-        expect(page).to have_content(@ogre.name)
-        expect(page).to have_content(@ogre.merchant.name)
-        expect(page).to have_content(@ogre.price)
-        expect(page).to have_content(order.desired_quantity(@ogre.id, order.id))
-        expect(page).to have_content(order.subtotal(@ogre.id, order.id))
-        expect(page).to have_content(@giant.name)
-        expect(page).to have_content(@giant.merchant.name)
-        expect(page).to have_content(@giant.price)
-        expect(page).to have_content(order.desired_quantity(@giant.id, order.id))
-        expect(page).to have_content(order.subtotal(@giant.id, order.id))
+        within ".address" do
+          expect(current_path).to eq("/orders/#{order.id}")
+          expect(page).to have_content("Jori")
+          expect(page).to have_content("1234 Market St")
+        end
+
+        within "#item-#{@ogre.id}" do
+          expect(page).to have_content(@ogre.name)
+          expect(page).to have_content(@ogre.merchant.name)
+          expect(page).to have_content(@ogre.price)
+          expect(page).to have_content(order.desired_quantity(@ogre.id, order.id))
+          expect(page).to have_content(order.subtotal(@ogre.id, order.id))
+        end
+
+        within "#item-#{@giant.id}" do
+          expect(page).to have_content(@giant.name)
+          expect(page).to have_content(@giant.merchant.name)
+          expect(page).to have_content(@giant.price)
+          expect(page).to have_content(order.desired_quantity(@giant.id, order.id))
+          expect(page).to have_content(order.subtotal(@giant.id, order.id))
+        end
+
         expect(page).to have_content(order.grand_total)
         expect(page).to have_content(order.created_at)
       end
