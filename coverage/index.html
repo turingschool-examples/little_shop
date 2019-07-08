@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2019-07-08T14:01:37-06:00">2019-07-08T14:01:37-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2019-07-08T14:08:34-06:00">2019-07-08T14:08:34-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -1996,7 +1996,7 @@
         <li class="covered" data-hits="1" data-linenumber="5">
           <span class="hits">1</span>
           
-          <code class="ruby">  has_many :items, through: :order_items </code>
+          <code class="ruby">  has_many :orders, through: :order_items </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="6">
@@ -2113,13 +2113,13 @@
         <li class="covered" data-hits="1" data-linenumber="2">
           <span class="hits">1</span>
           
-          <code class="ruby">  belongs_to :items</code>
+          <code class="ruby">  belongs_to :item</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="3">
           <span class="hits">1</span>
           
-          <code class="ruby">  belongs_to :orders </code>
+          <code class="ruby">  belongs_to :order </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="4">
@@ -6698,13 +6698,13 @@
         <li class="covered" data-hits="2" data-linenumber="5">
           <span class="hits">2</span>
           
-          <code class="ruby">    it { should belong_to :orders }</code>
+          <code class="ruby">    it { should belong_to :order }</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="6">
           <span class="hits">2</span>
           
-          <code class="ruby">    it { should belong_to :items } </code>
+          <code class="ruby">    it { should belong_to :item }</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="7">
