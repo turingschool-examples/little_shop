@@ -1,11 +1,11 @@
 <h1>Order Info</h1>
 <% grand_total = 0 %>
 <section id='shipping'>
-  <%= @order.name %>
-  <%= @order.address %>
-  <%= @order.city %>
-  <%= @order.state %>
-  <%= @order.zip %>
+  <p>Name: <%= @order.name %></p>
+  <p>Address: <%= @order.address %></p>
+  <p>City: <%= @order.city %></p>
+  <p>State: <%= @order.state %></p>
+  <p>Zip: <%= @order.zip %></p>
 </section>
 <% @item_orders.each do |item_order| %>
   <section id='item-<%= item_order.item.id %>'>
