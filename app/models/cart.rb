@@ -41,7 +41,7 @@ class Cart
 
   def subtotal(item_id)
     item = Item.find(item_id)
-    item_count(item_id) * item.price
+    item_count(item_id) * item.price #double check
   end
 
   def grandtotal(item_id)

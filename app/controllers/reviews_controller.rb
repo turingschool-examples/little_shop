@@ -5,11 +5,12 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    item = Item.find(params[:item_id])
-    review = item.reviews.new(review_params)
+    @item = Item.find(params[:item_id])
+    review = @item.reviews.new(review_params)
     if review.save
-      redirect_to "/items/#{item.id}"
+      redirect_to "/items/#{@item.id}"
     else
+      flash.now[:error] = "Review not created; required field(s) missing!"
       render :new
     end
   end

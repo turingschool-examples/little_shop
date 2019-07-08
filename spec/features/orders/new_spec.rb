@@ -124,37 +124,37 @@ RSpec.describe "New Order Page", type: :feature do
         end
       end
 
-      # describe "From the order creation page" do
-      #   describe "When I click 'Create Order' without completing the shipping address form" do
-      #     it "I see a flash message indicating that I need to complete the form for successful order creation" do
-      #       visit "/items/#{@ogre.id}"
-      #       click_on("Add Item")
-      #
-      #       visit "/items/#{@hippo.id}"
-      #       click_on("Add Item")
-      #
-      #       visit "/cart"
-      #
-      #       within "#item-#{@hippo.id}" do
-      #         click_on("+")
-      #       end
-      #
-      #       click_on("Checkout")
-      #       expect(current_path).to eq("/orders/new")
-      #
-      #       fill_in "Name", with: "Valentino Valentine"
-      #       # DON'T fill_in "Address"
-      #       fill_in "City", with: "Heaven"
-      #       fill_in "State", with: "Hawaii"
-      #       fill_in "Zip", with: 77777
-      #
-      #       click_on "Create Order"
-      #
-      #       expect(page).to have_field("Address")
-      #       expect(page).to have_content("Order not created. You are missing required field(s).")
-      #     end
-      #   end
-      # end
+      describe "From the order creation page" do
+        describe "When I click 'Create Order' without completing the shipping address form" do
+          it "I see a flash message indicating that I need to complete the form for successful order creation" do
+            visit "/items/#{@ogre.id}"
+            click_on("Add Item")
+
+            visit "/items/#{@hippo.id}"
+            click_on("Add Item")
+
+            visit "/cart"
+
+            within "#item-#{@hippo.id}" do
+              click_on("+")
+            end
+
+            click_on("Checkout")
+            expect(current_path).to eq("/orders/new")
+
+            fill_in "Name", with: "Valentino Valentine"
+            # DON'T fill_in "Address"
+            fill_in "City", with: "Heaven"
+            fill_in "State", with: "Hawaii"
+            fill_in "Zip", with: 77777
+
+            click_on "Create Order"
+
+            expect(page).to have_field("Address")
+            expect(page).to have_content("Order not created. You are missing required field(s).")
+          end
+        end
+      end
     end
   end
 end
