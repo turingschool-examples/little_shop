@@ -29,8 +29,7 @@ Rails.application.routes.draw do
 
   get '/order/new', to: 'order#new'
   post '/order', to: 'order#create'
-
-
+  get '/order/:order_id', to: 'order#show'
 
   get '/items/:item_id/reviews/new', to: 'reviews#new'
   get '/items/:item_id/reviews/:review_id/edit', to: 'reviews#edit'
