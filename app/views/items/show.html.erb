@@ -15,6 +15,7 @@
     <p>Description: <%= review.content %></p>
     <p>Rating: <%= review.rating %></p>
     <%= link_to 'Edit Review', "/items/#{@item.id}/reviews/#{review.id}/edit" %>
+    <%= button_to 'Delete Review', "/items/#{@item.id}/reviews/#{review.id}", method: :delete %>
   </section>
 <% end %>
 

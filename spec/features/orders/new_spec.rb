@@ -104,7 +104,7 @@ RSpec.describe "New Order Page", type: :feature do
           expect(page).to have_content(new_order.zip)
 
           within "#item-#{order_items_1.item_id}" do
-            expect(page).to have_content("Name: #{order_items_1.item.name}")
+            expect(page).to have_content("Item: #{order_items_1.item.name}")
             expect(page).to have_content("Merchant: #{order_items_1.item.merchant.name}")
             expect(page).to have_content("Price: #{number_to_currency(order_items_1.price_per_item)}")
             expect(page).to have_content("Quantity: #{order_items_1.quantity}")
@@ -112,7 +112,7 @@ RSpec.describe "New Order Page", type: :feature do
           end
 
           within "#item-#{order_items_2.item_id}" do
-            expect(page).to have_content("Name: #{order_items_2.item.name}")
+            expect(page).to have_content("Item: #{order_items_2.item.name}")
             expect(page).to have_content("Merchant: #{order_items_2.item.merchant.name}")
             expect(page).to have_content("Price: #{number_to_currency(order_items_2.price_per_item)}")
             expect(page).to have_content("Quantity: #{order_items_2.quantity}")
