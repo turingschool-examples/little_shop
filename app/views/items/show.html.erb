@@ -9,6 +9,7 @@
 <%= button_to "Add Item", cart_path(item_id: @item.id) %>
 <%= link_to 'Update Item', "/items/#{@item.id}/edit" %>
 <%= link_to 'Delete', "/items/#{@item.id}", method: :delete %>
+<%= button_to 'Add Review', '/reviews/new' %>
 <p> Review</p>
 
 <p>Title</p>

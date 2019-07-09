@@ -17,6 +17,18 @@ RSpec.describe 'Review' do
         expect(page).to have_content("Title")
         expect(page).to have_content("Content")
         expect(page).to have_content("Rating")
+        expect(page).to have_button ("Add Review")
+
+        click_button "Add Review"
+
+        expect(current_path).to eq("/reviews/new")
+
+        fill_in 'Title', with: 'fmngkgndkfg'
+        fill_in 'Content', with: 'description'
+        fill_in 'Rating', with: '1'
+        click_button 'Submit'
+
+        expect(current_path).to eq("/items/#{@ogre.id}")
     end
   end
 end
