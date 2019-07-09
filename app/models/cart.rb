@@ -26,7 +26,6 @@ class Cart
     @contents.delete(item_id.to_s)
   end
 
-
   def total
     @contents.values.sum
   end
