@@ -2,7 +2,7 @@
 <%= text_field_tag :title, @review.title %>
 
 <%= label_tag :rating %>
-<%= number_field_tag :rating, @review.rating, in: 1..5 %>
+<%= select_tag :rating, options_for_select(['',1,2,3,4,5], @review.rating) %>
 
 <%= label_tag :content %>
 <%= text_field_tag :content, @review.content %>

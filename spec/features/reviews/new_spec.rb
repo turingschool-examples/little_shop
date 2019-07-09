@@ -21,7 +21,7 @@ RSpec.describe 'New Review' do
 
       fill_in :title, with: title
       fill_in :content, with: content
-      fill_in :rating, with: rating
+      select(rating, from: :rating)
 
       click_button 'Create Review'
 
@@ -60,7 +60,7 @@ RSpec.describe 'New Review' do
       expect(find_field(:title).value).to eq(title)
       expect(find_field(:content).value).to eq(content)
 
-      fill_in :rating, with: rating
+      select(rating, from: :rating)
       click_button 'Create Review'
 
       expect(current_path).to eq(item_path(@ogre))

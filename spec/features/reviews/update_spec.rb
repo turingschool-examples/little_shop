@@ -30,14 +30,14 @@ RSpec.describe 'Edit Review ' do
       click_button("Update Review")
       expect(page).to have_content('Missing content!')
 
-      fill_in 'Rating', with: ''
+      select('', from: :rating)
       click_button("Update Review")
 
       expect(page).to have_content('Missing rating!')
 
       fill_in :title, with: 'Rawrrr!'
       fill_in :content, with: 'Grawwr?!'
-      fill_in :rating, with: 5
+      select(5, from: :rating)
       click_button("Update Review")
 
       expect(current_path).to eq(item_path(@ogre))
