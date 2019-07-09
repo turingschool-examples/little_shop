@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe 'Item Show Page' do
   describe 'As a Visitor' do
     before :each do
@@ -64,7 +66,7 @@ RSpec.describe 'Item Show Page' do
           click_on "Update Info"
 
           expect(current_path).to eq("/items/#{@giant.id}")
-          
+
           within "#individual_review-#{@review1.id}" do
             expect(page).to have_content("Nice!")
             expect(page).to have_content("5")
@@ -80,7 +82,7 @@ RSpec.describe 'Item Show Page' do
 
 end
 
-\
+
 
 
 # As a visitor,
