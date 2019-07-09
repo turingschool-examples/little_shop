@@ -51,16 +51,15 @@ class ItemsController < ApplicationController
   private
 
   def flash_message
-    case
-    when item_params[:name] == ''
+    if item_params[:name] == ''
       flash.now[:notice] = 'Missing name!'
-    when item_params[:description] == ''
+    elsif item_params[:description] == ''
       flash.now[:notice] = 'Missing description!'
-    when item_params[:price] == ''
+    elsif item_params[:price] == ''
       flash.now[:notice] = 'Missing price!'
-    when item_params[:image] == ''
+    elsif item_params[:image] == ''
       flash.now[:notice] = 'Missing image!'
-    when item_params[:inventory] == ''
+    elsif item_params[:inventory] == ''
       flash.now[:notice] = 'Missing inventory!'
     end
   end

@@ -55,14 +55,13 @@ class MerchantsController < ApplicationController
   private
 
   def flash_message
-    case
-    when merchant_params[:name] == ''
+    if merchant_params[:name] == ''
       flash.now[:notice] = 'Missing name!'
-    when merchant_params[:address] == ''
+    elsif merchant_params[:address] == ''
       flash.now[:notice] = 'Missing address!'
-    when merchant_params[:city] == ''
+    elsif merchant_params[:city] == ''
       flash.now[:notice] = 'Missing city!'
-    when merchant_params[:state] == ''
+    elsif merchant_params[:state] == ''
       flash.now[:notice] = 'Missing state!'
     end
   end

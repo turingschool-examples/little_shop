@@ -37,12 +37,11 @@ class ReviewsController < ApplicationController
   private
 
   def flash_message
-    case
-    when review_params[:title] == ''
+    if review_params[:title] == ''
       flash.now[:notice] = 'Missing title!'
-    when review_params[:content] == ''
+    elsif review_params[:content] == ''
       flash.now[:notice] = 'Missing review message!'
-    when review_params[:rating] == ''
+    elsif review_params[:rating] == ''
       flash.now[:notice] = 'Missing rating!'
     end
   end

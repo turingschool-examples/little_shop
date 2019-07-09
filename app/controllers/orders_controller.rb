@@ -18,16 +18,15 @@ class OrdersController < ApplicationController
       session[:cart] = {}
       redirect_to(order_path(@order))
     else
-      case
-      when order_params[:name] == ''
+      if order_params[:name] == ''
         flash.now[:notice] = 'Missing name!'
-      when order_params[:address] == ''
+      elsif order_params[:address] == ''
         flash.now[:notice] = 'Missing address!'
-      when order_params[:city] == ''
+      elsif order_params[:city] == ''
         flash.now[:notice] = 'Missing city!'
-      when order_params[:state] == ''
+      elsif order_params[:state] == ''
         flash.now[:notice] = 'Missing state!'
-      when order_params[:zip] == ''
+      elsif order_params[:zip] == ''
         flash.now[:notice] = 'Missing zip!'
       end
       render :new
