@@ -33,8 +33,10 @@ RSpec.describe 'New Order' do
       fill_in'City', with: 'Denver'
       fill_in'State', with: 'CO'
       fill_in'Zip', with: 80_202
-      
+
       click_button 'Create Order'
+      visit orders_path(order_id)
+
     end
 
     within "#item-#{@ogre.id}" do

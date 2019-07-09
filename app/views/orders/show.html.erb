@@ -9,16 +9,15 @@
   <p><%= @order.zip %></p>
 </section>
 
-<h2>Order <%= @order.id %></h2>
+
 <p>Order Submitted: <%= @order.created_at %></p>
-<% @order.each do |item| %>
-  <section id='item-<%= item.id %>'>
-    <p><%= link_to item.name, "/items/#{item.id}" %></p>
-    <p>Sold By: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %></p>
-    <p>Price: <%= number_to_currency(item.price) %></p>
-    <p>Quantity: <%= item.quantity %></p>
-    <p>Subtotal: <%= number_to_currency(cart.subtotal(item.id)) %></p>
+<% @order.order_items.each do |order_item| %>
+  <section id="item-<%= order_item.item_id %>">
+    <p><%= link_to order_item.item.name, "/items/#{order_item.item.id}" %></p>
+    <p>Sold By: <%= link_to order_item.item.merchant.name, "/merchants/#{order_item.item.merchant.id}" %></p>
+    <p>Price: <%= number_to_currency(order_item.item.price) %></p>
+    <p>Quantity: <%= order_item.quantity %></p>
+    <p>Subtotal: <%= number_to_currency(order_item.subtotal) %></p>
   </section>
 <% end %>
-
-<h3>Order Total: <%= number_to_currency(cart.total(@order)) %></h3>
+<h3>Total: <%= number_to_currency(@order.order_items.sum(:price)) %></h3>

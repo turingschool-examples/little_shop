@@ -1,7 +1,7 @@
 <p> <%= button_to "Empty Cart", { controller: :carts, action: :destroy }, method: :delete  %></p>
 
 <% if @items.any? %>
-  <% @items.each do |item| %>
+  <% @items.each do |item|%>
     <section id="item-<%= item.id %>">
       <p><%= item.name %></p>
       <img src="<%= item.image %>" alt="">
