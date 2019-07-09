@@ -39,6 +39,7 @@
                 <li>Rating: <%= review.rating %>/5</li>
                 <li><%= review.body %></li>
                 <p><%= link_to "Edit Review", "/items/#{@item.id}/reviews/#{review.id}/edit"%></p>
+                <p><%= button_to "Delete Review", "/items/#{@item.id}/reviews/#{review.id}", class: "btn btn-dark btn-sm", method: :delete%></p>
               </ul>
           </section>
       <% end %>
