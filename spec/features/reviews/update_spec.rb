@@ -28,7 +28,7 @@ RSpec.describe 'Edit Review ' do
       fill_in 'Content', with: ''
 
       click_button("Update Review")
-      expect(page).to have_content('Missing review message!')
+      expect(page).to have_content('Missing content!')
 
       fill_in 'Rating', with: ''
       click_button("Update Review")

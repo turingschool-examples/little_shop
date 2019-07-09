@@ -12,38 +12,24 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
+    @order = Order.new(local_params)
     if @order.save
       @order.add_items(@items)
       session[:cart] = {}
       redirect_to(order_path(@order))
     else
-      if order_params[:name] == ''
-        flash.now[:notice] = 'Missing name!'
-      elsif order_params[:address] == ''
-        flash.now[:notice] = 'Missing address!'
-      elsif order_params[:city] == ''
-        flash.now[:notice] = 'Missing city!'
-      elsif order_params[:state] == ''
-        flash.now[:notice] = 'Missing state!'
-      elsif order_params[:zip] == ''
-        flash.now[:notice] = 'Missing zip!'
-      end
+      flash_message
       render :new
     end
   end
 
   private
 
-  def order_params
+  def local_params
     params.permit(:name, :address, :city, :state, :zip)
   end
 
   def set_order
     @order ||= Order.find(params[:id])
-  end
-
-  def set_items
-    @items ||= cart.items
   end
 end

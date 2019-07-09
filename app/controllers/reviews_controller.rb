@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = @item.reviews.new(review_params)
+    @review = @item.reviews.new(local_params)
     if @review.save
       redirect_to item_path(@item)
     else
@@ -20,11 +20,11 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    if review_params.values.any? {|input| input == ''}
+    if local_params.values.any? {|input| input == ''}
       flash_message
       render :edit
     else
-      @review.update(review_params)
+      @review.update(local_params)
       redirect_to item_path(@item)
     end
   end
@@ -36,25 +36,11 @@ class ReviewsController < ApplicationController
 
   private
 
-  def flash_message
-    if review_params[:title] == ''
-      flash.now[:notice] = 'Missing title!'
-    elsif review_params[:content] == ''
-      flash.now[:notice] = 'Missing review message!'
-    elsif review_params[:rating] == ''
-      flash.now[:notice] = 'Missing rating!'
-    end
-  end
-
-  def review_params
+  def local_params
     params.permit(:title, :content, :rating)
   end
 
   def set_review
     @review ||= Review.find(params[:id])
-  end
-
-  def set_item
-    @item ||= Item.find(params[:item_id])
   end
 end

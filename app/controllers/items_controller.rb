@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = @merchant.items.new(item_params)
+    @item = @merchant.items.new(local_params)
     if @item.save
       redirect_to merchant_items_path(@merchant)
     else
@@ -34,11 +34,11 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if item_params.values.any? {|input| input == ''}
+    if local_params.values.any? {|input| input == ''}
       flash_message
       render :edit
     else
-      @item.update(item_params)
+      @item.update(local_params)
       redirect_to item_path(@item)
     end
   end
@@ -50,30 +50,12 @@ class ItemsController < ApplicationController
 
   private
 
-  def flash_message
-    if item_params[:name] == ''
-      flash.now[:notice] = 'Missing name!'
-    elsif item_params[:description] == ''
-      flash.now[:notice] = 'Missing description!'
-    elsif item_params[:price] == ''
-      flash.now[:notice] = 'Missing price!'
-    elsif item_params[:image] == ''
-      flash.now[:notice] = 'Missing image!'
-    elsif item_params[:inventory] == ''
-      flash.now[:notice] = 'Missing inventory!'
-    end
-  end
-
-  def item_params
+  def local_params
     params.permit(:name, :description, :price, :image, :inventory)
   end
 
   def set_item
     @item ||= Item.find(params[:id])
-  end
-
-  def set_merchant
-    @merchant ||= Merchant.find(params[:merchant_id])
   end
 
   def destroy_reviews

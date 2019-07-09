@@ -49,7 +49,7 @@ RSpec.describe 'New Review' do
       click_button 'Create Review'
 
       expect(current_path).to eq(review_path(@ogre))
-      expect(page).to have_content('Missing review message!')
+      expect(page).to have_content('Missing content!')
       expect(find_field(:title).value).to eq(title)
 
       fill_in :content, with: content
