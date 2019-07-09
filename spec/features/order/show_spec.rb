@@ -35,7 +35,6 @@ RSpec.describe 'New Order' do
       fill_in'Zip', with: 80_202
 
       click_button 'Create Order'
-      visit orders_path(order_id)
 
     end
 
