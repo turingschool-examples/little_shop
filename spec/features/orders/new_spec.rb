@@ -17,7 +17,7 @@ RSpec.describe "New Order Page" do
       expect(current_path).to eq(new_order_path)
     end
 
-    xit "I see the details of my cart" do
+    it "I see the details of my cart" do
       @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
       @brian = Merchant.create!(name: 'Brians Bagels', address: '125 Main St', city: 'Denver', state: 'CO', zip: 80218)
 
