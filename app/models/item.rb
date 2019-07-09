@@ -13,6 +13,6 @@ class Item < ApplicationRecord
   end
 
   def average_rating
-    reviews.average(:rating)
+    reviews.average(:rating).to_f.round(2)
   end
 end
