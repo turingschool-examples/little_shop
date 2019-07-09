@@ -27,7 +27,7 @@ class MerchantsController < ApplicationController
   def update
     @merchant = Merchant.find(params[:id])
     @merchant.update(merchant_params)
-    if merchant_params.values.any? {|values| values.empty?}
+    if merchant_params.values.any? {|value| value.empty?}
       flash[:alert] = @merchant.errors.full_messages.to_sentence
       render :edit
     else

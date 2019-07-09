@@ -55,7 +55,6 @@ RSpec.describe 'Existing Merchant Update' do
       fill_in 'State', with: state
       fill_in 'Zip', with: zip
 
-      save_and_open_page
       click_button 'Update Merchant'
       expect(page).to have_content("Name cannot be missing")
     end
