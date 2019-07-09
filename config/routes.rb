@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :items
+    resources :reviews, only: %i[new create destroy]
   resources :merchants
   resources :orders
 

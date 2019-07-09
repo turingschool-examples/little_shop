@@ -21,14 +21,13 @@ RSpec.describe 'Review' do
 
         click_button "Add Review"
 
-        expect(current_path).to eq("/items/#{@ogre.id}/reviews/new")
 
         fill_in 'Title', with: 'fmngkgndkfg'
-        fill_in 'Content', with: 'description'
+        fill_in 'Content', with: 'content'
         fill_in 'Rating', with: '1'
         click_button 'Submit'
 
-        expect(current_path).to eq("/items/#{@ogre.id}")
+        expect(current_path).to eq(item_path(@ogre.id))
     end
   end
 end
