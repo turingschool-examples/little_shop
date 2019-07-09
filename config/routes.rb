@@ -30,4 +30,5 @@ Rails.application.routes.draw do
 
   get "/items/:item_id/reviews/new", to: 'reviews#new', as: 'reviews_new_path'
   post '/items/:item_id', to: 'reviews#create'
+  delete '/items/:item_id/reviews/:id', to: 'reviews#destroy'
 end

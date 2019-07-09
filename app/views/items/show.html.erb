@@ -37,6 +37,7 @@
       <h3><b><%= review.title  %></b></h3>
       <p>Rating: <%= review.rating  %></p>
       <p><%= review.content  %></p>
+      <%= button_to 'Delete', "/items/#{@item.id}/reviews/#{review.id}", method: :delete %>
     </section>
   <% end %>
 <% end %>
