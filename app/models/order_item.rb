@@ -3,6 +3,10 @@ class OrderItem < ApplicationRecord
   belongs_to :item
 
   def self.get_quantity(item)
-    where(item_id: item.id).first.quantity
+    where(item: item).first.quantity
+  end
+
+  def self.get_price(item)
+    where(item: item).first.price
   end
 end

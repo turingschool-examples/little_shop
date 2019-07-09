@@ -8,11 +8,11 @@
 <% @items.each do |item| %>
   <section id='item-<%= item.id %>'>
     <% qty = @order_items.get_quantity(item) %>
-    <% sub_tot = item.price * qty %>
+    <% sub_tot = @order_items.get_price(item) * qty %>
     <% running_total += sub_tot %>
     <h2><%= link_to item.name, item_path(item) %></h2>
     <p>Sold by: <%= link_to item.merchant.name, merchant_path(item.merchant) %></p>
-    <p>Price: <%= number_to_currency(item.price) %></p>
+    <p>Price: <%= number_to_currency(@order_items.get_price(item)) %></p>
     <p>Quantity: <%= qty %></p>
     <p>Subtotal: <%= number_to_currency(sub_tot) %></p>
   </section>

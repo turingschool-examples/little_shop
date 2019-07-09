@@ -27,12 +27,12 @@ RSpec.describe 'Review Statistics' do
       end
 
       within "#bottom-three" do
-        expect(page.all('p')[0]).to have_content(@review_2.title)
-        expect(page.all('p')[0]).to have_content(@review_2.rating)
+        expect(page.all('p')[0]).to have_content(@review_4.title)
+        expect(page.all('p')[0]).to have_content(@review_4.rating)
         expect(page.all('p')[1]).to have_content(@review_3.title)
         expect(page.all('p')[1]).to have_content(@review_3.rating)
-        expect(page.all('p')[2]).to have_content(@review_4.title)
-        expect(page.all('p')[2]).to have_content(@review_4.rating)
+        expect(page.all('p')[2]).to have_content(@review_2.title)
+        expect(page.all('p')[2]).to have_content(@review_2.rating)
       end
     end
   end

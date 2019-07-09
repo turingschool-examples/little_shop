@@ -13,7 +13,7 @@
 </section>
 <section id='bottom-three'>
   <% until bottom_three.empty? %>
-    <% rev = bottom_three.pop %>
+    <% rev = bottom_three.shift %>
     <p>Title: <%= rev.title %> Rating: <%= rev.rating %></p>
   <% end %>
 </section>
