@@ -2,11 +2,9 @@ class Order < ApplicationRecord
   has_many :order_items
   has_many :items, through: :order_items
 
-  def grand_total(items)
-    total = 0
-    items.each do |item|
-      total += item.subtotal
-    end
-    total
-  end
+  validates_presence_of :name
+  validates_presence_of :address
+  validates_presence_of :city
+  validates_presence_of :state
+  validates_presence_of :zip
 end

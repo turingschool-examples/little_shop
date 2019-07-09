@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
     else
       flash[:notice] = "The form must be completed to create an order."
       render :new
-    end 
+    end
   end
 
   def show
