@@ -13,13 +13,18 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = Order.create(order_params)
+    order = Order.new(order_params)
     cart = Cart.new(session[:cart])
-    cart.contents.each do |item_id, quantity|
-      @item = Item.find(item_id)
-      order_item = OrderItem.new(item: @item, price: @item.price, quantity: cart.contents[item_id.to_s], order: order)
-      redirect_to order_path(order)
-    end
+    if order.save
+      cart.contents.each do |item_id, quantity|
+        @item = Item.find(item_id)
+        order_item = OrderItem.new(item: @item, price: @item.price, quantity: cart.contents[item_id.to_s], order: order)
+      end
+    redirect_to order_path(order)
+    else
+      flash[:notice] = "The form must be completed to create an order."
+      render :new
+    end 
   end
 
   def show
