@@ -11,8 +11,13 @@ class MerchantsController < ApplicationController
   end
 
   def create
-    Merchant.create(merchant_params)
-    redirect_to '/merchants'
+    merchant = Merchant.create(merchant_params)
+    if merchant.id.nil?
+      flash[:alert] = merchant.errors.full_messages.to_sentence
+      render :new
+    else
+      redirect_to '/merchants'
+    end
   end
 
   def edit
@@ -22,12 +27,23 @@ class MerchantsController < ApplicationController
   def update
     @merchant = Merchant.find(params[:id])
     @merchant.update(merchant_params)
-    redirect_to "/merchants/#{@merchant.id}"
+    if merchant_params.values.any? {|value| value.empty?}
+      flash[:alert] = @merchant.errors.full_messages.to_sentence
+      render :edit
+    else
+      redirect_to "/merchants/#{@merchant.id}"
+    end
   end
 
   def destroy
-    Merchant.destroy(params[:id])
-    redirect_to '/merchants'
+    merchant = Merchant.find(params[:id])
+    if merchant.merchant_orders.include?(params[:id])
+      flash[:alert] = "This merchant has pending orders, cannot be deleted."
+      redirect_to "/merchants/#{merchant.id}"
+    else
+      Merchant.destroy(params[:id])
+      redirect_to '/merchants'
+    end
   end
 
   private

@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @reviews = Review.where(item_id: params[:id])
-    
+
   end
 
   def new
@@ -19,10 +19,14 @@ class ItemsController < ApplicationController
   end
 
   def create
-    merchant = Merchant.find(params[:merchant_id])
-    merchant.items.create(item_params)
-
-    redirect_to "/merchants/#{merchant.id}/items"
+    @merchant = Merchant.find(params[:merchant_id])
+    item = @merchant.items.create(item_params)
+    if item.id.nil?
+      flash[:alert] = item.errors.full_messages.to_sentence
+      render :new
+    else
+      redirect_to "/merchants/#{@merchant.id}/items"
+    end
   end
 
   def edit
@@ -30,16 +34,25 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-
-    redirect_to "/items/#{item.id}"
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    if item_params.values.any? {|value| value.empty? }
+      flash[:alert] = @item.errors.full_messages.to_sentence
+      render :edit
+    else
+      redirect_to "/items/#{@item.id}"
+    end
   end
 
   def destroy
-    Item.destroy(params[:id])
-
-    redirect_to '/items'
+    item = Item.find(params[:id])
+    if item.item_orders.include?(params[:id])
+      flash[:alert] = "This item has pending orders, cannot be deleted."
+      redirect_to "/items/#{item.id}"
+    else
+      Item.destroy(params[:id])
+      redirect_to '/items'
+    end
   end
 
   private
