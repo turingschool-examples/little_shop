@@ -21,32 +21,20 @@ RSpec.describe 'Edit Review ' do
       expect(find_field(:rating).value).to eq('5')
 
       fill_in 'Title', with: ''
-      fill_in 'Rating', with: ''
-      fill_in 'Content', with: ''
       click_button("Update Review")
 
       expect(page).to have_content('Missing title!')
 
-      fill_in 'Title', with: ''
-      fill_in 'Rating', with: ''
       fill_in 'Content', with: ''
-      fill_in :title, with: 'Rawrrr!'
 
       click_button("Update Review")
       expect(page).to have_content('Missing review message!')
 
-      fill_in 'Title', with: ''
       fill_in 'Rating', with: ''
-      fill_in 'Content', with: ''
-      fill_in :title, with: 'Rawrrr!'
-      fill_in :content, with: 'Grawwr?!'
       click_button("Update Review")
 
       expect(page).to have_content('Missing rating!')
 
-      fill_in 'Title', with: ''
-      fill_in 'Rating', with: ''
-      fill_in 'Content', with: ''
       fill_in :title, with: 'Rawrrr!'
       fill_in :content, with: 'Grawwr?!'
       fill_in :rating, with: 5

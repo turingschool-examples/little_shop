@@ -21,10 +21,44 @@ RSpec.describe 'Existing Merchant Update' do
 
       name = 'Megans Marmalade'
       address = '321 Main St'
+      city = 'Denver'
+      state = 'CO'
+      zip = 80204
+      fill_in :zip, with: 802
+      click_button 'Update Merchant'
 
-      fill_in 'Name', with: name
-      fill_in 'Address', with: address
+      expect(page).to have_content('Please enter a valid zip code.')
 
+      visit edit_merchant_path(@megan)
+      fill_in :name, with: ''
+      click_button 'Update Merchant'
+
+      expect(page).to have_content("Missing name!")
+
+      visit edit_merchant_path(@megan)
+      fill_in :address, with: ''
+      click_button 'Update Merchant'
+
+      expect(page).to have_content("Missing address!")
+
+      visit edit_merchant_path(@megan)
+      fill_in :city, with: ''
+      click_button 'Update Merchant'
+
+      expect(page).to have_content("Missing city!")
+
+      visit edit_merchant_path(@megan)
+      fill_in :state, with: ''
+      click_button 'Update Merchant'
+
+      expect(page).to have_content("Missing state!")
+
+      visit edit_merchant_path(@megan)
+      fill_in :name, with: name
+      fill_in :address, with: address
+      fill_in :city, with: city
+      fill_in :state, with: state
+      fill_in :zip, with: zip
       click_button 'Update Merchant'
 
       expect(current_path).to eq(merchant_path(@megan))
@@ -37,7 +71,7 @@ RSpec.describe 'Existing Merchant Update' do
 
       within '.address' do
         expect(page).to have_content(address)
-        expect(page).to have_content("#{@megan.city} #{@megan.state} #{@megan.zip}")
+        expect(page).to have_content("#{city} #{state} #{zip}")
       end
     end
   end
