@@ -1,9 +1,9 @@
 <h1><%= @merchant.name %></h1>
 
 <section class='address'>
-  <p><%= @merchant.address %></p>
-  <p><%= @merchant.city %> <%= @merchant.state %> <%= @merchant.zip %></p>
+  <h5><%= @merchant.address %></h5>
+  <h5><%= @merchant.city %> <%= @merchant.state %> <%= @merchant.zip %></h5>
 </section>
 
-<%= button_to 'Edit', "/merchants/#{@merchant.id}/edit", method: :get %>
-<%= button_to 'Delete', "/merchants/#{@merchant.id}", method: :delete %>
+<%= button_to 'Edit', "/merchants/#{@merchant.id}/edit", class: "btn btn-dark btn-sm btn-space", method: :get %>
+<%= button_to 'Delete', "/merchants/#{@merchant.id}", class: "btn btn-dark btn-sm btn-space", method: :delete %>
