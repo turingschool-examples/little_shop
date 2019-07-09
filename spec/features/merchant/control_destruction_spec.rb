@@ -17,7 +17,7 @@ RSpec.describe "Control Merchant Destruction" do
         visit "/merchants/#{@megan.id}"
 
         click_button "Delete"
-        save_and_open_page
+
         expect(current_path).to eq("/merchants/#{@megan.id}")
         expect(page).to have_content("This merchant has pending orders, cannont be deleted.")
       end

@@ -1,5 +1,11 @@
 class Merchant < ApplicationRecord
+
   has_many :items, dependent: :destroy
+  validates :name,
+            :address,
+            :city,
+            :state, presence: { message: "cannot be missing"}
+  validates :zip, numericality: { message: "must be valid."}
 
   def merchant_orders
     orders = Order.all
