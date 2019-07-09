@@ -13,3 +13,6 @@
  *= require_tree .
  *= require_self
  */
+ .btn-space {
+     margin-bottom: 5px;
+ }
