@@ -21,8 +21,14 @@ class MerchantsController < ApplicationController
 
   def update
     @merchant = Merchant.find(params[:id])
-    @merchant.update(merchant_params)
-    redirect_to "/merchants/#{@merchant.id}"
+    @merchant.update_attributes(merchant_params)
+    if @merchant.save
+      flash[:notice] = "Update Sucessful!"
+      redirect_to "/merchants/#{@merchant.id}"
+    else
+      flash[:merchant_error] = @merchant.errors.full_messages.join(", ")
+      render :edit
+    end
   end
 
   def destroy
