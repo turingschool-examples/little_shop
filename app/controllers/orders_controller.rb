@@ -10,17 +10,25 @@ class OrdersController < ApplicationController
       @grand_total += order_item.subtotal
     end
     @items
-
   end
 
   def create
-    # create order from form
+    order = Order.create(order_params)
     cart = Cart.new(session[:cart])
     cart.contents.each do |item_id, quantity|
       @item = Item.find(item_id)
-      # pass in newly created order_id
-      order_item = OrderItem.new(item: @item, price: @item.price, quantity: cart.contents[item_id.to_s])
-
+      order_item = OrderItem.new(item: @item, price: @item.price, quantity: cart.contents[item_id.to_s], order: order)
+      redirect_to order_path(order)
     end
+  end
+
+  def show
+    @order = Order.find(params[:id])
+  end
+
+  private
+
+  def order_params
+    params.permit(:name, :address, :city, :state, :zip)
   end
 end
