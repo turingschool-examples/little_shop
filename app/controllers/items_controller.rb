@@ -44,8 +44,13 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy
-    redirect_to items_path
+    if @item.orders.empty?
+      @item.destroy
+      redirect_to items_path
+    else
+      flash[:notice] = 'This item has been ordered and cannot be deleted!'
+      redirect_to item_path
+    end
   end
 
   private
