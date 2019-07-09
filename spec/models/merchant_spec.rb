@@ -24,8 +24,15 @@ RSpec.describe Merchant do
       review_2 = giant.reviews.create!(title: 'Better than amazing!', content: 'The best Giant anyone ever saw!', rating: 3)
       review_3 = hippo.reviews.create!(title: 'Better than amazing!', content: 'The best Ogre anyone ever saw!', rating: 5)
       review_4 = elephant.reviews.create!(title: 'Better than amazing!', content: 'The best Ogre anyone ever saw!', rating: 4)
+      order_1 = Order.create!(name: 'Bob', address: '123', city: 'Denver', state: 'CA', zip: '80222')
+      order_1.add_items({ogre => 2, elephant => 1})
+      order_2 = Order.create!(name: 'Bob', address: '123', city: 'New York', state: 'CA', zip: '80222')
+      order_2.add_items({ogre => 2, elephant => 1})
+      order_3 = Order.create!(name: 'Bob', address: '123', city: 'Albany', state: 'CA', zip: '80222')
+      order_3.add_items({ogre => 2, elephant => 1})
 
       expect(megan.top_three_items).to eq([hippo, elephant, giant])
+      expect(megan.cities_served).to eq(['Albany', 'Denver', 'New York'])
     end
   end
 end

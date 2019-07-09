@@ -11,7 +11,7 @@ RSpec.describe 'Delete Item' do
         @hippo = @brian.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
         @review_1 = @giant.reviews.create!(title: 'Amazing!', content: 'The best Giant I ever saw!', rating: 5)
         @order = Order.create!(name: 'Bob', address: '123', city: 'LA', state: 'CA', zip: '80222')
-        @order.add_items([@hippo])
+        @order.add_items({@hippo => 1})
       end
 
       it 'I can click a link to delete that item' do

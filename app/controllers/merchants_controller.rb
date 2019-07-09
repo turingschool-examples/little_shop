@@ -6,7 +6,10 @@ class MerchantsController < ApplicationController
   end
 
   def show
+    @items = @merchant.items
     @top_3_items = @merchant.top_three_items
+    @average_price = @items.average(:price)
+    @cities_served = @merchant.cities_served
   end
 
   def new

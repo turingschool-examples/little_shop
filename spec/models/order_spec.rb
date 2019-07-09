@@ -20,9 +20,11 @@ describe Order, type: :model do
       ogre = megan.items.create!(name: 'Ogre', description: "I'm an Ogre!", price: 20, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 5 )
       order = Order.create!(name: 'Bob', address: '123', city: 'LA', state: 'CA', zip: '80222')
       order.add_items({ogre => 2})
-
       expect(OrderItem.get_quantity(ogre)).to eq(2)
       expect(OrderItem.get_price(ogre)).to eq(20.0)
+      expect(order.items).to eq([ogre])
+      expect(megan.items).to eq([ogre])
+      expect(megan.items.first.orders.first).to eq(Order.find(order.id))
     end
   end
 end

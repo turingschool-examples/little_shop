@@ -11,6 +11,10 @@
   <% end %>
 </section>
 
+<p>Total items: <%= @items.length %></p>
+<p>Average item price: <%= number_to_currency(@average_price) %></p>
+<p>Cities served: <%= @cities_served.join(', ') %></p>
+
 <%= button_to 'View Items', "/merchants/#{@merchant.id}/items", method: :get %>
 <%= button_to 'New Item', "/merchants/#{@merchant.id}/items/new", method: :get %>
 <%= button_to 'Edit', "/merchants/#{@merchant.id}/edit", method: :get %>

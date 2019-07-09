@@ -40,7 +40,7 @@ RSpec.describe 'Merchant Show Page' do
       expect(current_path).to eq(merchants_path)
     end
 
-    it 'I see the top rated items for this merchant' do
+    it 'I see the merchant statistics' do
       ogre = @megan.items.create!(name: 'Ogre', description: "I'm an Ogre!", price: 20, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 5)
       review_1 = ogre.reviews.create!(title: 'Amazing!', content: 'The best Ogre I ever saw!', rating: 2)
       visit merchant_path(@megan)
@@ -78,6 +78,17 @@ RSpec.describe 'Merchant Show Page' do
         expect(page.all('h2')[1]).to have_link("Elephant")
       end
       expect(page).to_not have_content("Ogre")
+
+      order_1 = Order.create!(name: 'Bob', address: '123', city: 'LA', state: 'CA', zip: '80222')
+      order_1.add_items({ogre => 2, elephant => 1})
+      order_2 = Order.create!(name: 'Bob', address: '123', city: 'Denver', state: 'NY', zip: '80222')
+      order_2.add_items({hippo => 1})
+
+      visit merchant_path(@megan)
+
+      expect(page).to have_content("Total items: 4")
+      expect(page).to have_content("Average item price: $42.50")
+      expect(page).to have_content("Cities served: Denver, LA")
     end
   end
 end
