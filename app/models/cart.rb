@@ -21,7 +21,15 @@ class Cart
   end
 
   def item_and_quantity
-    contents.map do |item_id, _quantity|
+    contents.map do |item_id, quantity|
+      # binding.pry
+      item_id.to_i
+    end
+  end
+
+#might not need
+  def item
+    contents.map do |item_id, quantity|
       item_id.to_i
     end
   end
