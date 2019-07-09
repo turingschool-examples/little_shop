@@ -13,6 +13,22 @@ RSpec.describe 'Item Show Page' do
       @review4 = @giant.reviews.create!(title: "Pretty Good.", rating: 4, body: "Good Giant, wish it has come in the mail a bit earlier. It was so hungry when I opened it.")
     end
 
+  it "I can see a link/button that can delete a review" do
+
+      visit "/items/#{@giant.id}"
+
+      within "#individual_review-#{@review1.id}" do
+        expect(page).to have_button("Delete Review")
+
+        click_on "Delete Review"
+
+        expect(current_path).to eq("/items/#{@giant.id}")
+      end
+
+      expect(page).to_not have_content("Damn!")
+      expect(page).to_not have_content("Definitely a Giant. No argument there")
+      
+    end
   end
 end
 
