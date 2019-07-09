@@ -1,7 +1,9 @@
 
 <% @items.each do |oi| %>
   <h2><%= oi.item.name %></h2>
-  <p><%= oi.quantity %> * <%= oi.price %> = </p>
+  <h3><%= oi.item.merchant.name %></h3>
+  <p><%= oi.quantity %> * <%= oi.price %> = <%= oi.subtotal %></p>
+  <p><%= @grand_total %></p>
 <% end %>
 
 
