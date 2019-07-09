@@ -22,8 +22,6 @@ RSpec.describe 'Merchant Show Page' do
       visit "/merchants/#{@megan.id}"
 
       click_link "Items"
-
-      
     end
   end
 end

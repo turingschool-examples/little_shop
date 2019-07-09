@@ -1,14 +1,36 @@
+<<<<<<< HEAD
+<h1>Cart</h1>
+  <% if cart.contents.empty? %>
+    <p>Your shopping cart is empty</p>
+  <%else cart.contents.each do |item_id, quantity|%>
+    <p>Item ID: <%= item_id %> </p>
+    <br>
+    <p> Quantity: <%= quantity %> </p>
+<div class= "button" class="btn btn-primary">
+
+    <%= button_to "Increase Count", "/cart/#{item_id}/add", method: :patch %>
+  </div>
+    <%= button_to "Decrease Count", "/cart/#{item_id}",   method: :patch %>
+    <%= button_to "Remvove Item From Cart","/cart/#{item_id}", method: :delete %>
+    <div class = "btn btn-outline-danger">
+    <%= button_to "Empty Cart", "/cart", method: :delete %>
+    </div>
+  <% end  %>
+  <% end  %>
+=======
 <h1>Cart</h1
 <% if cart.contents.empty? %>
-<p>Your shopping cart is empty</p>
+  <p>Your shopping cart is empty</p>
 
 <%else cart.contents.each do |item_id, quantity|%>
-<p>Item ID: <%= item_id %> </p>
-<br>
-<p> Quantity: <%= quantity %> </p>
-<%= button_to "Increase Count", "/cart/#{item_id}/add", method: :patch %>
-<%= button_to "Decrease Count", "/cart/#{item_id}", method: :patch %>
-<%= button_to "Remvove Item From Cart","/cart/#{item_id}", method: :delete %>
+  <p>Item ID: <%= item_id %> </p>
+  <br>
+  <%= link_to "Checkout", new_order_path %>
+  <p> Quantity: <%= quantity %> </p>
+  <%= button_to "Increase Count", "/cart/#{item_id}/add", method: :patch %>
+  <%= button_to "Decrease Count", "/cart/#{item_id}", method: :patch %>
+  <%= button_to "Remvove Item From Cart","/cart/#{item_id}", method: :delete %>
 <% end  %>
 <%= button_to "Empty Cart", "/cart", method: :delete %>
 <% end  %>
+>>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea

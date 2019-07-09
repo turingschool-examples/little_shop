@@ -30,9 +30,15 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-    redirect_to "/items/#{item.id}"
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    if @item.save
+      flash[:success] = "The item has been updated!"
+    redirect_to "/items/#{@item.id}"
+  else
+      flash[:error] = "Error. Try again"
+      render :edit
+  end
   end
 
   def destroy
