@@ -22,88 +22,97 @@ RSpec.describe Cart do
         cart = Cart.new(nil)
         expect(cart.contents).to eq({})
       end
+
       it 'should return hash when contents exist' do
         cart = Cart.new({"12" => 2, "112" => 1})
         expect(cart.contents).to eq ({"12" => 2, "112" => 1})
       end
-      describe '#add_item' do
-        it 'adds items to the cart' do
+    end
 
-          expected = {
-            @ogre.id.to_s => 2,
-            @giant.id.to_s => 2,
-            @hippo.id.to_s => 1
-          }
+      describe '#items' do
+        it 'returns item objects' do
 
-          expect(@cart.contents).to eq(expected)
-          end
-        end
+        expect(@cart.items).to eq([@ogre, @giant, @hippo])
+      end
+    end
 
-        describe '#item_count' do
-          it 'should display count of items in the cart' do
+    describe '#add_item' do
+      it 'adds items to the cart' do
 
-            expect(@cart.item_count(@ogre.id)).to eq(2)
-            expect(@cart.item_count(@giant.id)).to eq(2)
-            expect(@cart.item_count(@hippo.id)).to eq(1)
-          end
-        end
+        expected = {
+          @ogre.id.to_s => 2,
+          @giant.id.to_s => 2,
+          @hippo.id.to_s => 1
+        }
 
-        describe '#total' do
-          it 'displays the total items in the cart' do
-
-          expect(@cart.total).to eq(5)
+        expect(@cart.contents).to eq(expected)
         end
       end
 
-      describe '#subtotal' do
-        it 'displays the total price for each item in the cart' do
+      describe '#item_count' do
+        it 'should display count of items in the cart' do
 
-        expect(@cart.subtotal(@ogre.id)).to eq(40)
-        expect(@cart.subtotal(@giant.id)).to eq(100)
-        expect(@cart.subtotal(@hippo.id)).to eq(50)
+          expect(@cart.item_count(@ogre.id)).to eq(2)
+          expect(@cart.item_count(@giant.id)).to eq(2)
+          expect(@cart.item_count(@hippo.id)).to eq(1)
         end
       end
 
-      describe '#grand_total' do
-        it 'displays the total price for all items in the cart combined' do
+      describe '#total' do
+        it 'displays the total items in the cart' do
 
-        expect(@cart.grand_total).to eq(190)
-        end
+        expect(@cart.total).to eq(5)
       end
+    end
 
-      describe '#empty?' do
-        it 'returns true if empty else false' do
+    describe '#subtotal' do
+      it 'displays the total price for each item in the cart' do
 
-          expect(@cart.empty?).to eq(false)
-        end
+      expect(@cart.subtotal(@ogre.id)).to eq(40)
+      expect(@cart.subtotal(@giant.id)).to eq(100)
+      expect(@cart.subtotal(@hippo.id)).to eq(50)
       end
+    end
 
-      describe '#remove_item' do
-        it 'removes an item from the cart' do
+    describe '#grand_total' do
+      it 'displays the total price for all items in the cart combined' do
 
-          expected = {
-            @giant.id.to_s => 2,
-            @hippo.id.to_s => 1
-          }
-
-          @cart.remove_item(@ogre.id.to_s)
-          expect(@cart.contents).to eq(expected)
-        end
+      expect(@cart.grand_total).to eq(190)
       end
+    end
 
-      describe '#update_quantity' do
-        it 'updates the quantity of items in the cart' do
+    describe '#empty?' do
+      it 'returns true if empty else false' do
 
-          expected = {
-            @ogre.id.to_s => 2,
-            @giant.id.to_s => 2,
-            @hippo.id.to_s => 3
-          }
+        expect(@cart.empty?).to eq(false)
+      end
+    end
 
-          @cart.update_quantity(@hippo.id.to_s, 3)
+    describe '#remove_item' do
+      it 'removes an item from the cart' do
 
-          expect(@cart.contents).to eq(expected)
-        end
+        expected = {
+          @giant.id.to_s => 2,
+          @hippo.id.to_s => 1
+        }
+
+        @cart.remove_item(@ogre.id.to_s)
+        expect(@cart.contents).to eq(expected)
+      end
+    end
+
+    describe '#update_quantity' do
+      it 'updates the quantity of items in the cart' do
+
+        expected = {
+          @ogre.id.to_s => 2,
+          @giant.id.to_s => 2,
+          @hippo.id.to_s => 3
+        }
+
+        @cart.update_quantity(@hippo.id.to_s, 3)
+
+        expect(@cart.contents).to eq(expected)
       end
     end
   end
