@@ -1,0 +1,14 @@
+<html>
+  <%= form_tag "/items/#{@item.id}/reviews" do %>
+    <%= label_tag :title, 'Title'%>
+    <%= text_field_tag :title, required: true%>
+
+    <%= label_tag :content, 'Content'%>
+    <%= text_field_tag :content, required: true%>
+
+    <%= label_tag :rating, 'Rating'%>
+    <%= number_field_tag :rating, in: 1..5, required: true%>
+
+    <%= submit_tag 'Submit'%>
+    <% end %>
+</html>
