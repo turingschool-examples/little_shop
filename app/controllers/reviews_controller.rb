@@ -22,9 +22,15 @@ class ReviewsController < ApplicationController
 
   def update
     item = Item.find(params[:item_id])
-    Review.find(params[:id]).update(review_params)
+    review = Review.find(params[:id])
+    review.update(review_params)
 
-    redirect_to "/items/#{item.id}"
+    if review.content.empty? || review.title.empty?
+      flash[:alert] = "Please fill in all fields."
+      redirect_to "/items/#{item.id}/reviews/#{review.id}/edit"
+    else
+      redirect_to "/items/#{item.id}"
+    end
   end
 
   def destroy

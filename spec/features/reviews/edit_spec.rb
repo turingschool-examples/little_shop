@@ -39,5 +39,22 @@ RSpec.describe "Edit Review" do
         expect(page).to_not have_content('Wish It Had More Muscles')
       end
     end
+
+    it "I must fill out all form fields" do
+      within "#review-#{@review_7.id}" do
+        expect(page).to have_button("Edit")
+
+        click_button 'Edit'
+      end
+
+      page.select(5, :from => 'Rating')
+      fill_in 'Content', with: ""
+
+      click_on "Edit Review"
+
+      expect(current_path).to eq("/items/#{@ogre.id}/reviews/#{@review_7.id}/edit")
+
+      expect(page).to have_content("Please fill in all fields.")
+    end
   end
 end
