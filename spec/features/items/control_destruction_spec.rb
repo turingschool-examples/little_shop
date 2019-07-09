@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "Control Merchant Destruction" do
+RSpec.describe "Control Item Destruction" do
   describe "As a visitor" do
-    describe "If a merchant has items that have been ordered" do
+    describe "If a item has been ordered" do
       before(:each) do
         @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
         @brian = Merchant.create!(name: 'Brians Bagels', address: '125 Main St', city: 'Denver', state: 'CO', zip: 80218)
@@ -13,13 +13,13 @@ RSpec.describe "Control Merchant Destruction" do
 
         @jori.items << @ogre
       end
-      it "I cannot delete that merchant" do
-        visit "/merchants/#{@megan.id}"
+      it "I cannot delete that item" do
+        visit "/items/#{@ogre.id}"
 
-        click_button "Delete"
+        click_on "Delete"
 
-        expect(current_path).to eq("/merchants/#{@megan.id}")
-        expect(page).to have_content("This merchant has pending orders, cannot be deleted.")
+        expect(current_path).to eq("/items/#{@ogre.id}")
+        expect(page).to have_content("This item has pending orders, cannot be deleted.")
       end
     end
   end

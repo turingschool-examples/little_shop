@@ -45,9 +45,14 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    Item.destroy(params[:id])
-
-    redirect_to '/items'
+    item = Item.find(params[:id])
+    if item.item_orders.include?(params[:id])
+      flash[:alert] = "This item has pending orders, cannot be deleted."
+      redirect_to "/items/#{item.id}"
+    else
+      Item.destroy(params[:id])
+      redirect_to '/items'
+    end
   end
 
   private
