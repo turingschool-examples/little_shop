@@ -1,9 +1,17 @@
 <h1><%= @merchant.name %></h1>
 
+<section id='statistics'>
+  Number of items: <%=  @merchant.count_items %><br>
+  Average Price of Items: <%= @merchant.avg_price_items %><br>
+  Cities Ordered From: <%= @merchant.cities_ordered %><br>
+</section>
+
+
 <section class='address'>
   <h5><%= @merchant.address %></h5>
   <h5><%= @merchant.city %> <%= @merchant.state %> <%= @merchant.zip %></h5>
 </section>
+
 
 <%= button_to 'Items', "/merchants/#{@merchant.id}/items", class: "btn btn-dark btn-sm btn-space", method: :get %>
 <%= button_to 'Edit', "/merchants/#{@merchant.id}/edit", class: "btn btn-dark btn-sm btn-space", method: :get %>
