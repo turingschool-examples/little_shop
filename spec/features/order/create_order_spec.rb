@@ -65,5 +65,17 @@ RSpec.describe "As a vistor" do
 
     end
 
+    it "I am notified when I shipping info is not filled out" do
+      fill_in 'Name', with: "Billy Bob"
+      fill_in 'City', with: "Denver"
+      fill_in 'State', with: "CO"
+      fill_in 'Zip', with: "80210"
+
+      click_button 'Create Order'
+
+      expect(page).to have_content("Please complete all shipping info")
+      expect(current_path).to eq('/order/new')
+    end
+
   end
 end

@@ -5,12 +5,20 @@ class OrderController < ApplicationController
   end
 
   def create
-    @order = Order.create(order_params)
+    @order = Order.new(order_params)
     @contents = session[:cart]
-    @contents.each do |item, quantity|
-      ItemOrder.create(order_id: @order.id, item_id: item, quantity: quantity, price: Item.find(item).price)
+    if @order.save && (@order.zip.class == Integer) && (@order.zip.digits.length == 5)
+      @contents.each do |item, quantity|
+        ItemOrder.create(order_id: @order.id,
+          item_id: item,
+          quantity: quantity,
+          price: Item.find(item).price)
+      end
+      redirect_to "/order/#{@order.id}"
+    else
+      flash[:notice] = "Please complete all shipping info"
+      redirect_to order_new_path
     end
-    redirect_to "/order/#{@order.id}"
   end
 
   def show
