@@ -1,6 +1,7 @@
-<%= link_to 'New Merchant', '/merchants/new' %>
+<h1>Merchants</h1>
 <% @merchants.each do |merchant| %>
   <section id='merchant-<%= merchant.id %>'>
-    <h2><%= link_to merchant.name, "/merchants/#{merchant.id}" %></h2>
+    <h3><%= link_to merchant.name, "/merchants/#{merchant.id}" %></h3>
   </section>
 <% end %>
+<%= button_to 'New Merchant', '/merchants/new', class: "btn btn-dark btn-sm" %>
