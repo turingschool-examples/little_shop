@@ -34,4 +34,9 @@ class CartController < ApplicationController
   cart.increase_count(item.id)
   redirect_to "/cart"
     end
+
+    def destroy
+    session.delete(:cart)
+    redirect_to '/cart'
   end
+end

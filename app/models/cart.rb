@@ -34,8 +34,4 @@ class Cart
   def item_count(item_id)
     @contents[item_id.to_s]
   end
-
-  def empty_cart(item_id)
-    @contents.destroy_all
-  end
 end
