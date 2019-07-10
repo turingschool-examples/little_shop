@@ -5,6 +5,9 @@ class MerchantsController < ApplicationController
 
   def show
     @merchant = Merchant.find(params[:id])
+    @total_merchant_items = @merchant.total_merchant_items
+    @merchant_average_price = @merchant.merchant_average_price
+    @distinct_cities = @merchant.distinct_cities
   end
 
   def new

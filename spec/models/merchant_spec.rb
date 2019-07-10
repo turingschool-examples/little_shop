@@ -31,7 +31,7 @@ RSpec.describe Merchant do
       @order_1 = Order.create!(name: 'John Smith', address: '123 Donut St', city: 'Denver', state: 'CO', zip: 22222)
       @order_item_1 = OrderItem.create!(item: @ogre, order: @order_1, price: @ogre.price, quantity: 2)
     end
-    
+
     it 'total_merchant_items' do
 
       expect(@megan.total_merchant_items).to eq(2)
@@ -48,9 +48,3 @@ RSpec.describe Merchant do
     end
   end
 end
-# As a visitor
-# When I visit a merchant's show page
-# I see statistics for that merchant, including:
-# - count of items for that merchant
-# - average price of that merchant's items
-# - Distinct cities where my items have been ordered

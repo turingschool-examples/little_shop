@@ -16,8 +16,7 @@ class Merchant < ApplicationRecord
   end
 
   def merchant_average_price
-    price = self.items.pluck("sum(price)")
-    price.sum / total_merchant_items
+    self.items.average(:price)
   end
 
   def distinct_cities
