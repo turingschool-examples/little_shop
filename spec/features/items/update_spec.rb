@@ -35,7 +35,7 @@ RSpec.describe 'Update Item Page' do
       expect(current_path).to eq(item_path(@ogre))
       expect(page).to have_content(name)
       expect(page).to have_content(description)
-      # expect(page).to have_content("Price: #{number_to_currency(price)}")
+      expect(page).to have_content("Price: #{number_to_currency(price)}")
       expect(page).to have_content("Active")
       expect(page).to have_content("Inventory: #{inventory}")
     end
