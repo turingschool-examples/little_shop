@@ -15,4 +15,8 @@ class Merchant < ApplicationRecord
     total / total_inventory
   end
 
+  def cities
+    self.items.joins(:orders).distinct("orders.city").order("orders.city").pluck("orders.city")
+  end
+
 end
