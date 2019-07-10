@@ -25,7 +25,7 @@ RSpec.describe Item do
       review_4 = ogre.reviews.create!(title: 'Better than amazing!', content: 'The best Ogre anyone ever saw!', rating: 4)
 
       expect(ogre.average_rating).to eq(3.5)
-      expect(ogre.sorted_reviews).to eq([[review_1,review_2,review_4],[review_2,review_4,review_3]])
+      expect(ogre.sorted_reviews).to eq([review_1,review_2,review_4,review_3])
     end
   end
 end
