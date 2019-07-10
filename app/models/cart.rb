@@ -1,5 +1,5 @@
 class Cart
-  attr_reader :contents
+  attr_accessor :contents
 
   def initialize(contents)
     if contents
@@ -49,5 +49,15 @@ class Cart
 
   def update_quantity(item_id, new_quantity)
     @contents[item_id] = new_quantity.to_i
+  end
+
+  def add_cart_to_order_items(order)
+    items.each do |item|
+      order.order_items.create!(
+        quantity: item_count(item.id),
+        price: item.price,
+        item_id: item.id
+      )
+    end
   end
 end

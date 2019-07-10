@@ -4,13 +4,10 @@ RSpec.describe 'Review Creation' do
   describe "When I visit an item's show page" do
     before :each do
       @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
-      @brian = Merchant.create!(name: 'Brians Bagels', address: '125 Main St', city: 'Denver', state: 'CO', zip: 80218)
       @ogre = @megan.items.create!(name: 'Ogre', description: "I'm an Ogre!", price: 20, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 5 )
-      @giant = @megan.items.create!(name: 'Giant', description: "I'm a Giant!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
-      @hippo = @brian.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
+      visit item_path(@ogre)
     end
     it "I see a link to add a new review for this item." do
-      visit item_path(@ogre)
       click_on "Add New Review"
 
       expect(current_path).to eq("/items/#{@ogre.id}/reviews/new")
@@ -34,7 +31,6 @@ RSpec.describe 'Review Creation' do
     end
 
     it "I must fill out all form fields" do
-      visit item_path(@ogre)
       click_on "Add New Review"
 
       page.select(5, :from => 'Rating')
@@ -42,7 +38,6 @@ RSpec.describe 'Review Creation' do
 
       click_on "Create Review"
       expect(current_path).to eq("/items/#{@ogre.id}/reviews/new")
-
       expect(page).to have_content("Please fill in all fields.")
     end
   end

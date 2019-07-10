@@ -5,13 +5,11 @@ RSpec.describe 'Merchant Show Page' do
     before :each do
       @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
       @brian = Merchant.create!(name: 'Brians Bagels', address: '125 Main St', city: 'Denver', state: 'CO', zip: 80218)
+      visit merchant_path(@megan)
     end
 
     it 'I see merchant name and address' do
-      visit merchant_path(@megan)
-
       expect(page).to have_content(@megan.name)
-
       within '.address' do
         expect(page).to have_content(@megan.address)
         expect(page).to have_content("#{@megan.city} #{@megan.state} #{@megan.zip}")
@@ -19,11 +17,7 @@ RSpec.describe 'Merchant Show Page' do
     end
 
     it 'I see a link to this merchants items' do
-      visit merchant_path(@megan)
-
-      click_link "Items"
-
-
+      expect(page).to have_link('Items')
     end
   end
 end

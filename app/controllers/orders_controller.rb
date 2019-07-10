@@ -2,8 +2,8 @@ class OrdersController < ApplicationController
   include ActionView::Helpers::TextHelper
 
   def show
-    @items = cart.items
     @order = Order.find(params[:id])
+    @items =  @order.items
   end
 
   def new
@@ -16,14 +16,9 @@ class OrdersController < ApplicationController
       flash[:alert] = "Please fill in all fields."
       redirect_to new_order_path
     else
-      cart.items.each do |item|
-        order.order_items.create!(
-          quantity: cart.item_count(item.id),
-          price: item.price,
-          item_id: item.id
-        )
-      end
-    redirect_to order_path(order)
+      cart.add_cart_to_order_items(order)
+      session[:cart] = {}
+      redirect_to order_path(order)
     end
   end
 

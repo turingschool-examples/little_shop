@@ -8,13 +8,7 @@ class Merchant < ApplicationRecord
   validates :zip, numericality: { message: "must be valid."}
 
   def merchant_orders
-    #items.joins(:orders).empty?
-    orders = Order.all
-    orders.flat_map do |order|
-      order.items.map do |item|
-        item.merchant_id.to_s
-      end
-    end
+    items.joins(:orders).pluck(:merchant_id)
   end
 
   def average_price

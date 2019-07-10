@@ -11,9 +11,7 @@ class CartController < ApplicationController
   end
 
   def show
-    @items = cart.contents.map do |item_id, quanitity|
-      Item.find(item_id)
-    end
+    @items = cart.items
   end
 
   def destroy
@@ -24,28 +22,27 @@ class CartController < ApplicationController
   def remove_item
     cart.remove_item(params[:item_id])
     session[:cart] = cart.contents
-
+    flash[:notice] = "Item has been removed from your cart."
     redirect_to cart_path
   end
 
   def update
     item_id = params[:item_id]
+    current_quantity = session[:cart][item_id]
+    new_quantity = params[current_quantity.to_s]
 
-      current_quantity = session[:cart][item_id]
-      new_quantity = params[current_quantity.to_s]
+    if new_quantity.to_i > Item.find(item_id).inventory
+      flash[:alert] = "Sorry, there is not enough in stock for this order."
+      redirect_to cart_path
+    elsif new_quantity.to_i <= 0
+      session[:cart].delete(item_id)
+      flash[:notice] = "Item has been removed from your cart."
+      redirect_to cart_path
+    else
+      cart.update_quantity(params[:item_id], new_quantity)
+      session[:cart] = cart.contents
 
-      if new_quantity.to_i > Item.find(item_id).inventory
-        flash[:alert] = "Sorry, there is not enough in stock for this order."
-        redirect_to cart_path
-      elsif new_quantity.to_i <= 0
-        session[:cart].delete(item_id)
-        flash[:alert] = "Item has been removed from your cart."
-        redirect_to cart_path
-      else
-        cart.update_quantity(params[:item_id], new_quantity)
-        session[:cart] = cart.contents
-
-        redirect_to cart_path
-      end
+      redirect_to cart_path
+    end
   end
 end

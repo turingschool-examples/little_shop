@@ -8,7 +8,8 @@ RSpec.describe Cart do
       @ogre = @megan.items.create!(name: 'Ogre', description: "I'm an Ogre!", price: 20, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 5 )
       @giant = @megan.items.create!(name: 'Giant', description: "I'm a Giant!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
       @hippo = @brian.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
-
+      @jori = Order.create!(name: "Jori", address: "12 Market St", city: "Denver", state: "CO", zipcode: "80021")
+      @jori.items << @ogre
       @cart = Cart.new(nil)
       @cart.add_item(@ogre.id)
       @cart.add_item(@giant.id)
@@ -29,10 +30,15 @@ RSpec.describe Cart do
       end
     end
 
-      describe '#items' do
-        it 'returns item objects' do
-
+    describe '#items' do
+      it 'returns item objects' do
         expect(@cart.items).to eq([@ogre, @giant, @hippo])
+      end
+    end
+
+    describe '#add_cart_to_order_items' do
+      it 'should instantiate order_items' do
+        expect(@cart.add_cart_to_order_items(@jori)).to eq([@ogre, @giant, @hippo])
       end
     end
 
@@ -46,44 +52,39 @@ RSpec.describe Cart do
         }
 
         expect(@cart.contents).to eq(expected)
-        end
       end
+    end
 
-      describe '#item_count' do
-        it 'should display count of items in the cart' do
-
-          expect(@cart.item_count(@ogre.id)).to eq(2)
-          expect(@cart.item_count(@giant.id)).to eq(2)
-          expect(@cart.item_count(@hippo.id)).to eq(1)
-        end
+    describe '#item_count' do
+      it 'should display count of items in the cart' do
+        expect(@cart.item_count(@ogre.id)).to eq(2)
+        expect(@cart.item_count(@giant.id)).to eq(2)
+        expect(@cart.item_count(@hippo.id)).to eq(1)
       end
+    end
 
-      describe '#total' do
-        it 'displays the total items in the cart' do
-
+    describe '#total' do
+      it 'displays the total items in the cart' do
         expect(@cart.total).to eq(5)
       end
     end
 
     describe '#subtotal' do
       it 'displays the total price for each item in the cart' do
-
-      expect(@cart.subtotal(@ogre.id)).to eq(40)
-      expect(@cart.subtotal(@giant.id)).to eq(100)
-      expect(@cart.subtotal(@hippo.id)).to eq(50)
+        expect(@cart.subtotal(@ogre.id)).to eq(40)
+        expect(@cart.subtotal(@giant.id)).to eq(100)
+        expect(@cart.subtotal(@hippo.id)).to eq(50)
       end
     end
 
     describe '#grand_total' do
       it 'displays the total price for all items in the cart combined' do
-
-      expect(@cart.grand_total).to eq(190)
+        expect(@cart.grand_total).to eq(190)
       end
     end
 
     describe '#empty?' do
       it 'returns true if empty else false' do
-
         expect(@cart.empty?).to eq(false)
       end
     end
@@ -111,7 +112,6 @@ RSpec.describe Cart do
         }
 
         @cart.update_quantity(@hippo.id.to_s, 3)
-
         expect(@cart.contents).to eq(expected)
       end
     end

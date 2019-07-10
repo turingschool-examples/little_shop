@@ -11,7 +11,7 @@ RSpec.describe 'New Merchant Creation' do
     end
 
     it 'I can use the new merchant form to create a new merchant' do
-      visit '/merchants/new'
+      visit new_merchant_path
 
       name = 'Megans Marmalades'
       address = '123 Main St'
@@ -32,7 +32,7 @@ RSpec.describe 'New Merchant Creation' do
     end
 
     it "I can't submit without a name" do
-      visit '/merchants/new'
+      visit new_merchant_path
 
       address = '123 Main St'
       city = "Denver"
@@ -50,7 +50,7 @@ RSpec.describe 'New Merchant Creation' do
     end
 
     it "I can't submit without an address" do
-      visit '/merchants/new'
+      visit new_merchant_path
 
       name = 'Megans Marmalades'
       city = "Denver"
@@ -68,7 +68,7 @@ RSpec.describe 'New Merchant Creation' do
     end
 
     it "I can't submit without an address" do
-      visit '/merchants/new'
+      visit new_merchant_path
 
       name = 'Megans Marmalades'
       address = '123 Main St'
@@ -86,7 +86,7 @@ RSpec.describe 'New Merchant Creation' do
     end
 
     it "I can't submit without an address" do
-      visit '/merchants/new'
+      visit new_merchant_path
 
       name = 'Megans Marmalades'
       address = '123 Main St'
@@ -104,7 +104,7 @@ RSpec.describe 'New Merchant Creation' do
     end
 
     it "I can't submit without an address" do
-      visit '/merchants/new'
+      visit new_merchant_path
 
       name = 'Megans Marmalades'
       address = '123 Main St'
