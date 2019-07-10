@@ -31,4 +31,10 @@ RSpec.describe Merchant do
     end
   end
 
+  describe "has_items_in_orders" do
+    it "Check it a merchant has items in past orders." do
+
+    end
+  end
+
 end
