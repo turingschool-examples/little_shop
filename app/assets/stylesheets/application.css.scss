@@ -1,0 +1,289 @@
+// Body:
+.nowrap {
+    white-space: nowrap;
+}
+// Nav::
+  nav
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+  nav
+    li {
+    float: left;
+    }
+  nav
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    // Form:
+    .rating {
+      unicode-bidi: bidi-override;
+      direction: rtl;
+      float:left;
+    }
+    .rating > span {
+      display: inline-block;
+      position: relative;
+      width: 1.1em;
+    }
+
+    .rating > span:hover:before,
+
+    .rating > span:hover ~ span:before {
+
+    content: "\2605";
+    position: absolute;
+}
+
+  //img
+
+  img {
+  border: 1px solid #ddd; /* Gray border */
+  border-radius: 4px;  /* Rounded border */
+  padding: 5px; /* Some padding */
+  width: 150px; /* Set a small width */
+  }
+
+  /* Add a hover effect (blue shadow) */
+  img:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+  }
+
+  //increment
+
+  .input-group {
+    clear: both;
+    margin: 15px 0;
+    position: relative;
+  }
+
+  .input-group input[type='button'] {
+    background-color: #eeeeee;
+    min-width: 38px;
+    width: auto;
+    transition: all 300ms ease;
+  }
+
+  .input-group .button-minus,
+  .input-group .button-plus {
+    font-weight: bold;
+    height: 38px;
+    padding: 0;
+    width: 38px;
+    position: relative;
+  }
+
+  .input-group .quantity-field {
+    position: relative;
+    height: 38px;
+    left: -6px;
+    text-align: center;
+    width: 62px;
+    display: inline-block;
+    font-size: 13px;
+    margin: 0 0 5px;
+    resize: vertical;
+  }
+
+  .button-plus {
+    left: -13px;
+  }
+
+// Inline
+#outer
+{
+    width:100%;
+    text-align: center;
+}
+.inner
+{
+    display: inline-block;
+}
+
+// Trash Can
+* {
+   box-sizing: border-box;
+}
+
+.middle {
+  margin: 20px auto;
+}
+
+.trash-can.tiny {
+  margin-top: 100px;
+
+}
+
+.trash-can {
+  box-sizing: border-box;
+  width: 17px;
+  height: 19px;
+  position: relative;
+  cursor: pointer;
+}
+
+.top {
+  height: 3px;
+  width: 100%;
+  position: relative;
+  top: -1px;
+
+  -webkit-transition: all 100ms ease-out;
+     -moz-transition: all 100ms ease-out;
+       -o-transition: all 100ms ease-out;
+          transition: all 100ms ease-out;
+}
+
+.top .handle {
+  width: 11px;
+  height: 6px;
+  margin: 0 auto;
+  position: relative;
+  left: 0px;
+  border-radius: 50% 50%;
+  border: 2px solid #8cbfed;
+}
+
+.top .handle:after {
+  content: "";
+  display: block;
+  width: 65%;
+  height: 50%;
+  position: relative;
+  top: 25%;
+  left: 17.5%;
+  border-radius: 50% 50%;
+  background: #FFF;
+}
+
+.top .base {
+  height: 2px;
+  position: relative;
+  bottom: 2px;
+  background: #8cbfed;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.body {
+  width: 13px;
+  height: 16px;
+  position: relative;
+  margin: 0 auto;
+  border: 2px solid #8cbfed;
+  background: #FFF;
+}
+
+.body .line {
+  background: #8cbfed;
+  position: absolute;
+  height: 10px;
+  width: 1px;
+  left: 1px;
+  top: 1px;
+}
+
+.body .line.second {
+  left: 3.5px;
+}
+
+.body .line.third {
+  left: 7px;
+}
+
+
+.trash-can:hover .top {
+  transform: rotate(25deg) skew(0deg) translate(2px, -7px);
+}
+
+.bounce {
+  -webkit-animation-name: bounce;
+     -moz-animation-name: bounce;
+       -o-animation-name: bounce;
+          animation-name: bounce;
+
+  -webkit-animation-duration: 0.5s;
+     -moz-animation-duration: 0.5s;
+       -o-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+}
+
+@-webkit-keyframes bounce {
+  0% {
+    transform:translateX(0%) scale(2);
+  }
+
+  100% {
+    transform:translateX(0%) scale(1);
+    opacity: 0.5;
+  }
+}
+
+
+.btn-glyphicon {
+    padding:8px;
+    background:#ffffff;
+    margin-right:4px;
+}
+.icon-btn {
+    padding: 1px 15px 3px 2px;
+    border-radius:50px;
+}
+
+h3.h3{text-align:center;margin:1em;text-transform:capitalize;font-size:1.7em;}
+
+// index
+body {
+  padding-top: 70px;
+}
+.btn-grey{
+    background-color:#D8D8D8;
+	color:#FFF;
+}
+.rating-block{
+	background-color:#FAFAFA;
+	border:1px solid #EFEFEF;
+	padding:15px 15px 20px 15px;
+	border-radius:3px;
+}
+.bold{
+	font-weight:700;
+}
+.padding-bottom-7{
+	padding-bottom:7px;
+}
+
+.review-block{
+	background-color:#FAFAFA;
+	border:1px solid #EFEFEF;
+	padding:15px;
+	border-radius:3px;
+	margin-bottom:15px;
+}
+.review-block-name{
+	font-size:12px;
+	margin:10px 0;
+}
+.review-block-date{
+	font-size:12px;
+}
+.review-block-rate{
+	font-size:13px;
+	margin-bottom:15px;
+}
+.review-block-title{
+	font-size:15px;
+	font-weight:700;
+	margin-bottom:10px;
+}
+.review-block-description{
+	font-size:13px;
+}
