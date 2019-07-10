@@ -37,6 +37,7 @@ class ReviewsController < ApplicationController
     else
       redirect_to "/items/#{review.item_id}"
     end
+
   end
 
   def destroy

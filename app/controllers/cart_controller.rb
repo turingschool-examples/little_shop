@@ -20,18 +20,18 @@ class CartController < ApplicationController
   end
 
   def remove_item
-  cart = Cart.new(session[:cart])
-  item = Item.find(params[:item_id])
-  cart.remove_item(item.id)
-  redirect_to "/cart"
-    end
+    cart = Cart.new(session[:cart])
+    item = Item.find(params[:item_id])
+    cart.remove_item(item.id)
+    redirect_to "/cart"
+  end
 
   def decrease_count
-  cart = Cart.new(session[:cart])
-  item = Item.find(params[:item_id])
-  cart.decrease_count(item.id)
-  redirect_to "/cart"
-    end
+    cart = Cart.new(session[:cart])
+    item = Item.find(params[:item_id])
+    cart.decrease_count(item.id)
+    redirect_to "/cart"
+  end
 
   def increase_count
   cart = Cart.new(session[:cart])
@@ -43,5 +43,6 @@ class CartController < ApplicationController
     def destroy
     session.delete(:cart)
    redirect_to '/cart'
+
   end
 end
