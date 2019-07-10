@@ -25,5 +25,10 @@ RSpec.describe Merchant do
     end
   end
 
+  describe "cities" do
+    it "Find the distinct cities of a merchants sold items" do
+
+    end
+  end
 
 end
