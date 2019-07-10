@@ -14,25 +14,8 @@ class MerchantsController < ApplicationController
 
   def create
     @merchant = Merchant.new(merchant_params)
-    if @merchant.zip.to_s.length != 5 || @merchant.zip.to_s != @merchant.zip.to_i.to_s
-      flash[:notice] = "Merchant not created! Bad zip code."
-      render :new
-    elsif @merchant.name == nil || @merchant.name.length < 1
-      flash[:notice] = "Merchant must have a name. Please input all information."
-      render :new
-    elsif @merchant.address == nil || @merchant.address.to_s.length < 1
-      flash[:notice] = "Merchant must have an address. Please input all information."
-      render :new
-    elsif @merchant.city == nil || @merchant.city.length < 1
-      flash[:notice] = "Merchant must have a city. Please input all information."
-      render :new
-    elsif @merchant.state == nil || @merchant.state.length < 1
-      flash[:notice] = "Merchant must have a state. Please input all information."
-      render :new
-    else
       @merchant.save
       redirect_to merchants_path
-    end
   end
 
   def edit
@@ -44,9 +27,7 @@ class MerchantsController < ApplicationController
   end
 
   def destroy
-    # if I click on the delete button, I see a flash message indicating that the merchant can not be deleted.
-    # singular if statement?
-    if @order_items.items.merchants.includes?(@merchant)
+    if @merchant.has_items_in_orders?
       flash[:notice] = "You cannot delete this merchant."
       render :new
     else
