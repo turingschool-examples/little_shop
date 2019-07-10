@@ -7,10 +7,9 @@ RSpec.describe Merchant do
 
   describe "Merchant Methods" do
     before(:each) do
-
-
+      @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
+      @brian = Merchant.create!(name: 'Brians Bagels', address: '125 Main St', city: 'Denver', state: 'CO', zip: 80218)
     end
-
   end
 
   describe "total_inventory" do
