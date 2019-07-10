@@ -15,8 +15,12 @@ class Cart
   end
 
   def decrease_count(item_id)
+    unless @contents[item_id.to_s] <= 0
     @contents[item_id.to_s] -= 1
+    else
+    @contents.delete(item_id.to_s)
   end
+end
 
   def increase_count(item_id)
     @contents[item_id.to_s] += 1

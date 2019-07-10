@@ -1,8 +1,6 @@
-<h2>New Review</h2>
-
+<h2>New Review for <%= @item.name %></h2>
   <%= form_tag "/items/#{@item.id}/reviews" do %>
   <%= label_tag :rating %>
-  <%= text_tag :rating %>
   <div class="rating">
   <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
   </div>

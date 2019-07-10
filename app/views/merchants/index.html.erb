@@ -2,7 +2,7 @@
 <% @merchants.each do |merchant| %>
   <section id='merchant-<%= merchant.id %>'>
     <ul>
-    <li><%= link_to merchant.name, "/merchants/#{merchant.id}" %></li>
+    <li><h3><%= link_to merchant.name, "/merchants/#{merchant.id}" %></h3></li>
   </ul>
   </section>
 <% end %>

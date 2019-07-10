@@ -33,10 +33,10 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @item.update(item_params)
     if @item.save
-      flash[:success] = "The item has been updated!"
+      flash[:success] = "#{@item.name} has been updated!"
     redirect_to "/items/#{@item.id}"
   else
-      flash[:error] = "Error. Try again"
+    flash[:error] = @item.errors.full_messages.to_sentence
       render :edit
   end
   end
