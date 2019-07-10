@@ -37,5 +37,7 @@ RSpec.describe 'Merchant Show Page' do
       expect(page).to_not have_button('Delete')
 
     end
+
+    it ''
   end
 end

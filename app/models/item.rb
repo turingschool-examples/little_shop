@@ -19,7 +19,6 @@ class Item < ApplicationRecord
   end
 
   def item_ordered?
-    # binding.pry
     self.orders.count != 0
   end
 end
