@@ -1,13 +1,9 @@
 class Item < ApplicationRecord
   belongs_to :merchant
   has_many :reviews
-<<<<<<< HEAD
-  validates_presence_of :name, :description, :price, :inventory
-
-=======
->>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea
   has_many :order_items
   has_many :orders, through: :order_items
+  validates_presence_of :name, :description, :price, :inventory
 
 
   def average_rating

@@ -300,6 +300,9 @@
         null
       ],
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde
       "/Users/willthompson/turing/mod_2/projects/little_shop/app/helpers/application_helper.rb": [
         1,
         1,
@@ -352,7 +355,10 @@
         null
       ],
       "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/items/index_spec.rb": [
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde
       "/Users/loom/turing/R2moudle/projects/little_shop/app/helpers/application_helper.rb": [
         1,
         null
@@ -361,8 +367,11 @@
         1,
         null
       ],
+<<<<<<< HEAD
       "/Users/loom/turing/R2moudle/projects/little_shop/spec/features/items/index_spec.rb": [
 >>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea
+=======
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde
         1,
         1,
         null,
@@ -415,10 +424,14 @@
         null
       ],
 <<<<<<< HEAD
+<<<<<<< HEAD
       "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/items/merchant_index_spec.rb": [
 =======
       "/Users/loom/turing/R2moudle/projects/little_shop/spec/features/items/merchant_index_spec.rb": [
 >>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea
+=======
+      "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/items/merchant_index_spec.rb": 
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde
         1,
         1,
         null,
@@ -459,12 +472,17 @@
         null,
         null
       ],
+<<<<<<< HEAD
 <<<<<<< HEAD
       "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/items/new_spec.rb": [
 =======
       "/Users/loom/turing/R2moudle/projects/little_shop/spec/features/items/new_spec.rb": [
 >>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea
         1,
+=======
+      "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/items/new_spec.rb": [
+]        1,
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde
         null,
         1,
         1,
@@ -506,11 +524,16 @@
         null,
         null
       ],
+<<<<<<< HEAD
 <<<<<<< HEAD
       "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/items/show_spec.rb": [
 =======
       "/Users/loom/turing/R2moudle/projects/little_shop/spec/features/items/show_spec.rb": [
 >>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea
+=======
+      "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/items/show_spec.rb": [
+
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde
         1,
         null,
         1,
@@ -537,11 +560,16 @@
         null,
         null
       ],
+<<<<<<< HEAD
 <<<<<<< HEAD
       "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/items/update_spec.rb": [
 =======
       "/Users/loom/turing/R2moudle/projects/little_shop/spec/features/items/update_spec.rb": [
 >>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea
+=======
+      "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/items/update_spec.rb": [
+      "/Users/loom/turing/R2moudle/projects/little_shop/spec/features/items/update_spec.rb": [
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde
         1,
         null,
         1,
@@ -585,11 +613,15 @@
         null,
         null
       ],
+<<<<<<< HEAD
 <<<<<<< HEAD
       "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/merchant/destroy_spec.rb": [
 =======
       "/Users/loom/turing/R2moudle/projects/little_shop/spec/features/merchant/destroy_spec.rb": [
 >>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea
+=======
+      "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/merchant/destroy_spec.rb": [
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde
         1,
         null,
         1,
@@ -610,11 +642,16 @@
         null,
         null
       ],
+<<<<<<< HEAD
 <<<<<<< HEAD
       "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/merchant/index_spec.rb": [
 =======
       "/Users/loom/turing/R2moudle/projects/little_shop/spec/features/merchant/index_spec.rb": [
 >>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea
+=======
+      "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/merchant/index_spec.rb": [
+
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde
         1,
         null,
         1,
@@ -646,11 +683,16 @@
         null,
         null
       ],
+<<<<<<< HEAD
 <<<<<<< HEAD
       "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/merchant/new_spec.rb": [
 =======
       "/Users/loom/turing/R2moudle/projects/little_shop/spec/features/merchant/new_spec.rb": [
 >>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea
+=======
+      "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/merchant/new_spec.rb": [
+
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde
         1,
         null,
         1,
@@ -687,10 +729,15 @@
         null
       ],
 <<<<<<< HEAD
+<<<<<<< HEAD
       "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/merchant/show_spec.rb": [
 =======
       "/Users/loom/turing/R2moudle/projects/little_shop/spec/features/merchant/show_spec.rb": [
 >>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea
+=======
+      "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/merchant/show_spec.rb": [
+
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde
         1,
         null,
         1,
@@ -717,6 +764,7 @@
         1,
         null,
         null,
+<<<<<<< HEAD
 <<<<<<< HEAD
         null
       ],
@@ -728,6 +776,16 @@
       ],
       "/Users/loom/turing/R2moudle/projects/little_shop/spec/features/merchant/update_spec.rb": [
 >>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea
+=======
+        null
+      ],
+      "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/merchant/update_spec.rb": [
+        null,
+        null,
+        null
+      ],
+    
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde
         1,
         null,
         1,
@@ -774,10 +832,15 @@
         null
       ],
 <<<<<<< HEAD
+<<<<<<< HEAD
       "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/navigation_spec.rb": [
 =======
       "/Users/loom/turing/R2moudle/projects/little_shop/spec/features/navigation_spec.rb": [
 >>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea
+=======
+      "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/navigation_spec.rb": [
+
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde
         1,
         null,
         1,
@@ -806,6 +869,7 @@
         null,
         null
       ],
+<<<<<<< HEAD
 <<<<<<< HEAD
       "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/orders/new_spec.rb": [
 =======
@@ -836,21 +900,22 @@
         null,
         1,
         1,
+=======
+      "/Users/willthompson/turing/mod_2/projects/little_shop/spec/features/orders/new_spec.rb": [
+
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde
         1,
         null,
         1,
         1,
         1,
-        null,
         1,
-        null,
-        1,
-        null,
         1,
         1,
         1,
         1,
         null,
+<<<<<<< HEAD
 <<<<<<< HEAD
         0,
         0,
@@ -873,28 +938,24 @@
 =======
       "/Users/loom/turing/R2moudle/projects/little_shop/spec/features/orders/show_spec.rb": [
 >>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea
+=======
+        1,
+        1,
+        null,
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde
+        1,
+        1,        0,
+        null,
+        null,
+        1,
+        1,
         1,
         null,
         1,
         1,
         1,
-        1,
-        1,
-        1,
         null,
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
+<<<<<<< HEAD
 <<<<<<< HEAD
         0,
         0,
@@ -929,11 +990,17 @@
         1,
         1,
         1,
+=======
+        1,
+        null,
+        1,
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde
         null,
         1,
         1,
         1,
         1,
+<<<<<<< HEAD
         1,
 >>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea
         null,
@@ -968,17 +1035,14 @@
       "/Users/loom/turing/R2moudle/projects/little_shop/spec/features/reviews/delete_spec.rb": [
 >>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea
         1,
+=======
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde
         null,
-        1,
-        1,
-        1,
-        1,
         0,
         0,
         0,
         0,
-        0,
-        0,
+<<<<<<< HEAD
         0,
         null,
         null,
@@ -1089,17 +1153,16 @@
         null,
         null,
         1,
+=======
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde
+        1,
+        1,
         1,
         1,
         null,
         null,
         null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        null,
+<<<<<<< HEAD
         1,
         1,
         1,
@@ -1966,3 +2029,7 @@
 >>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea
   }
 }
+=======
+        null,
+        null
+>>>>>>> 02a3869b79bbd952f7c031ec209d672b81bbdbde

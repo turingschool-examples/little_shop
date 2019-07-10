@@ -34,7 +34,6 @@ class CartController < ApplicationController
   end
 
   def increase_count
-<<<<<<< HEAD
   cart = Cart.new(session[:cart])
   item = Item.find(params[:item_id])
   cart.increase_count(item.id)
@@ -44,11 +43,5 @@ class CartController < ApplicationController
     def destroy
     session.delete(:cart)
    redirect_to '/cart'
-=======
-    cart = Cart.new(session[:cart])
-    item = Item.find(params[:item_id])
-    cart.increase_count(item.id)
-    redirect_to "/cart"
->>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea
   end
 end
