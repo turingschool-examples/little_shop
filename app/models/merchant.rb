@@ -7,5 +7,12 @@ class Merchant < ApplicationRecord
     binding.pry
   end
 
+  def ave_item_price
+    # .average isnt working for this for some reason when i was prying into it.
+    total = self.items.sum do |item|
+              item.price
+            end
+    total / total_inventory
+  end
 
 end
