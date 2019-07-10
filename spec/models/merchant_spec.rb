@@ -28,7 +28,8 @@ RSpec.describe Merchant do
 
   describe "ave_item_price" do
     it "Get the average item price of a merchants items in an order" do
-
+      expect(@megan.ave_item_price).to eq(25)
+      expect(@brian.ave_item_price).to eq(50)
     end
   end
 
