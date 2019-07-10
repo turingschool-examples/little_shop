@@ -13,4 +13,11 @@ RSpec.describe Merchant do
 
   end
 
+  describe "total_inventory" do
+    it "Check the total inventory of a merchant in an order" do
+
+    end
+  end
+
+
 end
