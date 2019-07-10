@@ -3,7 +3,7 @@ class Merchant < ApplicationRecord
   validates_presence_of :name, :address, :city, :state, :zip
 
   def has_items_in_orders?
-    items.joins(:order_items).exists?
+    items.joins(:orders).exists?
   end
 
   def top_three_items
