@@ -1,5 +1,1 @@
-<h2>New Item</h2>
-<%= form_tag merchant_items_path(@merchant) do %>
-  <%= render 'fields' %>
-  <%= submit_tag 'Create Item' %>
-<% end %>
+<%= render 'fields', title: 'New Item', path: merchant_items_path(@merchant), method: :post, button_text: 'Create Item' %>

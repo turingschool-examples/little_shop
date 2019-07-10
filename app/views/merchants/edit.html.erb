@@ -1,5 +1,1 @@
-<h2>Edit Merchant</h2>
-<%= form_tag merchant_path(@merchant), method: :patch do %>
-  <%= render 'fields' %>
-  <%= submit_tag 'Update Merchant' %>
-<% end %>
+<%= render 'fields', title: 'Edit Merchant', path: merchant_path(@merchant), method: :patch, button_text: 'Update Merchant' %>

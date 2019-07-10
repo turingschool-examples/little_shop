@@ -11,7 +11,7 @@ RSpec.describe 'New Review' do
     it 'I can create a review for an item' do
       title = 'Neat!'
       content = "It's an Ogre!"
-      rating = 5
+      rating = '5'
 
       visit item_path(@ogre)
 
@@ -35,7 +35,7 @@ RSpec.describe 'New Review' do
     it 'I see a flash message when info is missing' do
       title = 'Neat!'
       content = "It's an Ogre!"
-      rating = 5
+      rating = '5'
       visit item_path(@ogre)
       click_link 'Write Review'
 

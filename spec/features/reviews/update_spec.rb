@@ -37,7 +37,7 @@ RSpec.describe 'Edit Review ' do
 
       fill_in :title, with: 'Rawrrr!'
       fill_in :content, with: 'Grawwr?!'
-      select(5, from: :rating)
+      select('5', from: :rating)
       click_button("Update Review")
 
       expect(current_path).to eq(item_path(@ogre))
