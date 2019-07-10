@@ -13,19 +13,19 @@
   <section id="shipping-info">
     <%= form_tag "/orders/#{@order.id}" do %>
       <%= label_tag :name %>
-      <%= text_field_tag :name %>
+      <%= text_field_tag :name, nil %>
 
       <%= label_tag :address %>
-      <%= text_field_tag :address %>
+      <%= text_field_tag :address, nil %>
 
       <%= label_tag :city %>
-      <%= text_field_tag :city %>
+      <%= text_field_tag :city, nil %>
 
       <%= label_tag :state %>
-      <%= text_field_tag :state %>
+      <%= text_field_tag :state, nil %>
 
       <%= label_tag :zip %>
-      <%= text_field_tag :zip %>
+      <%= text_field_tag :zip, nil %>
 
       <%= submit_tag "Create Order" %>
   </section>

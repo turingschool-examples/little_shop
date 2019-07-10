@@ -7,11 +7,15 @@ class ReviewsController < ApplicationController
 
   def create
     review = Review.create(review_params)
-    redirect_to "/items/#{review.item_id}"
+    if !review.save
+      redirect_to "/items/#{review.item_id}/reviews/new"
+      flash[:notice] = 'Incomplete Review'
+    else
+      redirect_to "/items/#{review.item_id}"
+    end
   end
 
   def review_params
     params.permit(:title, :content, :rating, :item_id)
   end
-
 end
