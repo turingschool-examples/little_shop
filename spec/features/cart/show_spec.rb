@@ -41,7 +41,7 @@ RSpec.describe 'Cart Show Page' do
       expect(page).to have_button("Checkout")
 
       click_button "Checkout"
-      expect(current_path).to eq(orders_new_path)
+      expect(current_path).to eq(new_order_path)
     end
   end
 end

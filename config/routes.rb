@@ -20,12 +20,7 @@ Rails.application.routes.draw do
   put '/cart/:item_id', to: 'cart#remove_item', as: 'remove_item'
   patch '/cart/:item_id', to: 'cart#update', as: 'update_cart'
 
-
-  get '/orders/new', to: 'orders#new'
-  post '/orders', to: 'orders#create'
-  get '/orders/:id', to: 'orders#show'
-
-  # resources :orders, only: [:new, :create, :show]
+  resources :orders, only: [:new, :create, :show]
 
 
   get "/items/:item_id/reviews/new", to: 'reviews#new', as: 'reviews_new_path'

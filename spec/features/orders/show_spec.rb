@@ -34,7 +34,7 @@ RSpec.describe 'New Order' do
         order = Order.last
 
         within ".address" do
-          expect(current_path).to eq("/orders/#{order.id}")
+          expect(current_path).to eq(order_path(order))
           expect(page).to have_content("Jori")
           expect(page).to have_content("1234 Market St")
         end
