@@ -19,5 +19,11 @@ RSpec.describe Merchant do
     end
   end
 
+  describe "ave_item_price" do
+    it "Get the average item price of a merchants items in an order" do
+
+    end
+  end
+
 
 end
