@@ -33,34 +33,16 @@ RSpec.describe "Order Show Page" do
         fill_in 'Zip', with: zip
         click_button 'Create Order'
         new_order = Order.last
+        new_order_item = OrderItem.last
 
         expect(current_path).to eq(order_path(new_order))
         expect(page).to have_content(@ogre.name)
         expect(page).to have_content(@megan.name)
         expect(page).to have_content(@order_item_1.price)
         expect(page).to have_content(@order_item_1.quantity)
-        expect(page).to have_content("Subtotal: #{@order_item_1.subtotal}")
-        expect(page).to have_content("Grand Total: #{@order_1.grand_total}")
+        expect(page).to have_content("Subtotal: #{new_order_item.subtotal}")
+        expect(page).to have_content("Grand Total: #{new_order.grand_total}")
       end
     end
   end
 end
-
-
-
-
-
-  # As a visitor
-  # When I fill out all information on the new order page
-  # And click on 'Create Order'
-  # An order is created and saved in the database
-  # And I am redirected to that order's show page with the following information:
-  # - My name and address (shipping information)
-  # - Details of the order:
-  # - the name of the item
-  # - the merchant I'm buying this item from
-  # - the price of the item
-  # - my desired quantity of the item
-  # - a subtotal (price multiplied by quantity)
-  # - a grand total of what everything in my cart will cost
-  # - the date when the order was created
