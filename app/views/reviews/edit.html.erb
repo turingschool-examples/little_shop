@@ -1,0 +1,5 @@
+<h2>Edit Review</h2>
+<%= form_tag update_review_path(@item, @review), method: :patch do %>
+  <%= render 'fields' %>
+  <%= submit_tag 'Update Review' %>
+<% end %>

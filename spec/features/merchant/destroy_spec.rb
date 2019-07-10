@@ -10,11 +10,11 @@ RSpec.describe 'Destroy Existing Merchant' do
     end
 
     it 'I can click button to destroy merchant from database' do
-      visit "/merchants/#{@brian.id}"
+      visit merchant_path(@brian.id)
 
       click_button 'Delete'
 
-      expect(current_path).to eq('/merchants')
+      expect(current_path).to eq(merchants_path)
       expect(page).to_not have_content(@brian.name)
     end
 

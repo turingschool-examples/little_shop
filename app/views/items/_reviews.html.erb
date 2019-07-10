@@ -1,0 +1,29 @@
+<h1>Reviews</h1>
+
+<section id='review-stats'>
+  <p>Average Rating: <%= @item.average_rating %></p>
+</section>
+
+<% bottom_three, top_three = @item.sorted_reviews %>
+<section id='top-three'>
+  <% until top_three.empty? %>
+    <% rev = top_three.pop %>
+    <p>Title: <%= rev.title %> Rating: <%= rev.rating %></p>
+  <% end %>
+</section>
+<section id='bottom-three'>
+  <% until bottom_three.empty? %>
+    <% rev = bottom_three.pop %>
+    <p>Title: <%= rev.title %> Rating: <%= rev.rating %></p>
+  <% end %>
+</section>
+
+<% @reviews.each do |review| %>
+  <section id='review-<%= review.id %>'>
+    <h2>Title: <%= review.title %></h2>
+    <p>Rating: <%= review.rating %></p>
+    <p><%= review.content %></p>
+    <%= link_to 'Edit Review', edit_review_path(@item, review) %>
+    <%= link_to 'Delete Review', delete_review_path(@item, review), method: :delete %>
+  </section>
+<% end %>

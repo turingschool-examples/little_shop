@@ -1,17 +1,13 @@
 <% if @merchant %>
-  <h1>All Items From <%= link_to @merchant.name, "/merchants/#{@merchant.id}" %></h1>
-  <%= link_to 'New Item', "/merchants/#{@merchant.id}/items/new" %>
+  <h1>All Items For <%= link_to @merchant.name, merchant_path(@merchant) %></h1>
+  <%= link_to 'New Item', new_item_path(@merchant) %>
 <% else %>
   <h1>All Items</h1>
 <% end %>
 
 <% @items.each do |item| %>
   <section id='item-<%= item.id%>'>
-    <h2><%= link_to item.name, "/items/#{item.id}" %></h2>
-    <p><%= item.description %></p>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw">
-    <p>Price: <%= number_to_currency(item.price) %></p>
-    <p>Sold by: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %>, Inventory: <%= item.inventory %></p>
-    <p><%= item.active ? "Active" : "Inactive" %></p>
+    <h2><%= link_to item.name, item_path(item) %></h2>
+    <%= render 'description', item: item %>
   </section>
 <% end %>

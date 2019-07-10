@@ -6,6 +6,7 @@ class MerchantsController < ApplicationController
   end
 
   def show
+    @top_3_items = @merchant.top_three_items
   end
 
   def new
@@ -14,8 +15,17 @@ class MerchantsController < ApplicationController
 
   def create
     @merchant = Merchant.new(merchant_params)
-      @merchant.save
-      redirect_to merchants_path
+    if @merchant.zip.to_s.length != 5 || @merchant.zip.to_s != @merchant.zip.to_i.to_s
+      flash[:notice] = "Merchant not created! Bad zip code."
+      render :new
+    else
+      if @merchant.save
+        redirect_to merchants_path
+      else
+        flash[:notice] = "Merchant not created! Missing information."
+        render :new
+      end
+    end
   end
 
   def edit

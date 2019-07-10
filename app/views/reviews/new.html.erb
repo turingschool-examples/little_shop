@@ -1,0 +1,5 @@
+<h2>Write Review</h2>
+<%= form_tag(review_path(@item), method: :post) do %>
+  <%= render 'fields' %>
+  <%= submit_tag 'Create Review' %>
+<% end %>

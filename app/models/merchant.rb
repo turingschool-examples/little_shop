@@ -4,7 +4,6 @@ class Merchant < ApplicationRecord
 
   def total_inventory
     self.items.count
-    binding.pry
   end
 
   def ave_item_price
@@ -23,4 +22,7 @@ class Merchant < ApplicationRecord
     self.items.joins(:order_items).exists?
   end
 
+  def top_three_items
+    items.joins(:reviews).order("reviews.rating desc").limit(3)
+  end
 end

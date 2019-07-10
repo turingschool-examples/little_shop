@@ -54,8 +54,7 @@ RSpec.describe 'Cart Index Page' do
         expect(page).to have_content("Quantity: 1")
       end
 
-      expect(page).to have_content("Total cost: 90")
-
+      expect(page).to have_content("Total cost: $90")
       expect(page).to_not have_content(@hippo.name)
 
       click_link("Empty Cart")

@@ -51,7 +51,11 @@ RSpec.describe 'Cart Increment Test' do
         expect(page).to have_content("Quantity: 3")
         click_link("+")
         expect(page).to have_content("Quantity: 3")
+        click_link("+")
+        expect(page).to have_content("Quantity: 3")
       end
+      
+      expect(page).to have_content("There is no more stock of #{@giant.name}")
     end
   end
 end
