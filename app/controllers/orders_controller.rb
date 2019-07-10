@@ -16,13 +16,7 @@ class OrdersController < ApplicationController
       flash[:alert] = "Please fill in all fields."
       redirect_to new_order_path
     else
-      cart.items.each do |item|
-        order.order_items.create!(
-          quantity: cart.item_count(item.id),
-          price: item.price,
-          item_id: item.id
-        )
-      end
+      cart.add_cart_to_order_items(order)
       session[:cart] = {}
       redirect_to order_path(order)
     end
