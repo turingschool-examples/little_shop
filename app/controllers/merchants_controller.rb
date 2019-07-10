@@ -19,7 +19,7 @@ class MerchantsController < ApplicationController
   def create
     @merchant = Merchant.new(local_params)
     if @merchant.zip.to_s.length != 5 || @merchant.zip.to_s != @merchant.zip.to_i.to_s
-      flash.now[:notice] = 'Please enter a valid zip code.'
+      flash.now[:error] = 'Please enter a valid zip code.'
       render :new
     else
       if @merchant.save
