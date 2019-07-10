@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
 
   def show
     @items = @order.items
+    @order_items = @order.order_items
   end
 
   def new
