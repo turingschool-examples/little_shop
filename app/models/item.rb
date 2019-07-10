@@ -27,6 +27,6 @@ class Item < ApplicationRecord
       order.items.map do |item|
         item.id.to_s
       end
-    end
+    end.uniq
   end
 end

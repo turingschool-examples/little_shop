@@ -14,7 +14,7 @@ class Merchant < ApplicationRecord
       order.items.map do |item|
         item.merchant_id.to_s
       end
-    end
+    end.uniq
   end
 
   def average_price
