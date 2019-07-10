@@ -12,7 +12,7 @@ RSpec.describe "Edit Review" do
       @review_5 = @ogre.reviews.create!(title: 'Cute', rating: 2, content: 'It was delivered in a princess outfit. How cute')
       @review_6 = @ogre.reviews.create!(title: 'Looks Good', rating: 5, content: 'This thing looks amazing')
       @review_7 = @ogre.reviews.create!(title: 'Wish It Had More Muscles', rating: 4, content: "Seriously Sejin's muscles are bigger than this thing!")
-      visit "/items/#{@ogre.id}"
+      visit item_path(@ogre)
     end
 
     it "I see a button next to each review to edit the review" do
@@ -30,7 +30,7 @@ RSpec.describe "Edit Review" do
 
       click_button 'Edit Review'
 
-      expect(current_path).to eq("/items/#{@ogre.id}")
+      expect(current_path).to eq(item_path(@ogre))
 
       within "#review-#{@review_7.id}" do
         expect(page).to have_content("This Ogre ate all my ramen!")

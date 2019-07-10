@@ -13,10 +13,10 @@ RSpec.describe "Removing Item From Cart" do
     it "I can remove an item from my cart" do
       cart = Cart.new(nil)
 
-      visit "/items/#{@ogre.id}"
+      visit item_path(@ogre)
       click_button "Add to Cart"
 
-      visit "/items/#{@giant.id}"
+      visit item_path(@ogre)
       click_button "Add to Cart"
 
       visit cart_path

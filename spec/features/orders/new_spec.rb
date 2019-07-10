@@ -14,12 +14,12 @@ RSpec.describe 'New Order' do
     describe 'When I checkout from my cart' do
       it 'I see the details the detail of my cart' do
 
-        visit "/items/#{@ogre.id}"
+        visit item_path(@ogre)
         click_button 'Add to Cart'
         visit cart_path
         click_button 'Checkout'
 
-        expect(current_path).to eq(orders_new_path)
+        expect(current_path).to eq(new_order_path)
         expect(page).to have_content(@ogre.name)
         expect(page).to have_content(@ogre.merchant.name)
         expect(page).to have_content(@ogre.price)
@@ -38,7 +38,7 @@ RSpec.describe 'New Order' do
 
       it 'I cannot create an order without completing the form' do
 
-        visit "/items/#{@ogre.id}"
+        visit item_path(@ogre)
         click_button 'Add to Cart'
         visit cart_path
         click_button 'Checkout'
@@ -50,7 +50,7 @@ RSpec.describe 'New Order' do
 
         click_button "Create Order"
 
-        expect(current_path).to eq(orders_new_path)
+        expect(current_path).to eq(new_order_path)
         expect(page).to have_content("Please fill in all fields.")
       end
     end

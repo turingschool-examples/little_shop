@@ -12,13 +12,13 @@ RSpec.describe 'Cart Show Page' do
     it 'I see all items added to my cart' do
       cart = Cart.new(nil)
 
-      visit "/items/#{@ogre.id}"
+      visit item_path(@ogre)
       click_button "Add to Cart"
 
-      visit "/items/#{@ogre.id}"
+      visit item_path(@ogre)
       click_button "Add to Cart"
 
-      visit "/items/#{@giant.id}"
+      visit item_path(@giant)
       click_button "Add to Cart"
 
       click_on "Cart(3)"
@@ -41,7 +41,7 @@ RSpec.describe 'Cart Show Page' do
       expect(page).to have_button("Checkout")
 
       click_button "Checkout"
-      expect(current_path).to eq(orders_new_path)
+      expect(current_path).to eq(new_order_path)
     end
   end
 end

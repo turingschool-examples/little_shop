@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
       flash[:alert] = item.errors.full_messages.to_sentence
       render :new
     else
-      redirect_to "/merchants/#{@merchant.id}/items"
+      redirect_to merchant_items_path(@merchant)
     end
   end
 
@@ -40,7 +40,7 @@ class ItemsController < ApplicationController
       flash[:alert] = @item.errors.full_messages.to_sentence
       render :edit
     else
-      redirect_to "/items/#{@item.id}"
+      redirect_to item_path(@item)
     end
   end
 
@@ -51,7 +51,7 @@ class ItemsController < ApplicationController
       redirect_to "/items/#{item.id}"
     else
       Item.destroy(params[:id])
-      redirect_to '/items'
+      redirect_to items_path
     end
   end
 

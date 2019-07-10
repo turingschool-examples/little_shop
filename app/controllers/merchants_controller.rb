@@ -16,7 +16,7 @@ class MerchantsController < ApplicationController
       flash[:alert] = merchant.errors.full_messages.to_sentence
       render :new
     else
-      redirect_to '/merchants'
+      redirect_to merchants_path
     end
   end
 
@@ -31,7 +31,7 @@ class MerchantsController < ApplicationController
       flash[:alert] = @merchant.errors.full_messages.to_sentence
       render :edit
     else
-      redirect_to "/merchants/#{@merchant.id}"
+      redirect_to merchant_path(@merchant)
     end
   end
 
@@ -39,10 +39,10 @@ class MerchantsController < ApplicationController
     merchant = Merchant.find(params[:id])
     if merchant.merchant_orders.include?(params[:id])
       flash[:alert] = "This merchant has pending orders, cannot be deleted."
-      redirect_to "/merchants/#{merchant.id}"
+      redirect_to merchant_path(@merchant)
     else
       Merchant.destroy(params[:id])
-      redirect_to '/merchants'
+      redirect_to merchants_path
     end
   end
 

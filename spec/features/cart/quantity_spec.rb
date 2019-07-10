@@ -13,13 +13,13 @@ RSpec.describe 'Add Item to Cart' do
     it "I see a button or link to increment the count of items I want to purchase" do
       cart = Cart.new(nil)
 
-      visit "/items/#{@ogre.id}"
+      visit item_path(@ogre)
       click_button "Add to Cart"
 
-      visit "/items/#{@ogre.id}"
+      visit item_path(@ogre)
       click_button "Add to Cart"
 
-      visit "/items/#{@giant.id}"
+      visit item_path(@giant)
       click_button "Add to Cart"
 
       visit cart_path
@@ -38,13 +38,13 @@ RSpec.describe 'Add Item to Cart' do
     it "If item id decremented to zero the item is removed from the cart" do
       cart = Cart.new(nil)
 
-      visit "/items/#{@ogre.id}"
+      visit item_path(@ogre)
       click_button "Add to Cart"
 
-      visit "/items/#{@ogre.id}"
+      visit item_path(@ogre)
       click_button "Add to Cart"
 
-      visit "/items/#{@giant.id}"
+      visit item_path(@giant)
       click_button "Add to Cart"
 
       visit cart_path
@@ -63,13 +63,14 @@ RSpec.describe 'Add Item to Cart' do
     it "I cannot increment the count beyond the item's inventory size" do
       cart = Cart.new(nil)
 
-      visit "/items/#{@ogre.id}"
+      visit item_path(@ogre)
       click_button "Add to Cart"
 
-      visit "/items/#{@ogre.id}"
+      visit item_path(@ogre)
       click_button "Add to Cart"
 
-      visit "/items/#{@giant.id}"
+      visit item_path(@giant)
+
       click_button "Add to Cart"
 
       visit cart_path

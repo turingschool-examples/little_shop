@@ -11,7 +11,7 @@ RSpec.describe 'Item Show Page' do
     end
 
     it "I can see the items details" do
-      visit "/items/#{@ogre.id}"
+      visit item_path(@ogre) 
 
       expect(page).to have_content(@ogre.name)
       expect(page).to have_content(@ogre.description)

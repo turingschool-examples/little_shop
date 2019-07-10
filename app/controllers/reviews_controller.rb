@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
       flash[:alert] = "Please fill in all fields."
       redirect_to "/items/#{item.id}/reviews/new"
     else
-      redirect_to "/items/#{item.id}"
+      redirect_to item_path(item)
     end
   end
 
@@ -36,7 +36,7 @@ class ReviewsController < ApplicationController
   def destroy
     item = Item.find(params[:item_id])
     Review.destroy(params[:id])
-    redirect_to "/items/#{item.id}"
+    redirect_to item_path(item)
   end
 
   private

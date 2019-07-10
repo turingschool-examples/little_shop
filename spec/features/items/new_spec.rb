@@ -4,15 +4,15 @@ RSpec.describe 'New Merchant Item' do
   describe 'As a Visitor' do
     before :each do
       @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
-      visit "/merchants/#{@megan.id}/items/new"
+      visit new_merchant_item_path(@megan)
     end
 
     it 'I can click a link to a new item form page' do
-      visit "/merchants/#{@megan.id}/items"
+      visit merchant_items_path(@megan)
 
       click_link 'New Item'
 
-      expect(current_path).to eq("/merchants/#{@megan.id}/items/new")
+      expect(current_path).to eq(new_merchant_item_path(@megan))
     end
 
     it 'I can create an  item for a merchant' do
@@ -29,7 +29,7 @@ RSpec.describe 'New Merchant Item' do
       fill_in 'Inventory', with: inventory
       click_button 'Create Item'
 
-      expect(current_path).to eq("/merchants/#{@megan.id}/items")
+      expect(current_path).to eq(merchant_items_path(@megan))
       expect(page).to have_link(name)
       expect(page).to have_content(description)
       # expect(page).to have_content("Price: #{number_to_currency(price)}")

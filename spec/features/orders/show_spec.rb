@@ -13,11 +13,11 @@ RSpec.describe 'New Order' do
     describe 'When I click on "Create Order" an order is created' do
       it "I am redirected to that order's show page" do
 
-        visit "/items/#{@ogre.id}"
+        visit item_path(@ogre)
         click_button 'Add to Cart'
-        visit "/items/#{@ogre.id}"
+        visit item_path(@ogre)
         click_button 'Add to Cart'
-        visit "/items/#{@giant.id}"
+        visit item_path(@giant)
         click_button 'Add to Cart'
 
         visit cart_path
@@ -34,7 +34,7 @@ RSpec.describe 'New Order' do
         order = Order.last
 
         within ".address" do
-          expect(current_path).to eq("/orders/#{order.id}")
+          expect(current_path).to eq(order_path(order))
           expect(page).to have_content("Jori")
           expect(page).to have_content("1234 Market St")
         end

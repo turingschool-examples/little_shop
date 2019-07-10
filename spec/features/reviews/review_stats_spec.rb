@@ -19,7 +19,7 @@ RSpec.describe 'Review Statistics' do
       -the bottom three reviews for this item (title and rating only)/n
       -the average rating for all reviews for this item." do
 
-      visit "/items/#{@ogre.id}"
+      visit item_path(@ogre) 
 
       within ".best_review" do
         expect(page).to have_content("Best Reviews:")

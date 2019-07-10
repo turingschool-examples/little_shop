@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
     order = Order.create(order_params)
     if order.id.nil?
       flash[:alert] = "Please fill in all fields."
-      redirect_to orders_new_path
+      redirect_to new_order_path
     else
       cart.items.each do |item|
         order.order_items.create!(
@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
           item_id: item.id
         )
       end
-    redirect_to "/orders/#{order.id}"
+    redirect_to order_path(order)
     end
   end
 

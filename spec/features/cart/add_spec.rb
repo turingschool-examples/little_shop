@@ -13,7 +13,7 @@ RSpec.describe "Cart Creation" do
 
       it "I see a link or button to add this item to my cart" do
 
-        visit "/items/#{@ogre.id}"
+        visit item_path(@ogre)
 
         click_button 'Add to Cart'
 
@@ -24,7 +24,7 @@ RSpec.describe "Cart Creation" do
 
       it 'The cart indicator in the navigation bar increments my cart count' do
 
-        visit "/items/#{@ogre.id}"
+        visit item_path(@ogre)
         click_button "Add to Cart"
 
         expect(page).to have_content("Cart(1)")
