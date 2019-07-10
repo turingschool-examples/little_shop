@@ -31,12 +31,17 @@ class ReviewsController < ApplicationController
 
   def update
     review = Review.find(params[:id])
+<<<<<<< HEAD
      review.update(review_params)
     if review.content.empty? || review.content.empty?
       flash[:alert] = review.errors.full_messages.to_sentence
     else
       redirect_to "/items/#{review.item_id}"
     end
+=======
+    review.update(review_params)
+    redirect_to "/items/#{review.item_id}"
+>>>>>>> 3fa0f231c55dc646dd191757a98a65aee62c9fea
   end
 
   def destroy
