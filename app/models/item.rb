@@ -11,11 +11,11 @@ class Item < ApplicationRecord
   end
 
   def top_reviews
-    self.reviews.order(rating: :desc).select(:title, :rating).limit(3)
+    self.reviews.order(rating: :desc).limit(3)
   end
 
   def worst_reviews
-    self.reviews.order(rating: :asc).select(:title, :rating).limit(3)
+    self.reviews.order(rating: :asc).limit(3)
   end
 
   def item_ordered?
