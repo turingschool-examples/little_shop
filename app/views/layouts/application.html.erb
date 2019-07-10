@@ -17,6 +17,7 @@
       <%= link_to "Cart: #{cart.contents.values.sum}", '/cart' %>
     </nav>
     <p><%= flash[:success] %></p>
+    <p><%= flash[:error] %></p>
     <%= yield %>
   </body>
 </html>
