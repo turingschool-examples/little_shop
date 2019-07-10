@@ -50,17 +50,8 @@ class MerchantsController < ApplicationController
   end
 
   def destroy
-    # if @merchant.items.all? {|item| item.orders.empty?}
-    #   destroy_items
-    #   @merchant.destroy
-    #   redirect_to merchants_path
-    # else
-    #   flash[:notice] = 'This merchant has items in orders and cannot be deleted!'
-    #   redirect_to merchant_path
-    # end
-
     if @merchant.has_items_in_orders?
-      flash[:notice] = "You cannot delete this merchant."
+      flash[:notice] = 'This merchant has items in orders and cannot be deleted!'
       render :new
     else
       destroy_items
