@@ -3,16 +3,37 @@
   <head>
     <title>LittleShop</title>
     <%= csrf_meta_tags %>
-
+    <%= stylesheet_link_tag "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"%>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+
+    <style>
+      body {
+        background-color: #868a8f;
+        text-align: center;
+        margin-top: 150px;
+      }
+
+      section {
+        text-align: center;
+      }
+
+    </style>
   </head>
 
   <body>
-    <nav>
-      <%= link_to 'Merchants', '/merchants' %>
-      <%= link_to 'Items', '/items' %>
-      <%= link_to "Cart(#{cart.total})", cart_path %>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position:fixed;top:0;width:100%;">
+      <a class="navbar-brand" href="#">Little Shop</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" <%= link_to 'Merchants', merchants_path %></a>
+          <a class="nav-item nav-link" <%= link_to 'Items', '/items' %></a>
+          <a class="nav-item nav-link" <%= link_to "Cart(#{cart.total})", cart_path %></a>
+        </div>
+      </div>
     </nav>
 
 
