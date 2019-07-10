@@ -35,7 +35,8 @@ RSpec.describe Merchant do
 
   describe "cities" do
     it "Find the distinct cities of a merchants sold items" do
-
+      expect(@megan.cities).to eq(["Greenbay"])
+      expect(@brian.cities).to eq(["Naples"])
     end
   end
 
