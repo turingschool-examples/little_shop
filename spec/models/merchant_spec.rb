@@ -42,7 +42,8 @@ RSpec.describe Merchant do
 
   describe "has_items_in_orders" do
     it "Check it a merchant has items in past orders." do
-
+      expect(@megan.has_items_in_orders?).to eq(true)
+      expect(@brian.has_items_in_orders?).to eq(true)
     end
   end
 
