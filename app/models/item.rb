@@ -18,15 +18,10 @@ class Item < ApplicationRecord
   end
 
   def average_rating
-    reviews.average(:rating).to_f.round(2)
+    reviews.average(:rating)
   end
 
   def item_orders
-    orders = Order.all
-    orders.flat_map do |order|
-      order.items.map do |item|
-        item.id.to_s
-      end
-    end.uniq
+    Order.joins(:order_items).pluck(:item_id)
   end
 end

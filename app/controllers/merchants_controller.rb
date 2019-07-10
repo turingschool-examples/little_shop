@@ -35,7 +35,7 @@ class MerchantsController < ApplicationController
   end
 
   def destroy
-    if @merchant.merchant_orders.include?(params[:id])
+    if @merchant.merchant_orders.include?(params[:id].to_i)
       flash[:alert] = "This merchant has pending orders, cannot be deleted."
       redirect_to merchant_path(@merchant)
     else

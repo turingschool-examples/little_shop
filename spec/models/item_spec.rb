@@ -26,39 +26,36 @@ RSpec.describe Item do
     @jori = Order.create!(name: "Jori", address: "12 Market St", city: "Denver", state: "CO", zipcode: "80021")
     @sejin = Order.create!(name: "Sejin", address: "12 Market St", city: "Las Vegas", state: "NV", zipcode: "80021")
     @jori.items << @ogre
-    @sejin.items << @hippo
-    @sejin.items << @ogre
+    @sejin.items << [@hippo, @ogre]
   end
 
   describe '#best_reviews' do
     it 'returns the top three best reviews' do
 
-    expected = [@review_2, @review_6, @review_5]
+      expected = [@review_2, @review_6, @review_5]
 
-    expect(@ogre.best_reviews).to eq(expected)
+      expect(@ogre.best_reviews).to eq(expected)
     end
   end
 
   describe '#worst_reviews' do
     it 'returns the three worst reviews' do
 
-    expected = [@review_1, @review_3, @review_4]
+      expected = [@review_1, @review_3, @review_4]
 
-    expect(@ogre.worst_reviews).to eq(expected)
+      expect(@ogre.worst_reviews).to eq(expected)
     end
   end
 
   describe '#average_rating' do
-    it 'returns average rating as an integer' do
-
-    expect(@ogre.average_rating).to eq(3.43)
+      it 'returns average rating as an integer' do
+        expect(@ogre.average_rating.to_f.round(2)).to eq(3.43)
     end
   end
 
   describe '#item_orders' do
-    it "should return an order ids within orders" do
-
-      expect(@ogre.item_orders).to eq([@ogre.id.to_s, @hippo.id.to_s])
+    it "should return item ids within all orders" do
+      expect(@ogre.item_orders.uniq).to eq([@ogre.id, @hippo.id])
     end
   end
 end

@@ -28,7 +28,7 @@ RSpec.describe Merchant do
 
   describe '#merchant_orders' do
     it "should return an array of merchant ids within an order" do
-      expect(@megan.merchant_orders).to eq([@megan.id.to_s, @brian.id.to_s])
+      expect(@megan.merchant_orders.uniq).to eq([@megan.id])
     end
   end
 

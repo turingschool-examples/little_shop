@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
 
   def update
     @item.update(item_params)
-    if item_params.values.any? {|value| value.empty? }
+    if item_params.values.any? { |value| value.empty? }
       flash[:alert] = @item.errors.full_messages.to_sentence
       render :edit
     else
@@ -42,7 +42,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.item_orders.include?(params[:id])
+    if @item.item_orders.uniq.include?(params[:id].to_i)
       flash[:alert] = "This item has pending orders, cannot be deleted."
       redirect_to item_path(@item)
     else
