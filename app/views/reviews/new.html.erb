@@ -1,13 +1,13 @@
 <html>
   <%= form_tag "/items/#{@item.id}/reviews" do %>
     <%= label_tag :title, 'Title'%>
-    <%= text_field_tag :title, required: true%>
+    <%= text_field_tag :title, nil%>
 
     <%= label_tag :content, 'Content'%>
-    <%= text_field_tag :content, required: true%>
+    <%= text_field_tag :content, nil%>
 
     <%= label_tag :rating, 'Rating'%>
-    <%= number_field_tag :rating, in: 1..5, required: true%>
+    <%= number_field_tag :rating, nil, in: 1..5%>
 
     <%= submit_tag 'Submit'%>
     <% end %>

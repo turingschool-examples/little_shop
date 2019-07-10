@@ -54,6 +54,16 @@ RSpec.describe 'New Order' do
         end
         expect(page).to have_button('Create Order')
       end
+      it "Flash message generated for incomplete order" do
+
+        visit "/orders/new"
+        fill_in 'Name', with: 'Gary'
+        fill_in 'State', with: 'CO'
+        click_button 'Create Order'
+
+        expect(current_path).to eq("/orders/new")
+        expect(page).to have_content('Incomplete Address')
+      end
     end
   end
 end

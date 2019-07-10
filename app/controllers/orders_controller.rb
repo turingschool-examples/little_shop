@@ -10,10 +10,16 @@ class OrdersController < ApplicationController
   def create
     @items = Item.find(cart.item_and_quantity)
     @order = Order.new(order_params)
-    cart.item_and_quantity.each do |item, quantity|
+    cart.item_and_quantity.each do |item, _quantity|
       OrderItem.create(price: Item.find(item).price, quantity: cart.count_of(item), order: @order, item_id: item)
     end
-    redirect_to "/orders/#{@order.id}"
+
+    if !@order.save
+      redirect_to '/orders/new'
+      flash[:notice] = 'Incomplete Address'
+    else
+      redirect_to "/orders/#{@order.id}"
+    end
   end
 
   def show

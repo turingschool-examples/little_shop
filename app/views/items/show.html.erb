@@ -12,6 +12,11 @@
 <%= button_to 'Add Review', "/items/#{@item.id}/reviews/new", method: :get %>
 <p> Review</p>
 
-<p>Title</p>
-<p>Content</p>
-<p>Rating</p>
+<section id="item-show-reviews">
+  <% @item.reviews.each do |review| %>
+    <article class="item-show-review" id="review-<%=review.id%>">
+      <h3>Title: <%= review.title%> </h3>
+      <p>Rating: <%= review.rating%> </p>
+      <p> Content: <%=review.content%> </p>
+  <% end %>
+</section>
