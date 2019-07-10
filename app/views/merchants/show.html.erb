@@ -15,3 +15,10 @@
 <%= button_to 'New Item', "/merchants/#{@merchant.id}/items/new", method: :get %>
 <%= button_to 'Edit', "/merchants/#{@merchant.id}/edit", method: :get %>
 <%= button_to 'Delete', "/merchants/#{@merchant.id}", method: :delete %>
+
+<h3>About Merchant</h3>
+  <section class='statistics'>
+    <p>Total Inventory: <%= @merchant.total_inventory %></p>
+    <p>Merchants Average Item Price: <%= @merchant.ave_item_price %></p>
+    <p>Cities Ordering <%= @merchant.name %> Products: <%= @merchant.cities %></p>
+  </section>

@@ -37,8 +37,13 @@ class MerchantsController < ApplicationController
   end
 
   def destroy
-    @merchant.destroy
-    redirect_to merchants_path
+    if @merchant.has_items_in_orders?
+      flash[:notice] = "You cannot delete this merchant."
+      render :new
+    else
+      @merchant.destroy
+      redirect_to merchants_path
+    end
   end
 
   private
