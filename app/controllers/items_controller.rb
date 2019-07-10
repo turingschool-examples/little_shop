@@ -13,7 +13,14 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @reviews = @item.reviews
+    # binding.pry
+    if params[:sort] == nil
+      @reviews = @item.reviews
+    elsif params[:sort] == 'highest'
+      @reviews = @item.reviews.order('rating desc')
+    elsif params[:sort] == 'lowest'
+      @reviews = @item.reviews.order(:rating)
+    end
   end
 
   def new

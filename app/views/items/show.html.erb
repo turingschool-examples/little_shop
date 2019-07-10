@@ -1,9 +1,13 @@
 <h1><%= @item.name %></h1>
 <%= render 'description', item: @item %>
 
+<%= button_to 'Descending', item_desc_path(@item), method: :get, params: {:sort => "highest"} %>
+<%= button_to 'Ascending', item_asc_path(@item), method: :get, params: {:sort => "lowest"} %>
+
 <% unless @reviews.empty? %>
   <%= render 'reviews' %>
 <% end %>
+
 
 <%= link_to 'Add to Cart', add_to_cart_path(@item), method: :patch %>
 <%= link_to 'Write Review', new_review_path(@item) %>
