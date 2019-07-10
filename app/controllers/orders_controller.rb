@@ -18,27 +18,18 @@ class OrdersController < ApplicationController
     if order.save
       cart.contents.each do |item_id, quantity|
         @item = Item.find(item_id)
-        order_item = OrderItem.new(item: @item, price: @item.price, quantity: cart.contents[item_id.to_s], order: order)
+        order_item = OrderItem.create(item: @item, price: @item.price, quantity: cart.contents[item_id.to_s], order: order)
       end
+    reset_session
     redirect_to order_path(order)
     else
-      flash[:notice] = "The form must be completed to create an order."
-      render :new
+      flash[:error] = "The form must be completed to create an order."
+      redirect_to new_order_path
     end
   end
 
   def show
-    @items = []
-    @grand_total = 0
     @order = Order.find(params[:id])
-    cart = Cart.new(session[:cart])
-    cart.contents.each do |item_id, quantity|
-      @item = Item.find(item_id)
-      order_item = OrderItem.new(item: @item, price: @item.price, quantity: cart.contents[item_id.to_s], order: @order)
-      @items << order_item
-      @grand_total += order_item.subtotal
-    end
-    @items
   end
 
   private

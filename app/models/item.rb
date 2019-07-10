@@ -17,4 +17,9 @@ class Item < ApplicationRecord
   def worst_reviews
     self.reviews.order(rating: :asc).select(:title, :rating).limit(3)
   end
+
+  def item_ordered?
+    # binding.pry
+    self.orders.count != 0
+  end
 end

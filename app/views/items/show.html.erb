@@ -166,4 +166,6 @@
 
 <%= link_to 'New Review', new_item_review_path(@item.id) %>
 <%= link_to 'Update Item', "/items/#{@item.id}/edit" %>
-<%= link_to 'Delete', "/items/#{@item.id}", method: :delete %>
+<% if !@item.item_ordered? %>
+  <%= link_to 'Delete', "/items/#{@item.id}", method: :delete %>
+<% end %>

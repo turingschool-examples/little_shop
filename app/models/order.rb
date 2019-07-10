@@ -7,4 +7,9 @@ class Order < ApplicationRecord
   validates_presence_of :city
   validates_presence_of :state
   validates_presence_of :zip
+
+  def grand_total
+    gt = order_items.pluck("sum(quantity * price)")
+    gt.sum
+  end
 end
