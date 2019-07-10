@@ -13,11 +13,11 @@ RSpec.describe 'New Order' do
     describe 'When I click on "Create Order" an order is created' do
       it "I am redirected to that order's show page" do
 
-        visit "/items/#{@ogre.id}"
+        visit item_path(@ogre)
         click_button 'Add to Cart'
-        visit "/items/#{@ogre.id}"
+        visit item_path(@ogre)
         click_button 'Add to Cart'
-        visit "/items/#{@giant.id}"
+        visit item_path(@giant)
         click_button 'Add to Cart'
 
         visit cart_path

@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @reviews = Review.where(item_id: params[:id])
-    
+
   end
 
   def new
@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
     merchant = Merchant.find(params[:merchant_id])
     merchant.items.create(item_params)
 
-    redirect_to "/merchants/#{merchant.id}/items"
+    redirect_to merchant_items_path
   end
 
   def edit
@@ -33,13 +33,13 @@ class ItemsController < ApplicationController
     item = Item.find(params[:id])
     item.update(item_params)
 
-    redirect_to "/items/#{item.id}"
+    redirect_to item_path
   end
 
   def destroy
     Item.destroy(params[:id])
 
-    redirect_to '/items'
+    redirect_to items_path
   end
 
   private

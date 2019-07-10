@@ -14,10 +14,10 @@ RSpec.describe 'Emptying Cart' do
 
       cart = Cart.new(nil)
 
-      visit "/items/#{@ogre.id}"
+      visit item_path(@ogre)
       click_button "Add to Cart"
 
-      visit "/items/#{@giant.id}"
+      visit item_path(@giant)
       click_button "Add to Cart"
       # save_and_open_page
       click_on "Cart(2)"

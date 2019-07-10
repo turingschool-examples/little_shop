@@ -6,8 +6,8 @@
 <p><%= @item.active ? "Active" : "Inactive" %></p>
 
 <%= button_to 'Add to Cart', add_cart_path(@item), method: :post %>
-<%= link_to 'Update Item', "/items/#{@item.id}/edit" %>
-<%= link_to 'Delete', "/items/#{@item.id}", method: :delete %>
+<%= link_to 'Update Item', edit_item_path(@item) %>
+<%= link_to 'Delete', item_path(@item), method: :delete %>
 <%= link_to 'Add New Review', "/items/#{@item.id}/reviews/new" %>
 
 <% unless @reviews.empty? %>

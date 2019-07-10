@@ -14,7 +14,7 @@ RSpec.describe 'New Order' do
     describe 'When I checkout from my cart' do
       it 'I see the details the detail of my cart' do
 
-        visit "/items/#{@ogre.id}"
+        visit item_path(@ogre)
         click_button 'Add to Cart'
         visit cart_path
         click_button 'Checkout'
@@ -38,7 +38,7 @@ RSpec.describe 'New Order' do
 
       it 'I cannot create an order without completing the form' do
 
-        visit "/items/#{@ogre.id}"
+        visit item_path(@ogre)
         click_button 'Add to Cart'
         visit cart_path
         click_button 'Checkout'

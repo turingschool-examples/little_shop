@@ -8,11 +8,11 @@ RSpec.describe 'Update Item Page' do
     end
 
     it 'I can click a link to get to an item edit page' do
-      visit "/items/#{@ogre.id}"
+      visit item_path(@ogre)
 
       click_link 'Update Item'
 
-      expect(current_path).to eq("/items/#{@ogre.id}/edit")
+      expect(current_path).to eq(edit_item_path(@ogre))
     end
 
     it 'I can edit the items information' do
@@ -22,7 +22,7 @@ RSpec.describe 'Update Item Page' do
       image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw'
       inventory = 12
 
-      visit "/items/#{@ogre.id}/edit"
+      visit edit_item_path(@ogre)
 
       fill_in 'Name', with: name
       fill_in 'Description', with: description
@@ -31,7 +31,7 @@ RSpec.describe 'Update Item Page' do
       fill_in 'Inventory', with: inventory
       click_button 'Update Item'
 
-      expect(current_path).to eq("/items/#{@ogre.id}")
+      expect(current_path).to eq(item_path(@ogre))
       expect(page).to have_content(name)
       expect(page).to have_content(description)
       expect(page).to have_content("Price: #{number_to_currency(price)}")

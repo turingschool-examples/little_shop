@@ -8,7 +8,7 @@ RSpec.describe 'Merchant Show Page' do
     end
 
     it 'I see merchant name and address' do
-      visit "/merchants/#{@megan.id}"
+      visit merchant_path(@megan)
 
       expect(page).to have_content(@megan.name)
 
@@ -19,11 +19,11 @@ RSpec.describe 'Merchant Show Page' do
     end
 
     it 'I see a link to this merchants items' do
-      visit "/merchants/#{@megan.id}"
+      visit merchant_path(@megan)
 
       click_link "Items"
 
-      
+
     end
   end
 end
