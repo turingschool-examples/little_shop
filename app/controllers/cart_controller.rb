@@ -11,7 +11,12 @@ class CartController < ApplicationController
   end
 
   def show
-    cart = Cart.new(session[:cart])
+    @cart = Cart.new(session[:cart])
+    unless @cart.contents.empty?
+      @cart
+    else
+      flash[:alert] = "Your Cart is currently empty"
+    end
   end
 
   def remove_item
@@ -29,9 +34,14 @@ class CartController < ApplicationController
   end
 
   def increase_count
-    cart = Cart.new(session[:cart])
-    item = Item.find(params[:item_id])
-    cart.increase_count(item.id)
-    redirect_to "/cart"
+  cart = Cart.new(session[:cart])
+  item = Item.find(params[:item_id])
+  cart.increase_count(item.id)
+  redirect_to "/cart"
+    end
+
+    def destroy
+    session.delete(:cart)
+   redirect_to '/cart'
   end
 end
