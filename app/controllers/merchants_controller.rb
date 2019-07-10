@@ -1,10 +1,11 @@
 class MerchantsController < ApplicationController
+  before_action :get_merchant, only: [:show, :edit, :update, :destroy]
+
   def index
     @merchants = Merchant.all
   end
 
   def show
-    @merchant = Merchant.find(params[:id])
   end
 
   def new
@@ -21,11 +22,9 @@ class MerchantsController < ApplicationController
   end
 
   def edit
-    @merchant = Merchant.find(params[:id])
   end
 
   def update
-    @merchant = Merchant.find(params[:id])
     @merchant.update(merchant_params)
     if merchant_params.values.any? {|value| value.empty?}
       flash[:alert] = @merchant.errors.full_messages.to_sentence
@@ -36,10 +35,9 @@ class MerchantsController < ApplicationController
   end
 
   def destroy
-    merchant = Merchant.find(params[:id])
-    if merchant.merchant_orders.include?(params[:id])
+    if @merchant.merchant_orders.include?(params[:id])
       flash[:alert] = "This merchant has pending orders, cannot be deleted."
-      redirect_to merchant_path(merchant)
+      redirect_to merchant_path(@merchant)
     else
       Merchant.destroy(params[:id])
       redirect_to merchants_path
@@ -50,5 +48,9 @@ class MerchantsController < ApplicationController
 
   def merchant_params
     params.permit(:name, :address, :city, :state, :zip)
+  end
+
+  def get_merchant
+    @merchant = Merchant.find(params[:id])
   end
 end

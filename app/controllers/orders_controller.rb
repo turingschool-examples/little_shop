@@ -2,8 +2,8 @@ class OrdersController < ApplicationController
   include ActionView::Helpers::TextHelper
 
   def show
-    @items = cart.items
     @order = Order.find(params[:id])
+    @items =  @order.items
   end
 
   def new
@@ -23,7 +23,8 @@ class OrdersController < ApplicationController
           item_id: item.id
         )
       end
-    redirect_to order_path(order)
+      session[:cart] = {}
+      redirect_to order_path(order)
     end
   end
 

@@ -11,12 +11,12 @@
 <% @items.each do |item| %>
   <section id='item-<%= item.id%>'>
     <h2><%= link_to item.name, "/items/#{item.id}" %></h2>
-    <p><%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %></p>
-    <p><%= number_to_currency(item.price) %></p>
-    <p><%= cart.item_count(item.id) %></p>
-    <p><%= number_to_currency(cart.subtotal(item.id)) %></p>
+    <p>Sold By: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %></p>
+    <p>Price: <%= number_to_currency(item.price) %></p>
+    <p>Quantity: <%= @order.desired_quantity(item.id, @order.id) %></p>
+    <p>Subtotal: <%= number_to_currency(@order.subtotal(item.id, @order.id)) %></p>
   </section>
 <% end  %>
 
-<h4>Grand Total: <%= number_to_currency(cart.grand_total) %></h4>
-<h4>Order Date: <%= @order.created_at %></h4>
+<h4>Grand Total: <%= number_to_currency(@order.grand_total) %></h4>
+<h5>Order Date: <%= @order.created_at %></h5>

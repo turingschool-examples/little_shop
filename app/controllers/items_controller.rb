@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+  before_action :get_item, only: [:show, :edit, :update, :destroy]
+  before_action :get_merchant, only: [:new, :create]
+
   def index
     if params[:merchant_id]
       @merchant = Merchant.find(params[:merchant_id])
@@ -9,17 +12,13 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     @reviews = Review.where(item_id: params[:id])
-
   end
 
   def new
-    @merchant = Merchant.find(params[:merchant_id])
   end
 
   def create
-    @merchant = Merchant.find(params[:merchant_id])
     item = @merchant.items.create(item_params)
     if item.id.nil?
       flash[:alert] = item.errors.full_messages.to_sentence
@@ -30,11 +29,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
     @item.update(item_params)
     if item_params.values.any? {|value| value.empty? }
       flash[:alert] = @item.errors.full_messages.to_sentence
@@ -45,10 +42,9 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    if item.item_orders.include?(params[:id])
+    if @item.item_orders.include?(params[:id])
       flash[:alert] = "This item has pending orders, cannot be deleted."
-      redirect_to "/items/#{item.id}"
+      redirect_to item_path(@item)
     else
       Item.destroy(params[:id])
       redirect_to items_path
@@ -59,5 +55,13 @@ class ItemsController < ApplicationController
 
   def item_params
     params.permit(:name, :description, :price, :image, :inventory)
+  end
+
+  def get_item
+    @item = Item.find(params[:id])
+  end
+
+  def get_merchant
+    @merchant = Merchant.find(params[:merchant_id])
   end
 end
