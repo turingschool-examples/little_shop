@@ -21,7 +21,7 @@ RSpec.describe Item do
 
   describe '#average_rating' do
     it 'Displays average of all ratings' do
-    expect(@ogre.average_rating).to eq(3)
+    expect(@ogre.average_rating).to eq(2.7)
     end
   end
 

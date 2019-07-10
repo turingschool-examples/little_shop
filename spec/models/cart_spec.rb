@@ -68,7 +68,7 @@ RSpec.describe Cart do
     end
 
     describe '#item_count' do
-      it 'shows number of each item in cart' do
+      it 'shows number of each items in cart' do
         expect(@cart.item_count(@ogre.id)).to eq(2)
          expect(@cart.item_count(@giant.id)).to eq(1)
       end
