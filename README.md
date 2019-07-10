@@ -8,6 +8,7 @@ Sejin Kim, Nathan Thomas, Jori Peterson
 
 "Little Shop" is a fictitious e-commerce platform where users can place items into a shopping cart and 'check out' to create Orders in the database. Users can also create Reviews for each Item.
 
+
 ## Set Up
 
 - When opening this repo, please:
