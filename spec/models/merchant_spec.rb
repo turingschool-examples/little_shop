@@ -12,10 +12,11 @@ RSpec.describe Merchant do
       @ogre = @megan.items.create!(name: 'Ogre', description: "I'm an Ogre!", price: 20, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 10 )
       @giant = @megan.items.create!(name: 'Giant', description: "I'm a Giant!", price: 40, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 10 )
       @hippo = @brian.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 10 )
-      @order_1 = Order.create!(name: 'Jake', address: '123 froggo street', city: 'Greenbay', state: 'WI', zip: 22908)
-        @order_1.add_items({@ogre => 3, @giant => 1})
-      @order_2 = Order.create!(name: 'Kelly', address: '123 doggo street', city: 'Naples', state: 'FL', zip: 34109)
-        @order_2.add_items({@hippos => 9})
+      @order_1 = Order.create(name: 'Jake', address: '123 froggo street', city: 'Greenbay', state: 'WI', zip: 22908)
+      @order_2 = Order.create(name: 'Kelly', address: '123 doggo street', city: 'Naples', state: 'FL', zip: 34109)
+      @order_items_1 = OrderItem.create(order: @order_1, item: @ogre, count: 3, amount: 20)
+      @order_items_2 = OrderItem.create(order: @order_1, item: @giant, count: 1, amount: 40)
+      @order_items_3 = OrderItem.create(order: @order_2, item: @hippo, count: 9, amount: 50)
     end
   end
 
