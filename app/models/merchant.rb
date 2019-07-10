@@ -10,4 +10,17 @@ class Merchant < ApplicationRecord
   def has_orders?
     self.items.joins(:order_items).count != 0
   end
+
+  def total_merchant_items
+    self.items.count
+  end
+
+  def merchant_average_price
+    self.items.average(:price)
+  end
+
+  def distinct_cities
+    city = self.items.joins(:orders).distinct("orders.city").pluck("orders.city")
+    city.sum
+  end
 end

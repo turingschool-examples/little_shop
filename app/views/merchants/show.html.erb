@@ -5,6 +5,13 @@
   <p><%= @merchant.city %> <%= @merchant.state %> <%= @merchant.zip %></p>
 </section>
 
+<section>
+  <p>Merchant sells <%= @total_merchant_items %> different items.</p>
+  <p>Average price of this merchant's items: <%= @merchant_average_price %></p>
+  <p>Cities sold to: <%= @distinct_cities %></p>
+
+</section>
+
 <%= button_to 'Edit', "/merchants/#{@merchant.id}/edit", method: :get %>
 <% if !@merchant.has_orders? %>
   <%= button_to 'Delete', "/merchants/#{@merchant.id}", method: :delete %>
