@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   post '/orders', to: 'orders#create'
   get '/orders/:id', to: 'orders#show', as: :order
   get '/orders/new', to: 'orders#new', as: :new_order
+  get '/orders/:id', to: 'orders#show', as: :order
+  post '/orders', to: 'orders#create'
 
   get '/items/:item_id/reviews/new', to: 'reviews#new', as: :new_review
   post '/items/:item_id/reviews', to: 'reviews#create', as: :review

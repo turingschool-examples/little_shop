@@ -1,5 +1,1 @@
-<h2>Edit Item</h2>
-<%= form_tag item_path(@item), method: :patch do %>
-  <%= render 'fields' %>
-  <%= submit_tag 'Update Item' %>
-<% end %>
+<%= render 'fields', title: 'Edit Item', path: item_path(@item), method: :patch, button_text: 'Update Item' %>

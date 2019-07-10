@@ -1,8 +1,13 @@
-<%= label_tag :title %>
-<%= text_field_tag :title, @review.title %>
+<h2><%= title %></h2>
+<%= form_tag path, method: method do %>
+  <%= label_tag :title %>
+  <%= text_field_tag :title, @review.title %>
 
-<%= label_tag :rating %>
-<%= number_field_tag :rating, @review.rating, in: 1..5 %>
+  <%= label_tag :rating %>
+  <%= select_tag :rating, options_for_select(['','1','2','3','4','5'], @review.rating.to_s) %>
 
-<%= label_tag :content %>
-<%= text_field_tag :content, @review.content %>
+  <%= label_tag :content %>
+  <%= text_field_tag :content, @review.content %>
+
+  <%= submit_tag button_text %>
+<% end %>

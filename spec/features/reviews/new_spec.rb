@@ -11,7 +11,7 @@ RSpec.describe 'New Review' do
     it 'I can create a review for an item' do
       title = 'Neat!'
       content = "It's an Ogre!"
-      rating = 5
+      rating = '5'
 
       visit item_path(@ogre)
 
@@ -21,7 +21,7 @@ RSpec.describe 'New Review' do
 
       fill_in :title, with: title
       fill_in :content, with: content
-      fill_in :rating, with: rating
+      select(rating, from: :rating)
 
       click_button 'Create Review'
 
@@ -35,7 +35,7 @@ RSpec.describe 'New Review' do
     it 'I see a flash message when info is missing' do
       title = 'Neat!'
       content = "It's an Ogre!"
-      rating = 5
+      rating = '5'
       visit item_path(@ogre)
       click_link 'Write Review'
 
@@ -49,7 +49,7 @@ RSpec.describe 'New Review' do
       click_button 'Create Review'
 
       expect(current_path).to eq(review_path(@ogre))
-      expect(page).to have_content('Missing review message!')
+      expect(page).to have_content('Missing content!')
       expect(find_field(:title).value).to eq(title)
 
       fill_in :content, with: content
@@ -60,7 +60,7 @@ RSpec.describe 'New Review' do
       expect(find_field(:title).value).to eq(title)
       expect(find_field(:content).value).to eq(content)
 
-      fill_in :rating, with: rating
+      select(rating, from: :rating)
       click_button 'Create Review'
 
       expect(current_path).to eq(item_path(@ogre))

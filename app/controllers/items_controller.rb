@@ -21,22 +21,11 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = @merchant.items.new(item_params)
+    @item = @merchant.items.new(local_params)
     if @item.save
       redirect_to merchant_items_path(@merchant)
     else
-      case
-      when item_params[:name] == ''
-        flash[:notice] = 'Missing name!'
-      when item_params[:description] == ''
-        flash[:notice] = 'Missing description!'
-      when item_params[:price] == ''
-        flash[:notice] = 'Missing price!'
-      when item_params[:image] == ''
-        flash[:notice] = 'Missing image!'
-      when item_params[:inventory] == ''
-        flash[:notice] = 'Missing inventory!'
-      end
+      flash_message
       render :new
     end
   end
@@ -45,27 +34,33 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item.update(item_params)
-    redirect_to item_path(@item)
+    if local_params.values.any? {|input| input == ''}
+      flash_message
+      render :edit
+    else
+      @item.update(local_params)
+      redirect_to item_path(@item)
+    end
   end
 
   def destroy
-    @item.destroy
-    redirect_to items_path
+    if @item.orders.empty?
+      @item.destroy
+      redirect_to items_path
+    else
+      flash[:notice] = 'This item has been ordered and cannot be deleted!'
+      redirect_to item_path
+    end
   end
 
   private
 
-  def item_params
+  def local_params
     params.permit(:name, :description, :price, :image, :inventory)
   end
 
   def set_item
     @item ||= Item.find(params[:id])
-  end
-
-  def set_merchant
-    @merchant ||= Merchant.find(params[:merchant_id])
   end
 
   def destroy_reviews
