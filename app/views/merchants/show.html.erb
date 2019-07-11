@@ -8,7 +8,7 @@
 <%= button_to 'Edit', "/merchants/#{@merchant.id}/edit", method: :get %>
 <%= button_to 'Delete', "/merchants/#{@merchant.id}", method: :delete %>
 
-<h3>Number of Items: <%= @merchant.items.count %></h3>
+<h3>Number of Items: <%= link_to @merchant.items.count, merchant_items_path(@merchant) %></h3>
 <h3>Average Item Price: <%= number_to_currency(@merchant.average_price) %></h3>
 <h3><u>Distinct Cities</u></h3>
 <% @merchant.cities.uniq.each do |city| %>
