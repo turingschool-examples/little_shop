@@ -42,6 +42,10 @@
         <li> <%= link_to "Cart: #{cart.contents.values.sum}", '/cart'%> </li>
     </ul>
     </nav>
+<<<<<<< new_order_page
+    <p><%= flash[:success] %></p>
+    <p><%= flash[:error] %></p>
+=======
     <div class="container-fluid">
 
       <% flash.each do |type, message| %>
@@ -50,6 +54,7 @@
       <%= message %>
     </div>
   <% end %>
+>>>>>>> master
     <%= yield %>
   </div>
   </body>
