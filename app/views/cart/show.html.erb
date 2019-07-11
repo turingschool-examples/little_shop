@@ -30,6 +30,9 @@
             <span class="btn-label"><i class="glyphicon glyphicon-trash"></i></span> Delete
             <% end  %>
           </td>
+          <td><%= button_to "Checkout" "/cart/#{item.id}", method: :delete, class: "btn btn-Success btn-labeled" do %>
+            <% end  %>
+          </td>
         </tr>
       </tbody>
     </table>
