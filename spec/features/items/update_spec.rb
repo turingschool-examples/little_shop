@@ -8,35 +8,72 @@ RSpec.describe 'Update Item Page' do
     end
 
     it 'I can click a link to get to an item edit page' do
-      visit "/items/#{@ogre.id}"
+      visit item_path(@ogre)
 
       click_link 'Update Item'
 
-      expect(current_path).to eq("/items/#{@ogre.id}/edit")
+      expect(current_path).to eq(edit_item_path(@ogre))
     end
 
     it 'I can edit the items information' do
+      visit edit_item_path(@ogre)
+
+      expect(find_field(:name).value).to eq(@ogre.name)
+      expect(find_field(:description).value).to eq(@ogre.description)
+      expect(find_field(:price).value).to eq(@ogre.price.to_s)
+      expect(find_field(:image).value).to eq(@ogre.image)
+      expect(find_field(:inventory).value).to eq(@ogre.inventory.to_s)
+
       name = 'Giant'
       description = "I'm a Giant!"
       price = 25
       image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw'
-      inventory = 12
+      inventory = 5
+      fill_in :name, with: ''
 
-      visit "/items/#{@ogre.id}/edit"
-
-      fill_in 'Name', with: name
-      fill_in 'Description', with: description
-      fill_in 'Price', with: price
-      fill_in 'Image', with: image
-      fill_in 'Inventory', with: inventory
       click_button 'Update Item'
 
-      expect(current_path).to eq("/items/#{@ogre.id}")
+      expect(page).to have_content('Missing name!')
+
+      fill_in :description, with: ''
+      click_button 'Update Item'
+
+      expect(page).to have_content('Missing description!')
+
+      fill_in :price, with: ''
+      click_button 'Update Item'
+
+      expect(page).to have_content('Missing price!')
+
+      fill_in :image, with: ''
+      click_button 'Update Item'
+
+      expect(page).to have_content('Missing image!')
+
+      fill_in :inventory, with: ''
+      click_button 'Update Item'
+
+      expect(page).to have_content('Missing inventory!')
+
+      fill_in :name, with: name
+      fill_in :description, with: description
+      fill_in :price, with: price
+      fill_in :image, with: image
+      fill_in :inventory, with: inventory
+      click_button 'Update Item'
+
+      expect(current_path).to eq(item_path(@ogre))
+      expect(page).to_not have_content(@ogre.name)
+      expect(page).to_not have_content(@ogre.description)
+      expect(page).to_not have_content(@ogre.price)
+
       expect(page).to have_content(name)
       expect(page).to have_content(description)
       expect(page).to have_content("Price: #{number_to_currency(price)}")
       expect(page).to have_content("Active")
-      expect(page).to have_content("Inventory: #{inventory}")
+      expect(page).to have_content("Inventory: #{@ogre.inventory}")
+      expect(page).to have_content("Sold by: #{@ogre.merchant.name}")
+      expect(page).to have_link(@ogre.merchant.name)
     end
   end
 end

@@ -1,9 +1,34 @@
 <h1><%= @item.name %></h1>
-<p><%= @item.description %></p>
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw">
-<p>Price: <%= number_to_currency(@item.price) %></p>
-<p>Sold by: <%= link_to @item.merchant.name, "/merchants/#{@item.merchant_id}" %>, Inventory: <%= @item.inventory %></p>
-<p><%= @item.active ? "Active" : "Inactive" %></p>
+<%= render 'description', item: @item %>
 
-<%= link_to 'Update Item', "/items/#{@item.id}/edit" %>
-<%= link_to 'Delete', "/items/#{@item.id}", method: :delete %>
+<section class='nav-2'>
+  <section class='nav-group'>
+    <section role="group" class="btn-group">
+      <%= button_to 'Descending', item_desc_path(@item), method: :get, params: {:sort => "highest"} %>
+    </section>
+    <section role="group" class="btn-group">
+      <%= button_to 'Ascending', item_asc_path(@item), method: :get, params: {:sort => "lowest"} %>
+    </section>
+  </section>
+</section>
+
+<% unless @reviews.empty? %>
+  <%= render 'reviews' %>
+<% end %>
+
+<section class='nav-2'>
+  <section class='nav-group'>
+    <section role="group" class="btn-group">
+      <%= link_to 'Add to Cart', add_to_cart_path(@item), method: :patch, class: 'link-btn' %>
+    </section>
+    <section role="group" class="btn-group">
+      <%= link_to 'Write Review', new_review_path(@item), class: 'link-btn' %>
+    </section>
+    <section role="group" class="btn-group">
+      <%= link_to 'Update Item', edit_item_path(@item), class: 'link-btn' %>
+    </section>
+    <section role="group" class="btn-group">
+      <%= link_to 'Delete', delete_item_path(@item), method: :delete, class: 'link-btn' %>
+    </section>
+  </section>
+</section>

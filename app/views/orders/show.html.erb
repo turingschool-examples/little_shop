@@ -1,0 +1,22 @@
+<h1><%= @order.name %></h1>
+<section class='address'>
+  <p><%= @order.address %></p>
+  <p><%= @order.city %> <%= @order.state %> <%= @order.zip %></p>
+</section>
+
+<% running_total = 0 %>
+<% @items.each do |item| %>
+  <section id='item-<%= item.id %>'>
+    <% qty = @order_items.get_quantity(item) %>
+    <% sub_tot = @order_items.get_price(item) * qty %>
+    <% running_total += sub_tot %>
+    <h2><%= link_to item.name, item_path(item) %></h2>
+    <p>Sold by: <%= link_to item.merchant.name, merchant_path(item.merchant) %></p>
+    <p>Price: <%= number_to_currency(@order_items.get_price(item)) %></p>
+    <p>Quantity: <%= qty %></p>
+    <p>Subtotal: <%= number_to_currency(sub_tot) %></p>
+  </section>
+<% end %>
+
+<p>Total: <%= number_to_currency(running_total) %></p>
+<p>Date Created: <%= @order.created_at.to_s.split[0] %></p>

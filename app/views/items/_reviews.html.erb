@@ -1,0 +1,40 @@
+<h1>Reviews</h1>
+
+<section id='review-stats'>
+  <p>Average Rating: <%= @item.average_rating %></p>
+</section>
+
+<% sorted_reviews = @item.sorted_reviews %>
+<% bottom_three, top_three = sorted_reviews[0..2] || [], sorted_reviews[-3..-1] || [] %>
+<section id='top-three'>
+  <% until top_three.empty? %>
+    <% rev = top_three.pop %>
+    <p>Title: <%= rev.title %> Rating: <%= rev.rating %></p>
+  <% end %>
+</section>
+<section id='bottom-three'>
+  <% until bottom_three.empty? %>
+    <% rev = bottom_three.shift %>
+    <p>Title: <%= rev.title %> Rating: <%= rev.rating %></p>
+  <% end %>
+</section>
+
+<section class='reviews'>
+  <% @reviews.each do |review| %>
+    <section id='review-<%= review.id %>'>
+      <h2>Title: <%= review.title %></h2>
+      <p>Rating: <%= review.rating %></p>
+      <p><%= review.content %></p>
+      <section class='nav-2'>
+        <section class='nav-group'>
+          <section role="group" class="btn-group">
+            <%= link_to 'Edit Review', edit_review_path(@item, review), class: 'link-btn' %>
+          </section>
+          <section role="group" class="btn-group">
+            <%= link_to 'Delete Review', delete_review_path(@item, review), method: :delete, class: 'link-btn' %>
+          </section>
+        </section>
+      </section>
+    </section>
+  <% end %>
+</section>

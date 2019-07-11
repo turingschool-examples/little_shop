@@ -1,7 +1,11 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_merchant, only: [:new, :create]
+  before_action :destroy_reviews, only: [:destroy]
+
   def index
     if params[:merchant_id]
-      @merchant = Merchant.find(params[:merchant_id])
+      set_merchant
       @items = @merchant.items
     else
       @items = Item.all
@@ -9,40 +13,64 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    # binding.pry
+    if params[:sort] == nil
+      @reviews = @item.reviews
+    elsif params[:sort] == 'highest'
+      @reviews = @item.reviews.order('rating desc')
+    elsif params[:sort] == 'lowest'
+      @reviews = @item.reviews.order(:rating)
+    end
   end
 
   def new
-    @merchant = Merchant.find(params[:merchant_id])
+    @item = Item.new
   end
 
   def create
-    merchant = Merchant.find(params[:merchant_id])
-    merchant.items.create(item_params)
-
-    redirect_to "/merchants/#{merchant.id}/items"
+    @item = @merchant.items.new(local_params)
+    if @item.save
+      redirect_to merchant_items_path(@merchant)
+    else
+      flash_message
+      render :new
+    end
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-
-    redirect_to "/items/#{item.id}"
+    if local_params.values.any? {|input| input == ''}
+      flash_message
+      render :edit
+    else
+      @item.update(local_params)
+      redirect_to item_path(@item)
+    end
   end
 
   def destroy
-    Item.destroy(params[:id])
-
-    redirect_to '/items'
+    if @item.orders.empty?
+      @item.destroy
+      redirect_to items_path
+    else
+      flash[:error] = 'This item has been ordered and cannot be deleted!'
+      redirect_to item_path
+    end
   end
 
   private
 
-  def item_params
+  def local_params
     params.permit(:name, :description, :price, :image, :inventory)
+  end
+
+  def set_item
+    @item ||= Item.find(params[:id])
+  end
+
+  def destroy_reviews
+    @item.reviews.destroy_all
   end
 end

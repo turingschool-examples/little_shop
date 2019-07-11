@@ -1,0 +1,9 @@
+<h1>New Order</h1>
+<section class='detail-form'>
+<%= form_tag orders_path do %>
+  <%= render 'cart' %><br/>
+  <%= render 'fields' %><br/>
+  <br/>
+  <%= submit_tag 'Create Order' %>
+<% end %>
+</section>
