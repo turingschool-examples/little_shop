@@ -10,7 +10,7 @@ RSpec.describe 'Update Item Page' do
     it 'I can click a link to get to an item edit page' do
       visit "/items/#{@ogre.id}"
 
-      click_link 'Update Item'
+      click_button 'Update Item'
 
       expect(current_path).to eq("/items/#{@ogre.id}/edit")
     end

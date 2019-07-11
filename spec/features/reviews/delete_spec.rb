@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Delete Item' do
+RSpec.describe 'Delete Review' do
   describe 'As a Visitor' do
     describe 'When I visit an items show page' do
       before :each do
@@ -12,16 +12,12 @@ RSpec.describe 'Delete Item' do
         @review_1 = @hippo.reviews.create!(title: 'Good Hippo', content: "The Hippo was good", rating: 4 )
         @review_2 = @hippo.reviews.create!(title: 'bad Hippo', content: "The Hippo was bad", rating: 1 )
       end
-    end
 
-
-      xit 'I can click a link to delete that item' do
+      it 'I can click a link to delete that item' do
         visit "/items/#{@hippo.id}"
-
-
         expect(current_path).to eq("/items/#{@hippo.id}")
-        click_link 'Delete'
-
+        click_button 'Delete'
+      end
     end
   end
 end
