@@ -51,6 +51,10 @@
   background-color: Red;
 }
 
+.success {
+  background-color: Green;
+}
+
  h1, h2, h3, p, .detail-form, .nav-1, .nav-2, .image, img {
    text-align: center;
  }

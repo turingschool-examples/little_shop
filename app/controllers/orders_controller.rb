@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
     if @order.save
       @order.add_items(@items)
       session[:cart] = {}
+      flash[:success] = rand(9999999999).to_s
       redirect_to(order_path(@order))
     else
       flash_message
