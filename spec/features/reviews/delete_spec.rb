@@ -15,13 +15,13 @@ RSpec.describe 'Delete Item' do
     end
 
 
-      xit 'I can click a link to delete that item' do
+      it 'I can click a link to delete that item' do
         visit "/items/#{@hippo.id}"
 
 
         expect(current_path).to eq("/items/#{@hippo.id}")
         click_link 'Delete'
-
+        
     end
   end
 end
