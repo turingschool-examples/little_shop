@@ -12,7 +12,5 @@
 <h3>Average Item Price: <%= number_to_currency(@merchant.average_price) %></h3>
 <h3><u>Distinct Cities</u></h3>
 <% @merchant.cities.uniq.each do |city| %>
-  <ul>
-    <li><%= city %></li>
-  </ul>
+  <p>-<%= city %></p>
 <% end %>
