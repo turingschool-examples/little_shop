@@ -21,10 +21,7 @@ RSpec.describe 'Cart Show Page' do
       expect(page).to have_content(@giant.price)
       expect(page).to have_content(@hippo.name)
       expect(page).to have_content(@hippo.price)
-
-      # expect(page).to have_content(@hippo.quantity)
-      # expect(page).to have_content(@hippo.quantity)
-
+      
   end
   end
 end
