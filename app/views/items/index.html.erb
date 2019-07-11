@@ -1,29 +1,35 @@
 <% if @merchant %>
-<h1>All Items From <%= link_to @merchant.name, "/merchant/#{@merchant.id}" %></h1>
-<%= link_to 'New Item', "/merchants/#{@merchant.id}/items/new" %>
-
+  <h1>All Items From <%= link_to @merchant.name, "/merchant/#{@merchant.id}" %></h1>
+  <%= link_to 'New Item', "/merchants/#{@merchant.id}/items/new" %>
 <% else %>
-<% @items.each do |item|  %>
-<div id="products" class="row list-group">
-  <div class="item  col-xs-4 col-lg-4">
-    <div class="thumbnail">
-      <img class="group list-group-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw">
+  <h1>All Items</h1>
+<% end %>
+      <% @items.each do |item|  %>
+      <section id='item-<%= item.id%>'>
+      <div id="products" class="row list-group">
+          <div class="item  col-xs-4 col-lg-4">
+              <div class="thumbnail">
+                  <img class="group list-group-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw">
 
-      <div class="caption">
-        <h4 class="group inner list-group-item-heading">
-          <%= link_to item.name, "/items/#{item.id}"  %></h4>
-          <br>
-          <p class="group inner list-group-item-text">
-            <%= item.description %></p>
-            <div class="row">
-              <div class="col-xs-12 col-md-6">
-                <p class="lead">Price $<%= item.price %></p>
-                <p>Seller: <%= item.merchant.name %></p>
-                <p>Active<%= item.active %></p>
+                  <div class="caption">
+                      <h4 class="group inner list-group-item-heading">
+                          <%= link_to item.name, "/items/#{item.id}"  %></h4>
+                          <br>
+                      <p class="group inner list-group-item-text">
+                          <%= item.description %></p>
+                      <div class="row">
+                          <div class="col-xs-12 col-md-6">
+                               <p class="lead">Price: <%= number_to_currency(item.price) %></p>
+                               <p>Sold by: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %>, Inventory: <%= item.inventory %></p>
+                               <p><%= item.active ? "Active" : "Inactive" %></p>
+                          </div>
+                          <div class="col-xs-12 col-md-6">
+                              <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
+                          </div>
+                      </div>
+                  </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <% end %>
-      <% end %>
+        </section>
+<% end %>

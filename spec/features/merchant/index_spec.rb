@@ -19,12 +19,13 @@ RSpec.describe 'Merchant Index Page' do
       end
     end
 
-    xit 'I can click a link to get to a merchants show page' do
+    it 'I can click a link to get to a merchants show page' do
       visit '/merchants'
 
-      click_link @megan.name
-
-      expect(current_path).to eq("/merchants/#{@megan.id}")
+      within "#merchant-#{@megan.id}" do
+        click_link @megan.name
+        expect(current_path).to eq("/merchants/#{@megan.id}")
+      end
     end
   end
 end
