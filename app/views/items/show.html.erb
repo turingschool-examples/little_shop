@@ -1,15 +1,34 @@
 <h1><%= @item.name %></h1>
 <%= render 'description', item: @item %>
 
-<%= button_to 'Descending', item_desc_path(@item), method: :get, params: {:sort => "highest"} %>
-<%= button_to 'Ascending', item_asc_path(@item), method: :get, params: {:sort => "lowest"} %>
+<section class='nav-2'>
+  <section class='nav-group'>
+    <section role="group" class="btn-group">
+      <%= button_to 'Descending', item_desc_path(@item), method: :get, params: {:sort => "highest"} %>
+    </section>
+    <section role="group" class="btn-group">
+      <%= button_to 'Ascending', item_asc_path(@item), method: :get, params: {:sort => "lowest"} %>
+    </section>
+  </section>
+</section>
 
 <% unless @reviews.empty? %>
   <%= render 'reviews' %>
 <% end %>
 
-
-<%= link_to 'Add to Cart', add_to_cart_path(@item), method: :patch %>
-<%= link_to 'Write Review', new_review_path(@item) %>
-<%= link_to 'Update Item', edit_item_path(@item) %>
-<%= link_to 'Delete', delete_item_path(@item), method: :delete %>
+<section class='nav-2'>
+  <section class='nav-group'>
+    <section role="group" class="btn-group">
+      <%= link_to 'Add to Cart', add_to_cart_path(@item), method: :patch, class: 'link-btn' %>
+    </section>
+    <section role="group" class="btn-group">
+      <%= link_to 'Write Review', new_review_path(@item), class: 'link-btn' %>
+    </section>
+    <section role="group" class="btn-group">
+      <%= link_to 'Update Item', edit_item_path(@item), class: 'link-btn' %>
+    </section>
+    <section role="group" class="btn-group">
+      <%= link_to 'Delete', delete_item_path(@item), method: :delete, class: 'link-btn' %>
+    </section>
+  </section>
+</section>

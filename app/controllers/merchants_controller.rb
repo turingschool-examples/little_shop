@@ -19,7 +19,7 @@ class MerchantsController < ApplicationController
   def create
     @merchant = Merchant.new(local_params)
     if @merchant.zip.to_s.length != 5 || @merchant.zip.to_s != @merchant.zip.to_i.to_s
-      flash.now[:notice] = 'Please enter a valid zip code.'
+      flash.now[:error] = 'Please enter a valid zip code.'
       render :new
     else
       if @merchant.save
@@ -36,7 +36,7 @@ class MerchantsController < ApplicationController
 
   def update
     if local_params[:zip].to_s.length != 5 || local_params[:zip].to_s != local_params[:zip].to_i.to_s
-      flash.now[:notice] = 'Please enter a valid zip code.'
+      flash.now[:error] = 'Please enter a valid zip code.'
       render :edit
     else
       if local_params.values.any? {|input| input == ''}
@@ -51,7 +51,7 @@ class MerchantsController < ApplicationController
 
   def destroy
     if @merchant.has_items_in_orders?
-      flash[:notice] = 'This merchant has items in orders and cannot be deleted!'
+      flash[:error] = 'This merchant has items in orders and cannot be deleted!'
       render :new
     else
       destroy_items

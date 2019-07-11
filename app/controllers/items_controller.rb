@@ -55,7 +55,7 @@ class ItemsController < ApplicationController
       @item.destroy
       redirect_to items_path
     else
-      flash[:notice] = 'This item has been ordered and cannot be deleted!'
+      flash[:error] = 'This item has been ordered and cannot be deleted!'
       redirect_to item_path
     end
   end

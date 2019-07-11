@@ -3,19 +3,32 @@
 <section class='address'>
   <p><%= @merchant.address %></p>
   <p><%= @merchant.city %> <%= @merchant.state %> <%= @merchant.zip %></p>
-</section>
+</section><br/>
 
+<h2>Top Rated Items:</h2>
 <section id='top-items'>
   <% @top_3_items.each do |item| %>
     <h2><%= link_to item.name, item_path(item) %> Rating: <%= item.average_rating %></h2>
   <% end %>
+</section><br/>
+
+<h3>Total items: <%= @items.length %></h3>
+<h3>Average item price: <%= number_to_currency(@average_price) %></h3>
+<h3>Cities served: <%= @cities_served.join(', ') %></h3>
+
+<section class='nav-2'>
+  <section class='nav-group'>
+    <section role="group" class="btn-group">
+      <%= button_to 'View Items', "/merchants/#{@merchant.id}/items", method: :get %>
+    </section>
+    <section role="group" class="btn-group">
+      <%= button_to 'New Item', "/merchants/#{@merchant.id}/items/new", method: :get %>
+    </section>
+    <section role="group" class="btn-group">
+      <%= button_to 'Edit', "/merchants/#{@merchant.id}/edit", method: :get %>
+    </section>
+    <section role="group" class="btn-group">
+      <%= button_to 'Delete', "/merchants/#{@merchant.id}", method: :delete %>
+    </section>
+  </section>
 </section>
-
-<p>Total items: <%= @items.length %></p>
-<p>Average item price: <%= number_to_currency(@average_price) %></p>
-<p>Cities served: <%= @cities_served.join(', ') %></p>
-
-<%= button_to 'View Items', "/merchants/#{@merchant.id}/items", method: :get %>
-<%= button_to 'New Item', "/merchants/#{@merchant.id}/items/new", method: :get %>
-<%= button_to 'Edit', "/merchants/#{@merchant.id}/edit", method: :get %>
-<%= button_to 'Delete', "/merchants/#{@merchant.id}", method: :delete %>

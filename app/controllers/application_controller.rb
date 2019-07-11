@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   def flash_message
     local_params.each do |key,value|
       if value == ''
-        flash.now[:notice] = "Missing #{key}!"
+        flash.now[:error] = "Missing #{key}!"
         break
       end
     end

@@ -54,8 +54,8 @@ RSpec.describe 'Merchant Show Page' do
       visit merchant_path(@megan)
 
       within "#top-items" do
-        expect(page.all('h2')[1]).to have_link("Ogre")
         expect(page.all('h2')[0]).to have_link("Giant")
+        expect(page.all('h2')[1]).to have_link("Ogre")
       end
 
       hippo = @megan.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
@@ -63,9 +63,9 @@ RSpec.describe 'Merchant Show Page' do
       visit merchant_path(@megan)
 
       within "#top-items" do
-        expect(page.all('h2')[2]).to have_link("Ogre")
-        expect(page.all('h2')[1]).to have_link("Giant")
         expect(page.all('h2')[0]).to have_link("Hippo")
+        expect(page.all('h2')[1]).to have_link("Giant")
+        expect(page.all('h2')[2]).to have_link("Ogre")
       end
 
       elephant = @megan.items.create!(name: 'Elephant', description: "I'm an Elephant!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
@@ -73,9 +73,9 @@ RSpec.describe 'Merchant Show Page' do
       visit merchant_path(@megan)
 
       within "#top-items" do
-        expect(page.all('h2')[2]).to have_link("Giant")
         expect(page.all('h2')[0]).to have_link("Hippo")
         expect(page.all('h2')[1]).to have_link("Elephant")
+        expect(page.all('h2')[2]).to have_link("Giant")
       end
       expect(page).to_not have_content("Ogre")
 
