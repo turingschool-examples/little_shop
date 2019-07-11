@@ -1,13 +1,13 @@
 <h2><%= "New Review For: #{@item.name}" %></h2>
 <%= form_tag "/items/#{@item.id}" do %>
   <%= label_tag :title %>
-  <%= text_field_tag :title %>
+  <%= text_field_tag :title, params[:title] %>
 
   <%= label_tag :rating %>
   <%= select_tag :rating, options_for_select([1, 2, 3, 4, 5]) %>
 
   <%= label_tag :content %>
-  <%= text_field_tag :content %>
+  <%= text_field_tag :content, params[:content] %>
 
   <%= submit_tag 'Create Review' %>
 <% end %>
