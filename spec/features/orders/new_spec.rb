@@ -10,10 +10,10 @@ RSpec.describe "New Order Page" do
       @hippo = @brian.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
 
       visit item_path(@ogre)
-      click_button "Add #{@ogre.name} to Cart"
+      click_button "Add to Cart"
 
       visit cart_path
-      click_link "Checkout"
+      click_button"Checkout"
       expect(current_path).to eq(new_order_path)
     end
 
@@ -30,9 +30,9 @@ RSpec.describe "New Order Page" do
       @order_item_1 = OrderItem.create!(item: @ogre, order: @order_1, price: @ogre.price, quantity: 2)
 
       visit item_path(@ogre)
-      click_button "Add #{@ogre.name} to Cart"
+      click_button "Add to Cart"
       visit cart_path
-      click_link "Checkout"
+      click_button "Checkout"
 
       expect(page).to have_content(@ogre.name)
       expect(page).to have_content(@megan.name)

@@ -16,9 +16,9 @@ RSpec.describe "Order Show Page" do
         @order_item_1 = OrderItem.create!(item: @ogre, order: @order_1, price: @ogre.price, quantity: 2)
 
         visit item_path(@ogre)
-        click_button "Add #{@ogre.name} to Cart"
+        click_button "Add to Cart"
         visit cart_path
-        click_link "Checkout"
+        click_button "Checkout"
         visit new_order_path
 
         name = "John Smith"

@@ -9,9 +9,8 @@ RSpec.describe 'New Review ' do
 
     it 'I can click a link to a New Review form page' do
       visit "/items/#{@ogre.id}"
-
       click_link 'New Review'
-
+      
       expect(current_path).to eq("/items/#{@ogre.id}/reviews/new")
     end
 

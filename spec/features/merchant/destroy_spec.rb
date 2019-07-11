@@ -13,7 +13,7 @@ RSpec.describe 'Destroy Existing Merchant' do
       click_button 'Delete'
 
       expect(current_path).to eq('/merchants')
-      expect(page).to have_content(@brian.name)
+      expect(page).to_not have_content(@brian.name)
     end
   end
 end

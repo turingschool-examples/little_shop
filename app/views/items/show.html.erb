@@ -4,7 +4,8 @@
   <p><%= @item.description %></p>
   <p>Price: <%= number_to_currency(@item.price) %></p>
   <p>Sold by: <%= link_to @item.merchant.name, "/merchants/#{@item.merchant_id}" %></p>
-  <p Inventory: <%= @item.inventory %></p>
+  <p> Inventory: <%= @item.inventory %></p>
+  <p> Active: <%= @item.active%></p>
   <%= button_to "Add to Cart", "/cart/#{@item.id}", method: :post, type:"button", class:"btn btn-success"%>
 
   <h4>Best Reviews</h4>
@@ -22,8 +23,7 @@
    </ul>
     <% end %>
 <br>
-<h4>Average Rating</h4>
-   <%= @item.average_rating%>
+<h3>Average Rating:</h4>  <%= @item.average_rating%>
   <h4>All Reviews</h4>
           <% @item.reviews.each do |review|%>
 					<div class="pull-right" style="margin-left:10px;">0</div>
@@ -36,7 +36,7 @@
 				<div class="review-block">
 					<div class="row">
 						<div class="col-sm-3">
-							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+
 							<div class="review-block-name"><a href="#">Anonymous</a></div>
 							<div class="review-block-date"><br/>1 day ago</div>
 						</div>
@@ -59,19 +59,18 @@
 								</button>
 							</div>
 							<div class="review-block-title"> <%= review.title %></div>
-
           	   <div class="review-block-description"> <%= review.content %></div>
-          	</div>
             <br>
             <br>
 
-            <%= button_to "Delete Review", "/items/#{@item.id}/reviews/#{review.id}", method: :delet e%>
+            <div id="delete">
+            <%= button_to "Delete Review", "/items/#{@item.id}/reviews/#{review.id}", method: :delete%>
+            </div>
+          </div>
 
-            <%= button_to "Edit Review", "/items/#{@item.id}/reviews/#{review.id}/edit", method: :patch %>
+            <%= link_to "Edit Review",  "/items/#{@item.id}/reviews/#{review.id}/edit" %>
           <br>
-
           <% end%>
-
 
 <%= link_to 'New Review', new_item_review_path(@item.id) %>
 <%= link_to 'Update Item', "/items/#{@item.id}/edit" %>
