@@ -5,7 +5,7 @@
   <p><%= @merchant.city %> <%= @merchant.state %> <%= @merchant.zip %></p>
 </section><br/>
 
-<h2>Top Three Rated Items:</h2>
+<h2>Top Rated Items:</h2>
 <section id='top-items'>
   <% @top_3_items.each do |item| %>
     <h2><%= link_to item.name, item_path(item) %> Rating: <%= item.average_rating %></h2>

@@ -38,7 +38,7 @@
  .link-btn {
   font: bold 18px Arial;
   text-decoration: none;
-  background-color: LightGray;
+  background-color: LightGrey;
   color: #333333;
   padding: 8px 15px;
   border-top: 1px solid #CCCCCC;
@@ -47,7 +47,7 @@
   border-left: 1px solid #CCCCCC;
 }
 
-.alert-error {
+.error {
   background-color: Red;
 }
 
