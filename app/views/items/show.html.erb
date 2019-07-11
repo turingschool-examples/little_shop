@@ -1,131 +1,35 @@
 
   <h1><%= @item.name %></h1>
-  <p><%= @item.description %></p>
-
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw">
-
+  <p><%= @item.description %></p>
   <p>Price: <%= number_to_currency(@item.price) %></p>
+  <p>Sold by: <%= link_to @item.merchant.name, "/merchants/#{@item.merchant_id}" %></p>
+  <p Inventory: <%= @item.inventory %></p>
+  <%= button_to "Add to Cart", "/cart/#{@item.id}", method: :post, type:"button", class:"btn btn-success"%>
 
-  <p>Sold by: <%= link_to @item.merchant.name, "/merchants/#{@item.merchant_id}" %>, Inventory: <%= @item.inventory %></p>
-
-  <p><%= @item.active ? "Active" : "Inactive" %></p>
-  <%= button_to "Add #{@item.name} to Cart", "/cart/#{@item.id}", method: :post, type:"button", class:"btn btn-success"%>
-
-
+  <h4>Best Reviews</h4>
  <% @top_3.each do |review|%></h4>
   <br>
     <ul>
-      <p>Title: <%= review.title%></p>
-      <li>Rating : <%= review.rating%></li>
+      <li><p> Title <%= review.title%> Rating: <%= review.rating%></li>
     </ul>
 <% end %>
-  <h4>Worst Reviews: <% @bottom_3.each do |review|%></h4>
-    <p>Title: <%= review.title%></p>
-      <ul>
-        <li>Rating: <%= review.rating%></li>
-      </ul>
-      <br>
+<h4>Worst Reviews</h4>
+<% @bottom_3.each do |review|%></h4>
+ <br>
+   <ul>
+     <li><p> <%= review.title%> Rating: <%= review.rating%></li>
+   </ul>
     <% end %>
-
+<br>
+<h4>Average Rating</h4>
+   <%= @item.average_rating%>
   <h4>All Reviews</h4>
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
-<div class="container">
-		<div class="row">
-			<div class="col-sm-3">
-				<div class="rating-block">
-					<h4>Average user rating</h4>
-					<h2 class="bold padding-bottom-7"> <%= @average_review %> <small>/ 5</small></h2>
-					<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					</button>
-					<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					</button>
-					<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					</button>
-					<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					</button>
-					<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					</button>
-				</div>
-
-			</div>
-			<div class="col-sm-3">
-				<h4>Rating breakdown</h4>
-				<div class="pull-left">
-					<div class="pull-left" style="width:35px; line-height:1;">
-						<div style="height:9px; margin:5px 0;">5 <span class="glyphicon glyphicon-star"></span></div>
-					</div>
-					<div class="pull-left" style="width:180px;">
-						<div class="progress" style="height:9px; margin:8px 0;">
-						  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: 1000%">
-							<span class="sr-only">80% Complete (danger)</span>
-						  </div>
-						</div>
-					</div>
-					<div class="pull-right" style="margin-left:10px;">1</div>
-				</div>
-				<div class="pull-left">
-					<div class="pull-left" style="width:35px; line-height:1;">
-						<div style="height:9px; margin:5px 0;">4 <span class="glyphicon glyphicon-star"></span></div>
-					</div>
-					<div class="pull-left" style="width:180px;">
-						<div class="progress" style="height:9px; margin:8px 0;">
-						  <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: 80%">
-							<span class="sr-only">80% Complete (danger)</span>
-						  </div>
-						</div>
-					</div>
-					<div class="pull-right" style="margin-left:10px;">1</div>
-				</div>
-				<div class="pull-left">
-					<div class="pull-left" style="width:35px; line-height:1;">
-						<div style="height:9px; margin:5px 0;">3 <span class="glyphicon glyphicon-star"></span></div>
-					</div>
-					<div class="pull-left" style="width:180px;">
-						<div class="progress" style="height:9px; margin:8px 0;">
-						  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: 60%">
-							<span class="sr-only">80% Complete (danger)</span>
-						  </div>
-						</div>
-					</div>
-					<div class="pull-right" style="margin-left:10px;">0</div>
-				</div>
-				<div class="pull-left">
-					<div class="pull-left" style="width:35px; line-height:1;">
-						<div style="height:9px; margin:5px 0;">2 <span class="glyphicon glyphicon-star"></span></div>
-					</div>
-					<div class="pull-left" style="width:180px;">
-						<div class="progress" style="height:9px; margin:8px 0;">
-						  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: 40%">
-							<span class="sr-only">80% Complete (danger)</span>
-						  </div>
-						</div>
-					</div>
-					<div class="pull-right" style="margin-left:10px;">0</div>
-				</div>
-				<div class="pull-left">
-					<div class="pull-left" style="width:35px; line-height:1;">
-						<div style="height:9px; margin:5px 0;">1 <span class="glyphicon glyphicon-star"></span></div>
-					</div>
-					<div class="pull-left" style="width:180px;">
-						<div class="progress" style="height:9px; margin:8px 0;">
-						  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: 20%">
-							<span class="sr-only">80% Complete (danger)</span>
-						  </div>
-						</div>
-					</div>
           <% @item.reviews.each do |review|%>
 					<div class="pull-right" style="margin-left:10px;">0</div>
 				</div>
 			</div>
 		</div>
-
-
 		<div class="row">
 			<div class="col-sm-7">
 				<hr/>
@@ -158,14 +62,17 @@
 
           	   <div class="review-block-description"> <%= review.content %></div>
           	</div>
-					</div>
-          <br>
-          <% end%>
+            <br>
+            <br>
 
+            <%= button_to "Delete Review", "/items/#{@item.id}/reviews/#{review.id}", method: :delet e%>
+
+            <%= button_to "Edit Review", "/items/#{@item.id}/reviews/#{review.id}/edit", method: :patch %>
+          <br>
+
+          <% end%>
 
 
 <%= link_to 'New Review', new_item_review_path(@item.id) %>
 <%= link_to 'Update Item', "/items/#{@item.id}/edit" %>
-<% if !@item.item_ordered? %>
-  <%= link_to 'Delete', "/items/#{@item.id}", method: :delete %>
-<% end %>
+<%= link_to 'Delete', "/items/#{@item.id}", method: :delete %>
