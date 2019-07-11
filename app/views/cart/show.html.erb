@@ -1,5 +1,3 @@
-
-
 <%if @cart.contents.empty? %>
 <% else %>
 
@@ -46,7 +44,7 @@
 							<td class="text-center"><strong> <% "#{@cart.total}" %></strong></td>
 						</tr>
 						<tr>
-              <% end  %> 
+              <% end  %>
 							<td><%= button_to "/cart", method: :delete, class:"btn" do %>
             <a><i class="glyphicon glyphicon-trash"></i>Empty Cart</td>
             <%end%>
@@ -57,4 +55,3 @@
 					</tfoot>
 				</table>
         <% end  %>
-</div>

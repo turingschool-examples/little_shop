@@ -28,7 +28,7 @@ class CartController < ApplicationController
 
   def decrease_count
     cart = Cart.new(session[:cart])
-    @=item = Item.find(params[:item_id])
+    @item = Item.find(params[:item_id])
     cart.decrease_count(@item.item_id)
     redirect_to "/cart"
   end

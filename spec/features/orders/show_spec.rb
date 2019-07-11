@@ -19,6 +19,7 @@ RSpec.describe "Order Show Page" do
         click_button "Add #{@ogre.name} to Cart"
         visit cart_path
         click_link "Checkout"
+        visit new_order_path
 
         name = "John Smith"
         address = "123 Donut St"
