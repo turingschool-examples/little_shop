@@ -1,5 +1,7 @@
 class Merchant < ApplicationRecord
   has_many :items
+  validates_presence_of :name, :address, :city, :state, :zip
+
 
   validates_presence_of :name
   validates_presence_of :address

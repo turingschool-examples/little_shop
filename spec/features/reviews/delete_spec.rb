@@ -12,6 +12,7 @@ RSpec.describe 'Delete Item' do
         @review_1 = @hippo.reviews.create!(title: 'Good Hippo', content: "The Hippo was good", rating: 4 )
         @review_2 = @hippo.reviews.create!(title: 'bad Hippo', content: "The Hippo was bad", rating: 1 )
       end
+    end
 
 
       xit 'I can click a link to delete that item' do
@@ -21,7 +22,6 @@ RSpec.describe 'Delete Item' do
         expect(current_path).to eq("/items/#{@hippo.id}")
         click_link 'Delete'
 
-      end
     end
   end
 end
