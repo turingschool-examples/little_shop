@@ -1,9 +1,44 @@
 <h1><%= @item.name %></h1>
 <p><%= @item.description %></p>
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw">
+<img src=<%= @item.image %> alt=<%= @item.name %>>
 <p>Price: <%= number_to_currency(@item.price) %></p>
 <p>Sold by: <%= link_to @item.merchant.name, "/merchants/#{@item.merchant_id}" %>, Inventory: <%= @item.inventory %></p>
 <p><%= @item.active ? "Active" : "Inactive" %></p>
 
-<%= link_to 'Update Item', "/items/#{@item.id}/edit" %>
-<%= link_to 'Delete', "/items/#{@item.id}", method: :delete %>
+<%= button_to 'Add to Cart', add_cart_path(@item), method: :post %>
+<%= link_to 'Update Item', edit_item_path(@item) %>
+<%= link_to 'Delete', item_path(@item), method: :delete %>
+<%= link_to 'Add New Review', "/items/#{@item.id}/reviews/new" %>
+
+<% unless @reviews.empty? %>
+  <section class='average_rating'>
+    <h2>Average Rating: <%=@item.average_rating.to_f.round(2) %></h2>
+  </section>
+
+  <section class='best_review'>
+    <h2>Best Reviews:</h2>
+    <% @item.best_reviews.each do |best_review| %>
+      <p><%= best_review.title %></p>
+      <p>Rating: <%= best_review.rating %></p>
+    <% end %>
+  </section>
+
+  <section class='worst_review'>
+    <h2>Worst Reviews:</h2>
+    <% @item.worst_reviews.each do |worst_review| %>
+      <p><%= worst_review.title %></p>
+      <p>Rating: <%= worst_review.rating %></p>
+    <% end %>
+  </section>
+
+  <h2>Reviews:</h2>
+    <% @reviews.each do |review| %>
+    <section id="review-<%= review.id %>">
+      <h3><b><%= review.title  %></b></h3>
+      <p>Rating: <%= review.rating  %></p>
+      <p><%= review.content  %></p>
+      <%= button_to 'Edit', "/items/#{@item.id}/reviews/#{review.id}/edit", method: :get %>
+      <%= button_to 'Delete', "/items/#{@item.id}/reviews/#{review.id}", method: :delete %>
+    </section>
+  <% end %>
+<% end %>

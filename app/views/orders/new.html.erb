@@ -1,0 +1,33 @@
+<h1>New Order</h1>
+
+<% @items.each do |item| %>
+  <section id='item-<%= item.id%>'>
+    <h2><%= link_to item.name, "/items/#{item.id}" %></h2>
+    <p>Sold by: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %></p>
+    <p>Price: <%= number_to_currency(item.price) %></p>
+    <p>Quantity: <%= cart.item_count(item.id) %></p>
+    <p>Subtotal: <%= number_to_currency(cart.subtotal(item.id)) %></p>
+  </section>
+<% end  %>
+
+<h4>Grand Total: <%= number_to_currency(cart.grand_total) %></h4>
+
+<h2>Shipping Information</h2>
+<%= form_tag orders_path do %>
+  <%= label_tag :name %>
+  <%= text_field_tag :name, params[:name] %>
+
+  <%= label_tag :address %>
+  <%= text_field_tag :address, params[:address] %>
+
+  <%= label_tag :city %>
+  <%= text_field_tag :city, params[:city] %>
+
+  <%= label_tag :state %>
+  <%= text_field_tag :state, params[:state] %>
+
+  <%= label_tag :zipcode %>
+  <%= text_field_tag :zipcode, params[:zipcode] %>
+
+  <%= submit_tag 'Create Order' %>
+<% end %>
