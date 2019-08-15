@@ -10,7 +10,6 @@ Students will be put into pairs to complete the project.
 ## Learning Goals
 
 ### Rails
-* Use path helpers
 * Describe use cases for a model that inherits from ApplicationRecord vs. a PORO
 * Use MVC to organize code effectively, limiting the amount of logic included in views and controllers
 * Make use of flash messages
@@ -19,15 +18,16 @@ Students will be put into pairs to complete the project.
 
 ### ActiveRecord
 * Use built-in ActiveRecord methods to:
-  * create queries that calculate, select, filter, and order data from a single table
+* create queries that calculate, select, filter, and order data from a single table
 
 ### Databases
 * Describe Database Relationships, including the following terms:
-  * Many to Many
-  * Join Table
+* Many to Many
+* Join Table
 
 ### Testing and Debugging
-* Write feature tests utilizing Sad Path Testing
+* Write feature tests utilizing
+* Sad Path Testing
 * Write model tests with RSpec including validations, and class and instance methods
 
 ### Web Applications
@@ -56,9 +56,12 @@ Students will be put into pairs to complete the project.
 
 - if there is a specific gem you'd like to use in the project, please get permission from your instructors first
 
-# User Stories
-
-## Deploy
+## Rubric
+| -------------- | Feature Completeness | Rails | ActiveRecord | Testing and Debugging | Styling, UI/UX |
+| **4: Exceptional**  | All User Stories 100% complete and some extension work completed |
+| **3: Passing** | Students complete the core functionality of all User Stories. No more than 2 Stories fail to correctly implement sad path and edge case functionality.
+| **2: Passing with Concerns** | Students complete the core functionality for all but 1 - 3 User Stories
+| **1: Failing** | Students fail to complete the core functionality of 4 or more User Stories
 
 ```
 [ ] done
@@ -101,13 +104,102 @@ I can click on the merchant name to go to that merchant's show page.
 
 ---
 
+## Item Reviews
+Users will be able to review items
+
+```
+[ ] done
+
+User Story 4, Reviews on Item Show Page
+
+As a visitor,
+When I visit an item's show page,
+I see a list of reviews for that item
+Each review will have:
+- title
+- content of the review
+- rating (1 to 5)
+```
+
+```
+[ ] done
+
+User Story 5, Review Creation
+
+As a visitor,
+When I visit an item's show page
+I see a link to add a new review for this item.
+When I click on this link, I am taken to a new review path
+On this new page, I see a form where I must enter:
+- a review title
+- a numeric rating that can only be a number from 1 to 5
+- some text for the review itself
+When the form is submitted, I should return to that item's
+show page and I should see my review text.
+```
+
+```
+[ ] done
+
+User Story 6, Review Creation, cont.
+
+As a visitor,
+When I fail to fully complete the new review form, but still try to submit the form
+I see a flash message indicating that I need to complete the form in order to submit a review
+```
+
+```
+[ ] done
+
+User Story 7, Review Statistics
+
+As a visitor
+When I visit an item's show page,
+I see an area on the page for statistics about reviews:
+- the top three reviews for this item (title and rating only)
+- the bottom three reviews for this item  (title and rating only)
+- the average rating of all reviews for this item
+```
+
+```
+[ ] done
+
+User Story 8, Edit a Review
+
+As a visitor,
+When I visit an item's show page
+I see a link to edit the review next to each review.
+When I click on this link, I am taken to an edit review path
+On this new page, I see a form that includes:
+- title
+- numeric rating
+- text of the review itself
+I can update any of these fields and submit the form.
+When the form is submitted, I should return to that item's
+show page and I should see my updated review
+```
+
+```
+[ ] done
+
+User Story 9, Delete a review
+
+As a visitor,
+When I visit an item's show page,
+I see a link next to each review to delete the review.
+When I delete a review I am returned to the item's show page
+Then I should no longer see that review.
+```
+
+---
+
 ## Cart & Order
 Users will be able to add items to a cart, and check out to create orders in the database.
 
 ```
 [ ] done
 
-User Story 4, Cart Indicator
+User Story 10, Cart Indicator
 
 As a visitor
 I see a cart indicator in my navigation bar
@@ -118,7 +210,7 @@ I can see this cart indicator from any page in the application
 ```
 [ ] done
 
-User Story 5, Cart Creation
+User Story 11, Cart Creation
 
 As a visitor
 When I visit an item's show page from the items index
@@ -132,7 +224,7 @@ The cart indicator in the navigation bar increments my cart count
 ```
 [ ] done
 
-User Story 6, Cart Show Page
+User Story 12, Cart Show Page
 
 As a visitor
 When I have added items to my cart
@@ -151,7 +243,7 @@ I also see a grand total of what everything in my cart will cost
 ```
 [ ] done
 
-User Story 7, Empty Cart Show Page
+User Story 13, Empty Cart Show Page
 
 As a visitor
 When I add NO items to my cart yet
@@ -163,7 +255,7 @@ I do NOT see the link to empty my cart
 ```
 [ ] done
 
-User Story 8, Emptying Cart
+User Story 14, Emptying Cart
 
 As a visitor
 When I have items in my cart
@@ -177,7 +269,7 @@ The navigation bar shows 0 items in my cart
 ```
 [ ] done
 
-User Story 9, Removing Item from Cart
+User Story 15, Removing Item from Cart
 
 As a visitor
 When I have items in my cart
@@ -190,7 +282,7 @@ I see a button or link to remove that item from my cart
 ```
 [ ] done
 
-User Story 10, Adding Item Quantity to Cart
+User Story 16, Adding Item Quantity to Cart
 
 As a visitor
 When I have items in my cart
@@ -203,7 +295,7 @@ I cannot increment the count beyond the item's inventory size
 ```
 [ ] done
 
-User Story 11, Decreasing Item Quantity from Cart
+User Story 17, Decreasing Item Quantity from Cart
 
 As a visitor
 When I have items in my cart
@@ -216,7 +308,7 @@ If I decrement the count to 0 the item is immediately removed from my cart
 ```
 [ ] done
 
-User Story 12, Link to Checkout
+User Story 18, Link to Checkout
 
 As a visitor
 When I have items in my cart
@@ -228,7 +320,7 @@ When I click that button, I am taken to the new order page
 ```
 [ ] done
 
-User Story 13, New Order Page
+User Story 19, New Order Page
 
 As a visitor
 When I check out from my cart
@@ -251,7 +343,7 @@ I also see a button to 'Create Order'
 ```
 [ ] done
 
-User Story 14, Order Creation
+User Story 20, Order Creation
 
 As a visitor
 When I fill out all information on the new order page
@@ -272,101 +364,12 @@ And I am redirected to that order's show page with the following information:
 ```
 [ ] done
 
-User Story 15, Order Creation, cont.
+User Story 21, Order Creation, cont.
 
 As a visitor
 From the order creation page
 When I click 'Create Order' without completing the shipping address form
 I see a flash message indicating that I need to complete the form for successful order creation
-```
-
----
-
-## Item Reviews
-Users will be able to review items
-
-```
-[ ] done
-
-User Story 16, Reviews on Item Show Page
-
-As a visitor,
-When I visit an item's show page,
-I see a list of reviews for that item
-Each review will have:
-- title
-- content of the review
-- rating (1 to 5)
-```
-
-```
-[ ] done
-
-User Story 17, Review Creation
-
-As a visitor,
-When I visit an item's show page
-I see a link to add a new review for this item.
-When I click on this link, I am taken to a new review path
-On this new page, I see a form where I must enter:
-- a review title
-- a numeric rating that can only be a number from 1 to 5
-- some text for the review itself
-When the form is submitted, I should return to that item's
-show page and I should see my review text.
-```
-
-```
-[ ] done
-
-User Story 18, Review Creation, cont.
-
-As a visitor,
-When I fail to fully complete the new review form, but still try to submit the form
-I see a flash message indicating that I need to complete the form in order to submit a review
-```
-
-```
-[ ] done
-
-User Story 19, Review Statistics
-
-As a visitor
-When I visit an item's show page,
-I see an area on the page for statistics about reviews:
-- the top three reviews for this item (title and rating only)
-- the bottom three reviews for this item  (title and rating only)
-- the average rating of all reviews for this item
-```
-
-```
-[ ] done
-
-User Story 20, Edit a Review
-
-As a visitor,
-When I visit an item's show page
-I see a link to edit the review next to each review.
-When I click on this link, I am taken to an edit review path
-On this new page, I see a form that includes:
-- title
-- numeric rating
-- text of the review itself
-I can update any of these fields and submit the form.
-When the form is submitted, I should return to that item's
-show page and I should see my updated review
-```
-
-```
-[ ] done
-
-User Story 21, Delete a review
-
-As a visitor,
-When I visit an item's show page,
-I see a link next to each review to delete the review.
-When I delete a review I am returned to the item's show page
-Then I should no longer see that review.
 ```
 
 ---
@@ -377,7 +380,7 @@ Visitors will have additional constraints when manipulating merchant data in the
 ```
 [ ] done
 
-User Story 22, Controlling Merchant Destruction
+User Story 22, Merchants with Orders cannot be Deleted
 
 As a visitor
 If a merchant has items that have been ordered
@@ -390,7 +393,19 @@ Either:
 ```
 [ ] done
 
-User Story 23, Flash Messages for Merchant Create and Update
+User Story 23, Merchants with no Orders can be Deleted
+
+As a visitor
+If a merchant has items that have not been ordered
+I can delete that merchant.
+When that merchant is deleted
+Then all of their items are deleted as well.
+```
+
+```
+[ ] done
+
+User Story 24, Flash Messages for Merchant Create and Update
 
 As a visitor
 When I am updating or creating a new merchant
@@ -401,7 +416,7 @@ I see a flash message indicating which field(s) I am missing
 ```
 [ ] done
 
-User Story 24, Merchant Statistics
+User Story 25, Merchant Statistics
 
 As a visitor
 When I visit a merchant's show page
@@ -419,7 +434,7 @@ Visitors will have additional constraints when manipulating item data in the dat
 ```
 [ ] done
 
-User Story 25, Deleting Items Deletes its Reviews
+User Story 26, Deleting Items Deletes its Reviews
 
 As a visitor
 When I delete an item
@@ -429,7 +444,7 @@ All reviews associated with that item are also deleted
 ```
 [ ] done
 
-User Story 26, Items with Orders Cannot be Deleted
+User Story 27, Items with Orders Cannot be Deleted
 
 As a visitor
 If an item has been ordered
@@ -442,7 +457,7 @@ Either:
 ```
 [ ] done
 
-User Story 27, Flash Message for Item Create and Update
+User Story 28, Flash Message for Item Create and Update
 
 As a visitor
 When I am updating or creating a new item
@@ -457,7 +472,7 @@ I see a flash message indicating which field(s) I am missing
 ```
 [ ] done
 
-User Story 28, Sortable Reviews
+User Story 29, Sortable Reviews
 
 As a visitor,
 When I visit an item's show page to see their reviews,
@@ -469,7 +484,7 @@ I see additional links to sort their reviews in the following ways:
 ```
 [ ] done
 
-User Story 29, More Merchant Statistics
+User Story 30, More Merchant Statistics
 
 As a visitor,
 When I visit an merchant's show page
@@ -479,7 +494,7 @@ I see the top 3 highest rated items for that merchant (by average rating)
 ```
 [ ] done
 
-User Story 30, Order Update and Delete
+User Story 31, Order Update and Delete
 
 As a visitor
 When I check out
@@ -493,11 +508,3 @@ On that verified order page, I can:
 - remove items from the order
 ```
 
-## Rubric
-
-| | **Feature Completeness** | **Rails** | **ActiveRecord** | **Testing and Debugging** | **Styling, UI/UX** |
-| --- | --- | --- | --- | --- | --- |
-| **4: Exceptional**  | All User Stories 100% complete including all sad paths and edge cases, and some extension work completed | Students implement strategies not discussed in class to effectively organize code and adhere to MVC. | Highly effective and efficient use of ActiveRecord beyond what we've taught in class. Even `.each` calls will not cause additional database lookups. | Very clear Test Driven Development. Test files are extremely well organized and nested. Students utilize `before :each` blocks. 100% coverage for features and models | Extremely well styled and purposeful layout. Excellent color scheme and font usage. All other rubric categories score 3 or 4. |
-| **3: Passing** | Students complete all User Stories. No more than 2 Stories fail to correctly implement sad path and edge case functionality. | Students use the principles of MVC to effectively organize code. Students can defend any of their design decisions. Students limit access to authorized users. | ActiveRecord is used in a clear and effective way to read/write data using no Ruby to process data. | 100% coverage for models. 98% coverage for features. Tests are well written and meaningful. | Purposeful styling pattern and layout using `application.html.erb`. Links or buttons to reach all areas of the site. |
-| **2: Passing with Concerns** | Students complete all but 1 - 3 User Stories | Students utilize MVC to organize code, but cannot defend some of their design decisions. Or some functionality is not limited to the appropriately authorized users. | Ruby is used to process data that could use ActiveRecord instead. | Feature test coverage between 90% and 98%, or model test coverage below 100%, or tests are not meaningfully written or have an unclear objective. | Styling is poor or incomplete. Incomplete navigation for some routes, i.e. users must manually type URLs. |
-| **1: Failing** | Students fail to complete 4 or more User Stories | Students do not effectively organize code using MVC. Or students do not authorize users. | Ruby is used to process data more often than ActiveRecord | Below 90% coverage for either features or models. | No styling or no buttons or links to navigate the site. |
