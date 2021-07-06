@@ -1,0 +1,44 @@
+
+
+<%if @cart.contents.empty? %>
+<% else %>
+<div class="container">
+  <div class="jumbotron">
+
+<h2>Cart</h2>
+</div>
+</div>
+<br>
+<% @cart.contents.each do |item_id, quantity| %>
+  <% item = Item.find(item_id)%>
+  <% quantity = quantity%>
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th> <u>Item </u></th>
+          <th><u>Quantity</u></th>
+          <th><u>Price</u></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= item.name %></td>
+          <td><div> <%= button_to "+", "/cart/#{item.id}/add", method: :patch, class: "btn" %><%= quantity %><%= button_to "-", "/cart/#{item.id}", method: :patch%></td></div>
+          <td><%= item.price %></td>
+          <td><%= button_to "/cart/#{item.id}", method: :delete, class: "btn btn-danger btn-labeled" do %>
+            <span class="btn-label"><i class="glyphicon glyphicon-trash"></i></span> Remove Item
+            <% end  %>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  </body>
+  </html>
+
+
+<% end  %>
+<% end  %>
