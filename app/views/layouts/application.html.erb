@@ -3,16 +3,20 @@
   <head>
     <title>MonsterShop</title>
     <%= csrf_meta_tags %>
+    <link rel="stylesheet" href="/css/master.css">
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
+
     <nav>
       <%= link_to 'Merchants', '/merchants' %>
       <%= link_to 'Items', '/items' %>
+      <%= link_to "Cart: #{cart.contents.values.sum}", '/cart' %>
     </nav>
+    <p><%= flash[:success] %></p>
     <%= yield %>
   </body>
 </html>
