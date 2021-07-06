@@ -1,0 +1,28 @@
+<h2>Current Items</h2>
+<% @items.each do |oi| %>
+  <h2><%= oi.item.name %></h2>
+  <h3><%= oi.item.merchant.name %></h3>
+  <p><%= oi.quantity %> * <%= oi.price %> = Subtotal: <%= oi.subtotal %></p>
+<% end %>
+<h3>Grand Total: <%= @grand_total %></h3>
+
+
+<h2>New Order</h2>
+<%= form_tag orders_path do %>
+  <%= label_tag :name %>
+  <%= text_field_tag :name %><br></br>
+
+  <%= label_tag :address %>
+  <%= text_field_tag :address %><br></br>
+
+  <%= label_tag :city %>
+  <%= text_field_tag :city %><br></br>
+
+  <%= label_tag :state %>
+  <%= text_field_tag :state %><br></br>
+
+  <%= label_tag :zip %>
+  <%= text_field_tag :zip %><br></br>
+
+  <%= submit_tag 'Create Order' %>
+<% end %>

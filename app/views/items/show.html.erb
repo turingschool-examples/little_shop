@@ -1,9 +1,77 @@
-<h1><%= @item.name %></h1>
-<p><%= @item.description %></p>
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw">
-<p>Price: <%= number_to_currency(@item.price) %></p>
-<p>Sold by: <%= link_to @item.merchant.name, "/merchants/#{@item.merchant_id}" %>, Inventory: <%= @item.inventory %></p>
-<p><%= @item.active ? "Active" : "Inactive" %></p>
 
+  <h1><%= @item.name %></h1>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw">
+  <p><%= @item.description %></p>
+  <p>Price: <%= number_to_currency(@item.price) %></p>
+  <p>Sold by: <%= link_to @item.merchant.name, "/merchants/#{@item.merchant_id}" %></p>
+  <p> Inventory: <%= @item.inventory %></p>
+  <p> Active: <%= @item.active%></p>
+  <%= button_to "Add to Cart", "/cart/#{@item.id}", method: :post, type:"button", class:"btn btn-success"%>
+
+  <h4>Best Reviews</h4>
+ <% @top_3.each do |review|%></h4>
+  <br>
+    <ul>
+      <li><p> Title <%= review.title%> Rating: <%= review.rating%></li>
+    </ul>
+<% end %>
+<h4>Worst Reviews</h4>
+<% @bottom_3.each do |review|%></h4>
+ <br>
+   <ul>
+     <li><p> <%= review.title%> Rating: <%= review.rating%></li>
+   </ul>
+    <% end %>
+<br>
+<h3>Average Rating:</h4>  <%= @item.average_rating%>
+  <h4>All Reviews</h4>
+          <% @item.reviews.each do |review|%>
+					<div class="pull-right" style="margin-left:10px;">0</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-7">
+				<hr/>
+				<div class="review-block">
+					<div class="row">
+						<div class="col-sm-3">
+
+							<div class="review-block-name"><a href="#">Anonymous</a></div>
+							<div class="review-block-date"><br/>1 day ago</div>
+						</div>
+						<div class="col-sm-9">
+							<div class="review-block-rate">
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+							</div>
+							<div class="review-block-title"> <%= review.title %></div>
+          	   <div class="review-block-description"> <%= review.content %></div>
+            <br>
+            <br>
+
+            <div id="delete">
+            <%= button_to "Delete Review", "/items/#{@item.id}/reviews/#{review.id}", method: :delete%>
+            </div>
+          </div>
+
+            <%= link_to "Edit Review",  "/items/#{@item.id}/reviews/#{review.id}/edit" %>
+          <br>
+          <% end%>
+
+<%= link_to 'New Review', new_item_review_path(@item.id) %>
 <%= link_to 'Update Item', "/items/#{@item.id}/edit" %>
 <%= link_to 'Delete', "/items/#{@item.id}", method: :delete %>

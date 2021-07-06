@@ -10,6 +10,9 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @average_review = @item.average_rating
+    @top_3 = @item.top_reviews
+    @bottom_3 = @item.worst_reviews
   end
 
   def new
@@ -19,7 +22,6 @@ class ItemsController < ApplicationController
   def create
     merchant = Merchant.find(params[:merchant_id])
     merchant.items.create(item_params)
-
     redirect_to "/merchants/#{merchant.id}/items"
   end
 
@@ -28,15 +30,19 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-
-    redirect_to "/items/#{item.id}"
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    if @item.save
+      flash[:success] = "#{@item.name} has been updated!"
+    redirect_to "/items/#{@item.id}"
+  else
+    flash[:error].now = @item.errors.full_messages.to_sentence
+      render :edit
+  end
   end
 
   def destroy
     Item.destroy(params[:id])
-
     redirect_to '/items'
   end
 
