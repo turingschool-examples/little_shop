@@ -12,7 +12,12 @@
     <nav>
       <%= link_to 'Merchants', '/merchants' %>
       <%= link_to 'Items', '/items' %>
+      <p>Cart: <%= cart.total %></p>
     </nav>
+
+    <% flash.each do |flash_type, flash_message| %>
+      <%= flash_message %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
